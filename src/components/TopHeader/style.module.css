@@ -1,0 +1,32 @@
+.header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 24px;
+}
+
+.title img{
+    width: 60px;
+}
+
+.title span[class*="-typography"]{
+    margin: 15px;
+}
+
+.headerList > span{
+    margin: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.headerList > span:hover{
+    font-size: 18px;
+}

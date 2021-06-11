@@ -13,4 +13,11 @@ export default {
 const Template: Story<TopHeaderProps> = (args) => <TopHeader {...args} />;
 
 export const Primary = Template.bind({});
-Primary.args = {};
+Primary.args = {
+  title: "Header Title",
+  headerList: [
+    { text: "Game 1", link: "link" },
+    { text: "Game 2", link: "link" },
+    { text: "Game 3", link: "link" },
+  ],
+};
