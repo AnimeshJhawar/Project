@@ -5,6 +5,7 @@ import React from "react";
 import styles from "./style.module.css";
 
 export interface ButtonProps {
+  onClick?: Function;
   text?: string;
   isSecondary?: boolean;
   prefixIcon?: any;
@@ -28,10 +29,12 @@ export const CustomButton: React.FC<ButtonProps> = ({
   type = "primary",
   className = "",
   style = {},
+  onClick = () => null,
 }) => {
   const colorStyle = isSecondary ? "#209AE5" : "";
   return (
     <Button
+      onClick={(e) => onClick(e)}
       className={classnames(styles.button, className)}
       block={block}
       type={isSecondary ? "default" : type}
