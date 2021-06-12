@@ -6,7 +6,7 @@
 }
 
 .container{
-    width: 80%;
+    max-width: 720px;
     height: max-content;
     position: relative;
     display: flex;
@@ -34,8 +34,10 @@
 .controlButtons{
     position: relative;
     width: 80%;
+    max-width: 720px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     overflow: hidden;
 }
+
