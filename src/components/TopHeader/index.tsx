@@ -10,6 +10,7 @@ export interface TopHeaderProps {
   textColor?: string;
   bgcolor?: string;
   style?: CSSProperties;
+  logoSize?: number;
 }
 
 export const TopHeader: React.FC<TopHeaderProps> = ({
@@ -19,6 +20,7 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
   textColor = "#442C2E",
   bgcolor = "rgba(255,255,255, 0.3)",
   style = {},
+  logoSize = 40,
 }) => {
   return (
     <div
@@ -27,7 +29,7 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
     >
       <div className={styles.title}>
         <div>
-          <Avatar src={logoSrc} size={10} shape="circle" />
+          <Avatar src={logoSrc} size={logoSize} shape="circle" />
         </div>
         <Text strong> {title} </Text>
       </div>

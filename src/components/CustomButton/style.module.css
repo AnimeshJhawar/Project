@@ -1,0 +1,12 @@
+.button{
+    border-radius: 4px;
+    border: none;
+    display: flex !important;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.button:focus{
+    outline: none;
+}

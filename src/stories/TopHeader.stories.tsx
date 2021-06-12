@@ -2,8 +2,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from "react";
 import { Story, Meta } from "@storybook/react";
-
 import { TopHeader, TopHeaderProps } from "../components/TopHeader";
+import "antd/dist/antd.css";
 
 export default {
   title: "shared/TopHeader",

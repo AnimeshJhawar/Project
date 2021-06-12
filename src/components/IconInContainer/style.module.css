@@ -1,0 +1,59 @@
+.vectorContainer{
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+.vectorContainer > span{
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.vectorDesktop > span{
+    height: 60px;
+    width: 60px;
+}
+
+.vactorMobile > span{
+    height: 40px;
+    width: 40px;
+}
+
+.vectorContainer *{
+    font-weight: 500;
+}
+
+.vectorDesktop *{
+    font-size: 24px;
+}
+
+.vectorMobile *{
+    font-size: 20px;
+}
+
+.vectorContainer > span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vectorContainer img{
+    display: block;
+    width: auto;
+    height: auto;
+}
+
+.vectorDesktop > span img{
+    max-height: 35px;
+    max-width: 35px;
+}
+
+.vectorMobile > span img{
+    max-height: 25px;
+    max-width: 25px;
+}
+
