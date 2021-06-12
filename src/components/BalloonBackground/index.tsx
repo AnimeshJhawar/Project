@@ -3,16 +3,16 @@ import React, { ReactNode, useState } from "react";
 import styles from "./style.module.css";
 import { ProgressiveImage } from "../ProgressiveImage";
 
-export interface BallonPumpProps {
+export interface BalloonBackgroundProps {
   iconLink?: string;
   blurIcon?: string;
   width?: string;
 }
 
-export const BallonPump: React.FC<BallonPumpProps> = ({
+export const BalloonBackground: React.FC<BalloonBackgroundProps> = ({
   width = "100%",
-  iconLink = "/assets/ballon/tunnel.png",
-  blurIcon = "",
+  iconLink = "/assets/Balloon/background2.jpg",
+  blurIcon = "/assets/Balloon/background2-min.jpg",
 }) => {
   return (
     <ProgressiveImage

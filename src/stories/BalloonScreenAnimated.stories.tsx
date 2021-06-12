@@ -3,18 +3,18 @@
 import React from "react";
 import { Story, Meta } from "@storybook/react";
 import {
-  BallonAnimated,
-  BallonAnimatedProps,
-} from "../components/BallonAnimated";
+  BalloonScreenAnimated,
+  BalloonScreenAnimatedProps,
+} from "../components/BalloonScreenAnimated";
 import "antd/dist/antd.css";
 
 export default {
-  title: "shared/BallonAnimated",
-  component: BallonAnimated,
+  title: "shared/BalloonScreenAnimated",
+  component: BalloonScreenAnimated,
 } as Meta;
 
-const Template: Story<BallonAnimatedProps> = (args) => (
-  <BallonAnimated {...args} />
+const Template: Story<BalloonScreenAnimatedProps> = (args) => (
+  <BalloonScreenAnimated {...args} />
 );
 
 export const Primary = Template.bind({});

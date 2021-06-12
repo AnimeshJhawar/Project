@@ -2,15 +2,15 @@
 import React, { CSSProperties, ReactNode, useState } from "react";
 import { useTransition, animated } from "react-spring";
 import styles from "./style.module.css";
-import { BallonBackground } from "../BallonBackground";
+import { BalloonBackground } from "../BalloonBackground";
 import { CustomButton } from "../CustomButton";
-import { BallonPump } from "../BallonPump";
+import { BalloonPump } from "../BalloonPump";
 
-export interface BallonAnimatedProps {
+export interface BalloonScreenAnimatedProps {
   style?: CSSProperties;
 }
 
-export const BallonAnimated: React.FC<BallonAnimatedProps> = ({
+export const BalloonScreenAnimated: React.FC<BalloonScreenAnimatedProps> = ({
   style = {},
 }) => {
   const [start, setStart] = useState(false);
@@ -26,7 +26,7 @@ export const BallonAnimated: React.FC<BallonAnimatedProps> = ({
     leave: { x: 0, y: -100, opacity: 0 },
   });
 
-  const ballonTransition = useTransition(start, {
+  const balloonTransition = useTransition(start, {
     from: { x: 0, y: 100, opacity: 0 },
     enter: { x: 0, y: 0, opacity: 1 },
     leave: { x: 0, y: -100, opacity: 0 },
@@ -46,7 +46,7 @@ export const BallonAnimated: React.FC<BallonAnimatedProps> = ({
     <div className={styles.page} style={{ ...style }}>
       <div className={styles.container}>
         <div className={styles.background}>
-          <BallonBackground />
+          <BalloonBackground />
         </div>
         {/* {!start ? (
         <div className={styles.startButton}>
@@ -67,7 +67,7 @@ export const BallonAnimated: React.FC<BallonAnimatedProps> = ({
         {tunnelTransition((transition, show) =>
           show ? (
             <animated.div style={transition} className={styles.tunnel}>
-              <BallonPump />
+              <BalloonPump />
             </animated.div>
           ) : (
             ""

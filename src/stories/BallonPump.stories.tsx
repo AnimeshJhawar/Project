@@ -2,15 +2,15 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from "react";
 import { Story, Meta } from "@storybook/react";
-import { BallonPump, BallonPumpProps } from "../components/BallonPump";
+import { BalloonPump, BalloonPumpProps } from "../components/BalloonPump";
 import "antd/dist/antd.css";
 
 export default {
-  title: "shared/BallonPump",
-  component: BallonPump,
+  title: "shared/BalloonPump",
+  component: BalloonPump,
 } as Meta;
 
-const Template: Story<BallonPumpProps> = (args) => <BallonPump {...args} />;
+const Template: Story<BalloonPumpProps> = (args) => <BalloonPump {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {};

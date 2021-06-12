@@ -3,18 +3,18 @@
 import React from "react";
 import { Story, Meta } from "@storybook/react";
 import {
-  BallonBackground,
-  BallonBackgroundProps,
-} from "../components/BallonBackground";
+  BalloonBackground,
+  BalloonBackgroundProps,
+} from "../components/BalloonBackground";
 import "antd/dist/antd.css";
 
 export default {
-  title: "shared/BallonBackground",
-  component: BallonBackground,
+  title: "shared/BalloonBackground",
+  component: BalloonBackground,
 } as Meta;
 
-const Template: Story<BallonBackgroundProps> = (args) => (
-  <BallonBackground {...args} />
+const Template: Story<BalloonBackgroundProps> = (args) => (
+  <BalloonBackground {...args} />
 );
 
 export const Primary = Template.bind({});
