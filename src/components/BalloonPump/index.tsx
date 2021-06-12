@@ -11,7 +11,7 @@ export interface BalloonPumpProps {
 
 export const BalloonPump: React.FC<BalloonPumpProps> = ({
   width = "100%",
-  iconLink = "/assets/Balloon/tunnel.png",
+  iconLink = "/assets/balloon/tunnel.png",
   blurIcon = "",
 }) => {
   return (

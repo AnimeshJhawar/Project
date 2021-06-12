@@ -7,7 +7,7 @@ import { CustomButton, ButtonProps } from "../components/CustomButton";
 import "antd/dist/antd.css";
 
 export default {
-  title: "shared/CustomButton",
+  title: "components/CustomButton",
   component: CustomButton,
 } as Meta;
 

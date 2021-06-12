@@ -6,7 +6,7 @@ import { TopHeader, TopHeaderProps } from "../components/TopHeader";
 import "antd/dist/antd.css";
 
 export default {
-  title: "shared/TopHeader",
+  title: "components/TopHeader",
   component: TopHeader,
 } as Meta;
 

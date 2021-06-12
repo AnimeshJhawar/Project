@@ -9,7 +9,7 @@ import {
 import "antd/dist/antd.css";
 
 export default {
-  title: "shared/BalloonBackground",
+  title: "components/BalloonBackground",
   component: BalloonBackground,
 } as Meta;
 

@@ -9,7 +9,7 @@ import {
 } from "../components/IconInContainer";
 
 export default {
-  title: "shared/IconInContainer",
+  title: "components/IconInContainer",
   component: IconInContainer,
 } as Meta;
 

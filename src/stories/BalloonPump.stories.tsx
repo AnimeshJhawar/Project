@@ -6,7 +6,7 @@ import { BalloonPump, BalloonPumpProps } from "../components/BalloonPump";
 import "antd/dist/antd.css";
 
 export default {
-  title: "shared/BalloonPump",
+  title: "components/BalloonPump",
   component: BalloonPump,
 } as Meta;
 

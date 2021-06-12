@@ -11,8 +11,8 @@ export interface BalloonBackgroundProps {
 
 export const BalloonBackground: React.FC<BalloonBackgroundProps> = ({
   width = "100%",
-  iconLink = "/assets/Balloon/background2.jpg",
-  blurIcon = "/assets/Balloon/background2-min.jpg",
+  iconLink = "/assets/balloon/background2.jpg",
+  blurIcon = "/assets/balloon/background2-min.jpg",
 }) => {
   return (
     <ProgressiveImage
