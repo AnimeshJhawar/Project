@@ -62,6 +62,9 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "prettier": "^2.3.0"
   },
+  "optionalDependencies": {
+    "fsevents": "2.1.2"
+  },
   "eslintConfig": {
     "overrides": [
       {
