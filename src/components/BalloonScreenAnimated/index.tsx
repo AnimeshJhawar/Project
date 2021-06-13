@@ -7,11 +7,13 @@ import { CustomButton } from "../CustomButton";
 import { BalloonPump } from "../BalloonPump";
 import { BalloonAnimated } from "../BalloonAnimated";
 import useWindowDimensions from "../../utils/viewport";
+import { bartText } from "../../data/bart";
 
 export interface BalloonScreenAnimatedProps {
   style?: CSSProperties;
   trialCounts?: number[];
   balloonColors?: string[];
+  initialBalloonDim?: [width: number, height: number];
 }
 
 export const BalloonScreenAnimated: React.FC<BalloonScreenAnimatedProps> = ({
@@ -22,25 +24,23 @@ export const BalloonScreenAnimated: React.FC<BalloonScreenAnimatedProps> = ({
       return "blue";
     }),
   ],
+  initialBalloonDim = [
+    Math.min(useWindowDimensions().width * 0.08, 120), // width
+    Math.min(useWindowDimensions().width * 0.08 * 1.2, 140), // height
+  ],
 }) => {
   const [start, setStart] = useState(false);
   const [collect, setCollect] = useState(false);
   const [explode, setExplode] = useState(false);
   const [balloonNumberWithFills, setBalloonNumberWithFills] = useState([1, 0]);
   const { width } = useWindowDimensions();
-  const [balloonDimensions, setBalloonDimensions] = useState([
-    width * 0.1, // width
-    width * 0.1 * 1.2, // height
-  ]);
+  const [balloonDimensions, setBalloonDimensions] = useState(initialBalloonDim);
 
   useEffect(() => {
     setTimeout(() => {
       // eslint-disable-next-line no-constant-condition
       if (balloonNumberWithFills[0] > 1) {
-        setBalloonDimensions([
-          width * 0.1, // width
-          width * 0.1 * 1.2, // height
-        ]);
+        setBalloonDimensions(initialBalloonDim);
         setCollect(false);
         setStart(true);
         setExplode(false);
@@ -63,9 +63,10 @@ export const BalloonScreenAnimated: React.FC<BalloonScreenAnimatedProps> = ({
     }
   };
   const handelBalloonFill = () => {
+    const increment = Math.min(width * 0.005, 720 * 0.005);
     setBalloonDimensions([
-      balloonDimensions[0] + width * 0.01,
-      balloonDimensions[1] + width * 0.01,
+      balloonDimensions[0] + increment,
+      balloonDimensions[1] + increment,
     ]);
     setBalloonNumberWithFills([
       balloonNumberWithFills[0],
@@ -155,14 +156,14 @@ export const BalloonScreenAnimated: React.FC<BalloonScreenAnimatedProps> = ({
         show ? (
           <animated.div style={transition} className={styles.controlButtons}>
             <CustomButton
-              text="Fill"
+              text={bartText.pump}
               onClick={() => {
                 handelBalloonFill();
               }}
               disabled={collect}
             />
             <CustomButton
-              text="Collect"
+              text={bartText.collect}
               onClick={() => {
                 handelBalloonCollect();
               }}

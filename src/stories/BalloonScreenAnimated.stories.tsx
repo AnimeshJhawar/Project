@@ -19,5 +19,5 @@ const Template: Story<BalloonScreenAnimatedProps> = (args) => (
 
 export const Primary = Template.bind({});
 Primary.args = {
-  trialCounts: [4, 5, 3],
+  trialCounts: [74, 5, 3],
 };
