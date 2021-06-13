@@ -19,6 +19,6 @@ const Template: Story<BalloonScreenAnimatedProps> = (args) => (
 
 export const Primary = Template.bind({});
 Primary.args = {
-  trialCounts: [30, 5, 3],
+  trialCounts: [20, 5, 3],
   balloonColors: ["red", "blue", "green"],
 };
