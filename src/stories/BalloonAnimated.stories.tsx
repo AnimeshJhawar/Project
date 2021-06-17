@@ -19,5 +19,5 @@ const Template: Story<BalloonAnimatedProps> = (args) => (
 
 export const Primary = Template.bind({});
 Primary.args = {
-  color: "red",
+  color: "Blue",
 };

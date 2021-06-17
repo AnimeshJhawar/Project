@@ -8,3 +8,14 @@ export const bartText = {
   lastPage:
     "Thank you for participating in the task.  Please click next to move to the next task.",
 };
+
+// array code
+
+const trialCounts = [10, 12, 13, 12];
+const ballonsColors = ["red", "green", "blue", "grey"];
+
+const gameData = {
+  trialCounts,
+  ballonsColors,
+};
+export { gameData };

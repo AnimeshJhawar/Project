@@ -7,6 +7,7 @@ import {
   BalloonScreenAnimatedProps,
 } from "../components/BalloonScreenAnimated";
 import "antd/dist/antd.css";
+import { gameData } from "../data/bart";
 
 export default {
   title: "components/BalloonScreenAnimated",
@@ -19,6 +20,6 @@ const Template: Story<BalloonScreenAnimatedProps> = (args) => (
 
 export const Primary = Template.bind({});
 Primary.args = {
-  trialCounts: [30, 5, 3],
-  balloonColors: ["red", "blue", "green"],
+  trialCounts: gameData.trialCounts,
+  balloonColors: gameData.ballonsColors,
 };
