@@ -19,18 +19,14 @@ export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = ({
   cardsData,
   trialsCount,
 }) => {
-  const [currentCardsIdx, setCurrentCardsIdx] = useState<number>(0);
+  const [currentCardsIdx, setCurrentCardsIdx] = useState<number>(-1);
   const [freeze, setFreeze] = useState(false);
-  const handelOpenCard = (
-    open: boolean,
-    id: string,
-    wonLost: { won: number; lost: number }
-  ) => {
+  const handelOpenCard = (open: boolean, id: string) => {
     setFreeze(true);
 
     if (currentCardsIdx + 1 <= trialsCount - 1 && !open) {
       setCurrentCardsIdx(currentCardsIdx + 1);
-      console.log(id, wonLost);
+      console.log(id, currentCardsIdx);
     }
   };
 
@@ -49,11 +45,9 @@ export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = ({
             <PokerCard
               cardId={cardId}
               wonLost={cardsData[cardId][currentCardsIdx]}
-              wasOpened={(
-                open: boolean,
-                id: string,
-                wonLost: { won: number; lost: number }
-              ) => handelOpenCard(open, id, wonLost)}
+              wasOpened={(open: boolean, id: string) =>
+                handelOpenCard(open, id)
+              }
               freeze={freeze}
             />
           </Col>

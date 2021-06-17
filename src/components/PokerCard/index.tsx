@@ -43,7 +43,7 @@ export const PokerCard: React.FC<PokerCardProps> = ({
   const handelFlip = () => {
     if (!freeze) {
       setFlipped(!flipped);
-      wasOpened(flipped, cardId, wonLost);
+      wasOpened(flipped, cardId);
     }
   };
 
