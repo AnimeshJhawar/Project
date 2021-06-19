@@ -15,5 +15,5 @@ const Template: Story<StroopTrialProps> = (args) => <StroopTrial {...args} />;
 export const Primary = Template.bind({});
 Primary.args = {
   stroopTrial: { text: "Red", ink: "blue", inkKey: "b" },
-  result: () => null,
+  result: () => console.log("fired"),
 };

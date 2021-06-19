@@ -20,8 +20,25 @@ export const StroopGame: React.FC<StroopCardProps> = () => {
   const handeltrial = (data: { result: boolean; time: number }) => {
     setToggle(true);
     setCorrect(data.result);
-    console.log(data);
+
+    setTimeout(() => {
+      if (dataIndex < gameData.length - 1) {
+        setDataIndex(dataIndex + 1);
+        setToggle(false);
+      }
+    }, 1000);
   };
+
+  const trials = gameData.map((data) => (
+    <StroopTrial
+      result={(e: { result: boolean; time: number }) => {
+        handeltrial(e);
+      }}
+      stroopTrial={{
+        ...data,
+      }}
+    />
+  ));
 
   useEffect(() => {
     if (counter > 0) {
@@ -30,12 +47,6 @@ export const StroopGame: React.FC<StroopCardProps> = () => {
       setStart(true);
     }
   }, [counter]);
-
-  // useEffect(() => {
-  //   if (toggle) {
-  //     setTimeout(() => setToggle(!toggle), 1000);
-  //   }
-  // }, [toggle]);
 
   return (
     <div className={styles.stroopGameContainer}>
@@ -46,16 +57,15 @@ export const StroopGame: React.FC<StroopCardProps> = () => {
           {toggle ? (
             <StroopCard correct={correct} />
           ) : (
-            <StroopTrial
-              result={(e: { result: boolean; time: number }) => {
-                handeltrial(e);
-              }}
-              stroopTrial={{
-                ink: "blue",
-                inkKey: "b",
-                text: "Red",
-              }}
-            />
+            trials[dataIndex]
+            // <StroopTrial
+            //   result={(e: { result: boolean; time: number }) => {
+            //     handeltrial(e);
+            //   }}
+            //   stroopTrial={{
+            //     ...gameData[dataIndex],
+            //   }}
+            // />
           )}
         </>
       )}

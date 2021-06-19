@@ -18,25 +18,34 @@ export const StroopTrial: React.FC<StroopTrialProps> = ({
   const [show, setShow] = useState(false);
   const trialRef = useRef<HTMLDivElement>(null);
 
-  const handelKeyPress = (event: KeyboardEvent) => {
+  function handelKeyPress(event: KeyboardEvent) {
     if (
       stroopData.keys.some((key) => event.key.toString().toLowerCase() === key)
     ) {
       if (inkKey === event.key.toString().toLowerCase()) {
         result({ result: true, time: 0 });
+      } else {
+        result({ result: false, time: 0 });
       }
     }
     event.preventDefault();
-  };
-
-  useEffect(() => {
+  }
+  const onMount = () => {
     if (document.hasFocus() !== true) {
       window.focus();
     }
-    document.addEventListener("keydown", (event) => handelKeyPress(event));
-    return document.removeEventListener("keydown", (event) =>
-      handelKeyPress(event)
-    );
+    document.addEventListener("keyup", handelKeyPress);
+  };
+
+  const unMount = () => {
+    document.removeEventListener("keyup", handelKeyPress);
+  };
+
+  useEffect(() => {
+    onMount();
+    return () => {
+      unMount();
+    };
   }, []);
 
   useEffect(() => {
@@ -44,12 +53,6 @@ export const StroopTrial: React.FC<StroopTrialProps> = ({
       setShow(true);
     }, 500);
   });
-
-  useEffect(() => {
-    setTimeout(() => {
-      result({ result: false, time: 0 });
-    }, stroopData.trialLength);
-  }, [show]);
 
   useEffect(() => {
     if (trialRef.current !== null && show) {

@@ -11,8 +11,8 @@ export const stroopData = {
 export const gameData = [
   { text: "one", ink: "blue", inkKey: "b" },
   { text: "two", ink: "blue", inkKey: "b" },
-  { text: "three", ink: "green", inkKey: "b" },
+  { text: "three", ink: "green", inkKey: "g" },
   { text: "four", ink: "blue", inkKey: "b" },
-  { text: "five", ink: "red", inkKey: "b" },
-  { text: "six", ink: "green", inkKey: "b" },
+  { text: "five", ink: "red", inkKey: "r" },
+  { text: "six", ink: "green", inkKey: "g" },
 ];
