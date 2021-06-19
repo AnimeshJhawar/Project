@@ -1,0 +1,11 @@
+.text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px !important;
+    font-size: max(30px, 3.5vw) !important;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+
+}
