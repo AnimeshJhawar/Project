@@ -34,11 +34,11 @@ export const StroopTrial: React.FC<StroopTrialProps> = ({
     if (document.hasFocus() !== true) {
       window.focus();
     }
-    document.addEventListener("keyup", handelKeyPress);
+    document.addEventListener("keydown", handelKeyPress);
   };
 
   const unMount = () => {
-    document.removeEventListener("keyup", handelKeyPress);
+    document.removeEventListener("keydown", handelKeyPress);
   };
 
   useEffect(() => {
