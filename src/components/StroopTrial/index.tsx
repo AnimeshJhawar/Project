@@ -17,48 +17,41 @@ export const StroopTrial: React.FC<StroopTrialProps> = ({
   const { text, ink, inkKey } = stroopTrial;
   const [show, setShow] = useState(false);
   const trialRef = useRef<HTMLDivElement>(null);
+  const [correct, setCorrect] = useState(false);
+  const [pressed, setPressed] = useState(false);
 
   function handelKeyPress(event: KeyboardEvent) {
     if (
       stroopData.keys.some((key) => event.key.toString().toLowerCase() === key)
     ) {
       if (inkKey === event.key.toString().toLowerCase()) {
-        result({ result: true, time: 0 });
-      } else {
-        result({ result: false, time: 0 });
+        setCorrect(true);
       }
+      setPressed(true);
     }
-    event.preventDefault();
   }
-  const onMount = () => {
-    if (document.hasFocus() !== true) {
-      window.focus();
-    }
-    document.addEventListener("keydown", handelKeyPress);
-  };
-
-  const unMount = () => {
-    document.removeEventListener("keydown", handelKeyPress);
-  };
-
-  useEffect(() => {
-    onMount();
-    return () => {
-      unMount();
-    };
-  }, []);
-
   useEffect(() => {
     setTimeout(() => {
       setShow(true);
     }, 500);
-  });
+    if (document.hasFocus() !== true) {
+      window.focus();
+    }
+    document.addEventListener("keydown", handelKeyPress);
+    setTimeout(() => {
+      setPressed(true);
+    }, stroopData.trialLength);
+
+    return () => {
+      document.removeEventListener("keydown", handelKeyPress);
+    };
+  }, []);
 
   useEffect(() => {
-    if (trialRef.current !== null && show) {
-      trialRef.current.focus();
+    if (pressed) {
+      result({ result: correct, time: 0 });
     }
-  });
+  }, [pressed]);
 
   return (
     <div className={styles.trialContainer} ref={trialRef}>

@@ -16,11 +16,11 @@ export const StroopGame: React.FC<StroopCardProps> = () => {
   const [start, setStart] = useState(false);
   const [toggle, setToggle] = useState(false);
   const [correct, setCorrect] = useState(false);
+  // eslint-disable-next-line prefer-const
 
   const handeltrial = (data: { result: boolean; time: number }) => {
     setToggle(true);
     setCorrect(data.result);
-
     setTimeout(() => {
       if (dataIndex < gameData.length - 1) {
         setDataIndex(dataIndex + 1);
@@ -28,17 +28,6 @@ export const StroopGame: React.FC<StroopCardProps> = () => {
       }
     }, 1000);
   };
-
-  const trials = gameData.map((data) => (
-    <StroopTrial
-      result={(e: { result: boolean; time: number }) => {
-        handeltrial(e);
-      }}
-      stroopTrial={{
-        ...data,
-      }}
-    />
-  ));
 
   useEffect(() => {
     if (counter > 0) {
@@ -57,15 +46,13 @@ export const StroopGame: React.FC<StroopCardProps> = () => {
           {toggle ? (
             <StroopCard correct={correct} />
           ) : (
-            trials[dataIndex]
-            // <StroopTrial
-            //   result={(e: { result: boolean; time: number }) => {
-            //     handeltrial(e);
-            //   }}
-            //   stroopTrial={{
-            //     ...gameData[dataIndex],
-            //   }}
-            // />
+            <StroopTrial
+              result={handeltrial}
+              stroopTrial={{
+                ...gameData[dataIndex],
+              }}
+              key={dataIndex.toString()}
+            />
           )}
         </>
       )}

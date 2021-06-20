@@ -9,10 +9,10 @@ export const stroopData = {
 // write script to generate data for the game here
 
 export const gameData = [
-  { text: "one", ink: "blue", inkKey: "b" },
-  { text: "two", ink: "blue", inkKey: "b" },
-  { text: "three", ink: "green", inkKey: "g" },
-  { text: "four", ink: "blue", inkKey: "b" },
-  { text: "five", ink: "red", inkKey: "r" },
-  { text: "six", ink: "green", inkKey: "g" },
+  { text: "green", ink: "blue", inkKey: "b" },
+  { text: "yellow", ink: "blue", inkKey: "b" },
+  { text: "blue", ink: "green", inkKey: "g" },
+  { text: "green", ink: "blue", inkKey: "b" },
+  { text: "yellow", ink: "yellow", inkKey: "y" },
+  { text: "blue", ink: "green", inkKey: "g" },
 ];
