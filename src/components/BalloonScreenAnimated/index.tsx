@@ -14,6 +14,7 @@ export interface BalloonScreenAnimatedProps {
   trialCounts?: number[];
   balloonColors?: string[];
   initialBalloonDim?: [width: number, height: number];
+  updateMethod?: Function;
 }
 
 export const BalloonScreenAnimated: React.FC<BalloonScreenAnimatedProps> = ({
@@ -28,6 +29,7 @@ export const BalloonScreenAnimated: React.FC<BalloonScreenAnimatedProps> = ({
     Math.min(useWindowDimensions().width * 0.08, 120), // width
     Math.min(useWindowDimensions().width * 0.08 * 1.2, 140), // height
   ],
+  updateMethod = () => null,
 }) => {
   const [start, setStart] = useState(false);
   const [collect, setCollect] = useState(false);
@@ -35,7 +37,7 @@ export const BalloonScreenAnimated: React.FC<BalloonScreenAnimatedProps> = ({
   const [balloonNumberWithFills, setBalloonNumberWithFills] = useState([1, 0]);
   const { width } = useWindowDimensions();
   const [balloonDimensions, setBalloonDimensions] = useState(initialBalloonDim);
-
+  const [end, setEnd] = useState(false);
   useEffect(() => {
     setTimeout(() => {
       // eslint-disable-next-line no-constant-condition
@@ -58,8 +60,16 @@ export const BalloonScreenAnimated: React.FC<BalloonScreenAnimatedProps> = ({
 
   const handelBalloonCollect = () => {
     setCollect(true);
+    updateMethod({
+      push: balloonNumberWithFills[1] + 1,
+      burst: false,
+      next: true,
+    });
+
     if (trialCounts.length > balloonNumberWithFills[0]) {
       pushNextBalloon();
+    } else {
+      setEnd(true);
     }
   };
   const handelBalloonFill = () => {
@@ -73,22 +83,46 @@ export const BalloonScreenAnimated: React.FC<BalloonScreenAnimatedProps> = ({
       balloonNumberWithFills[1] + 1,
     ]);
 
+    updateMethod({
+      push: balloonNumberWithFills[1] + 1,
+      burst: false,
+      next: false,
+    });
+
     if (
       trialCounts[balloonNumberWithFills[0] - 1] === balloonNumberWithFills[1]
     ) {
       setBalloonDimensions([10, 10]);
       setExplode(true);
+      updateMethod({
+        push: balloonNumberWithFills[1],
+        burst: true,
+        next: true,
+      });
       setCollect(true);
       if (trialCounts.length > balloonNumberWithFills[0]) {
         pushNextBalloon();
+      } else {
+        setEnd(true);
       }
     }
+  };
+
+  const onEnd = () => {
+    // write code to hnadel end click
   };
 
   const startButtonTransition = useTransition(!start, {
     from: { x: 0, y: 0, opacity: 0 },
     enter: { x: 0, y: (-1 * width) / 5, opacity: 1 },
     leave: { x: 0, y: -200, opacity: 0 },
+  });
+
+  const endTransition = useTransition(end, {
+    from: { x: 0, y: 0, opacity: 0 },
+    enter: { x: 0, y: (-1 * width) / 5, opacity: 1 },
+    leave: { x: 0, y: -200, opacity: 0 },
+    delay: 1000,
   });
 
   const tunnelTransition = useTransition(start, {
@@ -123,6 +157,20 @@ export const BalloonScreenAnimated: React.FC<BalloonScreenAnimatedProps> = ({
           show ? (
             <animated.div style={transition} className={styles.tunnel}>
               <CustomButton text="START" onClick={onStartHandeler} />
+            </animated.div>
+          ) : (
+            ""
+          )
+        )}
+
+        {endTransition((transition, show) =>
+          show ? (
+            <animated.div style={transition} className={styles.tunnel}>
+              <CustomButton
+                text={bartText.lastPage}
+                isSecondary
+                onClick={onEnd}
+              />
             </animated.div>
           ) : (
             ""

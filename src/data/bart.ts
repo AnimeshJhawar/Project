@@ -6,7 +6,9 @@ export const bartText = {
   total: "Total Earned",
   last: "Last Balloon",
   lastPage:
-    "Thank you for participating in the task.  Please click next to move to the next task.",
+    "Thank you for participating in the task. Please click here for the next task.",
+  startingAmount: 0,
+  perPushAmount: 10,
 };
 
 // array code

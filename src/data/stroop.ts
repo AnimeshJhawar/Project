@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 export const stroopData = {
   countdown: 5, // in seconds
   countDownColor: "black",
