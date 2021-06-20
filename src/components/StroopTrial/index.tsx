@@ -33,7 +33,7 @@ export const StroopTrial: React.FC<StroopTrialProps> = ({
   useEffect(() => {
     setTimeout(() => {
       setShow(true);
-    }, 500);
+    }, stroopData.bufferTime);
     if (document.hasFocus() !== true) {
       window.focus();
     }

@@ -2,8 +2,10 @@
 export const stroopData = {
   countdown: 5, // in seconds
   countDownColor: "black",
-  trialLength: 3000, // in mSeconds
+  trialLength: 2500, // in mSeconds
   keys: ["b", "r", "g", "y"],
+  trialResult: 1000, // in mSeconds, how much longer does, correct/ incoreect card be shown.
+  bufferTime: 500, // in mSeconds, + sign before showing coloured text.
 };
 
 // write script to generate data for the game here

@@ -26,7 +26,7 @@ export const StroopGame: React.FC<StroopCardProps> = () => {
         setDataIndex(dataIndex + 1);
         setToggle(false);
       }
-    }, 1000);
+    }, stroopData.trialResult);
   };
 
   useEffect(() => {
