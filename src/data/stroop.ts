@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 export const stroopData = {
   countdown: 5, // in seconds
   countDownColor: "black",
@@ -7,13 +8,21 @@ export const stroopData = {
   bufferTime: 500, // in mSeconds, + sign before showing coloured text.
 };
 
-// write script to generate data for the game here
+const list = ["blue", "red", "green", "yellow"];
 
-export const gameData = [
-  { text: "green", ink: "blue", inkKey: "b" },
-  { text: "yellow", ink: "blue", inkKey: "b" },
-  { text: "blue", ink: "green", inkKey: "g" },
-  { text: "green", ink: "blue", inkKey: "b" },
-  { text: "yellow", ink: "yellow", inkKey: "y" },
-  { text: "blue", ink: "green", inkKey: "g" },
-];
+// write script to generate data for the game here
+function generateStroopData(trials: number) {
+  const data = [
+    ...Array.from({ length: trials }, () => {
+      const randomText = list[Math.floor(Math.random() * list.length)];
+      const randomInk = list[Math.floor(Math.random() * list.length)];
+      return {
+        text: randomText,
+        ink: randomInk,
+        inkKey: randomInk.slice(0, 1),
+      };
+    }),
+  ];
+  return data;
+}
+export const gameData = generateStroopData(75);

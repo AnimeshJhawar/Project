@@ -27,7 +27,7 @@ export const Bart: React.FC<BartProps> = () => {
     burst: boolean;
   }) => {
     if (data.next) {
-      setTotalAmount(totalAmount + lastAmount * (data.burst ? -1 : 1));
+      setTotalAmount(totalAmount + (data.burst ? 0 : lastAmount));
       if (!data.burst) {
         setLastAmount(0);
       }

@@ -13,11 +13,10 @@ export interface StroopGameProps {}
 export const StroopGame: React.FC<StroopCardProps> = () => {
   const [counter, setCounter] = useState(countdown);
   const [dataIndex, setDataIndex] = useState(0);
-  const [start, setStart] = useState(false);
   const [toggle, setToggle] = useState(false);
   const [correct, setCorrect] = useState(false);
-  // eslint-disable-next-line prefer-const
 
+  // eslint-disable-next-line prefer-const
   const handeltrial = (data: { result: boolean; time: number }) => {
     setToggle(true);
     setCorrect(data.result);
@@ -32,8 +31,6 @@ export const StroopGame: React.FC<StroopCardProps> = () => {
   useEffect(() => {
     if (counter > 0) {
       setTimeout(() => setCounter(counter - 1), 1000);
-    } else {
-      setStart(true);
     }
   }, [counter]);
 

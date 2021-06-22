@@ -2,6 +2,7 @@
 import { PlusOutlined } from "@ant-design/icons";
 import React, { useState, useEffect, useRef } from "react";
 import { stroopData } from "../../data/stroop";
+import { CustomButton } from "../CustomButton";
 import { StroopText } from "../StroopText";
 import styles from "./style.module.css";
 
@@ -19,6 +20,7 @@ export const StroopTrial: React.FC<StroopTrialProps> = ({
   const trialRef = useRef<HTMLDivElement>(null);
   const [correct, setCorrect] = useState(false);
   const [pressed, setPressed] = useState(false);
+  const [onScreenKey, setOnScreenKey] = useState<string>("");
 
   function handelKeyPress(event: KeyboardEvent) {
     if (
@@ -30,6 +32,14 @@ export const StroopTrial: React.FC<StroopTrialProps> = ({
       setPressed(true);
     }
   }
+
+  const handelOnScreenKeys = (val: string) => {
+    if (inkKey === val.toLowerCase()) {
+      setCorrect(true);
+    }
+    setPressed(true);
+  };
+
   useEffect(() => {
     setTimeout(() => {
       setShow(true);
@@ -56,7 +66,24 @@ export const StroopTrial: React.FC<StroopTrialProps> = ({
   return (
     <div className={styles.trialContainer} ref={trialRef}>
       {show ? (
-        <StroopText text={text} ink={ink} />
+        <>
+          <StroopText text={text} ink={ink} />
+          <div className={styles.buttonGroup}>
+            {stroopData.keys.map((key) => (
+              <CustomButton
+                isSecondary
+                text={key}
+                onClick={() => handelOnScreenKeys(key)}
+                style={{
+                  margin: "10px",
+                  border: "1px solid black",
+                  borderRadius: "4px",
+                  color: "black",
+                }}
+              />
+            ))}
+          </div>
+        </>
       ) : (
         <PlusOutlined style={{ fontSize: "28px" }} />
       )}

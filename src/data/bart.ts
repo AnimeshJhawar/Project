@@ -1,3 +1,5 @@
+import getLifeArr from "./generateBartData";
+
 // eslint-disable-next-line import/prefer-default-export
 export const bartText = {
   money: "Rs",
@@ -11,10 +13,19 @@ export const bartText = {
   perPushAmount: 10,
 };
 
+const colors = ["red", "green", "blue", "grey"];
 // array code
-
-const trialCounts = [10, 12, 13, 12];
-const ballonsColors = ["red", "green", "blue", "grey"];
+const arraySize = 75;
+const lowerLim = 2;
+const upperLim = 32;
+const avg = 20;
+const trialCounts = getLifeArr(arraySize, lowerLim, upperLim, avg);
+const ballonsColors = [
+  ...Array.from(
+    { length: arraySize },
+    () => colors[Math.floor(Math.random() * colors.length)]
+  ),
+];
 
 const gameData = {
   trialCounts,
