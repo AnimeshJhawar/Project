@@ -6,7 +6,7 @@ import { useTransition, animated } from "react-spring";
 import { headings } from "../../data/iowa";
 import useWindowDimensions from "../../utils/viewport";
 import { CustomButton } from "../CustomButton";
-import { PokerCard } from "../PokerCard";
+import { PokerDeck } from "../PokerCard";
 import styles from "./style.module.css";
 
 export interface PokerCardsGroupProps {
@@ -22,9 +22,7 @@ export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = ({
   const [currentCardsIdx, setCurrentCardsIdx] = useState<number>(-1);
   const [freeze, setFreeze] = useState(false);
   const handelOpenCard = (open: boolean, id: string) => {
-    setFreeze(true);
-
-    if (currentCardsIdx + 1 <= trialsCount - 1 && !open) {
+    if (currentCardsIdx + 1 <= trialsCount - 1) {
       setCurrentCardsIdx(currentCardsIdx + 1);
       console.log(id, currentCardsIdx);
     }
@@ -39,35 +37,13 @@ export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = ({
 
   return (
     <div className={styles.groupContainer}>
-      <Row gutter={16}>
+      <Row gutter={24}>
         {Object.keys(cardsData).map((cardId: string) => (
-          <Col className="gutter-row" span={6} md={6}>
-            <PokerCard
-              cardId={cardId}
-              wonLost={cardsData[cardId][currentCardsIdx]}
-              wasOpened={(open: boolean, id: string) =>
-                handelOpenCard(open, id)
-              }
-              freeze={freeze}
-            />
+          <Col className="gutter-row" span={4} sm={6} xs={6} md={4}>
+            <PokerDeck />
           </Col>
         ))}
       </Row>
-      <br />
-      {fadingTransition((style, show) =>
-        show ? (
-          <animated.div style={style}>
-            <CustomButton
-              text="Continue"
-              disabled={!freeze}
-              block
-              onClick={() => setFreeze(false)}
-            />
-          </animated.div>
-        ) : (
-          ""
-        )
-      )}
     </div>
   );
 };

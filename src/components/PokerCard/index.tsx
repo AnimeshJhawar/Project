@@ -1,107 +1,112 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-shadow */
+/* eslint-disable consistent-return */
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable no-nested-ternary */
 /* eslint-disable no-unused-vars */
-import { Space, Typography } from "antd";
-import React, { useLayoutEffect, useRef, useState, useEffect } from "react";
-import ReactCardFlip from "react-card-flip";
-import { headings } from "../../data/iowa";
-import useWindowDimensions from "../../utils/viewport";
-import { ProgressiveImage } from "../ProgressiveImage";
+import { render } from "react-dom";
+import React, { EventHandler, ReactEventHandler, useState } from "react";
+import { useSprings, animated, to } from "react-spring";
+import { useGesture, useDrag } from "react-use-gesture";
 import styles from "./style.module.css";
+import { ProgressiveImage } from "../ProgressiveImage";
 
-const { Text } = Typography;
-export interface PokerCardProps {
-  cardSrc?: string;
-  compressedSrc?: string;
-  wonLost?: { won: number; lost: number };
-  wasOpened?: Function;
-  cardId?: string;
-  freeze?: boolean;
+// These two are just helpers, they curate spring data, values that are later being interpolated into css
+const toCustom = (i: number) => ({
+  x: 0,
+  y: i * -4,
+  scale: 1,
+  rot: -10 + Math.random() * 20,
+  delay: i * 100,
+});
+const from = (i: number) => ({ x: 0, rot: 0, scale: 1.5, y: -1000 });
+// This is being used down there in the view, it interpolates rotation and scale into a css transform
+
+export interface PokerDeckProps {
+  xDir?: 1 | -1 | 0;
+  yDir?: 1 | -1 | 0;
+  resetAfterEmpty?: boolean;
 }
-export const PokerCard: React.FC<PokerCardProps> = ({
-  cardSrc = "/assets/iowa/card-blue.png",
-  compressedSrc = "/assets/iowa/card-blue-min.png",
-  wonLost = { won: 0, lost: 0 },
-  wasOpened = () => null,
-  cardId = "noIdGiven",
-  freeze = false,
+
+export const PokerDeck: React.FC<PokerDeckProps> = ({
+  xDir = 1,
+  yDir = -1,
+  resetAfterEmpty = false,
 }) => {
-  const { width } = useWindowDimensions();
-  const [flipped, setFlipped] = useState(false);
-  const targetRef = useRef<HTMLInputElement | null>(null);
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-  const [borderRadius, setBorderRadius] = useState(Math.min(width * 0.08, 12));
+  const cards = [
+    "/assets/iowa/card-blue.png",
+    "/assets/iowa/card-blue.png",
+    "/assets/iowa/card-blue.png",
+    "/assets/iowa/card-blue.png",
+    "/assets/iowa/card-blue.png",
+    "/assets/iowa/card-blue.png",
+  ];
 
-  useLayoutEffect(() => {
-    if (targetRef.current) {
-      setDimensions({
-        width: targetRef.current.offsetWidth,
-        height: targetRef.current.offsetHeight,
+  const trans = (r: number, s: number) =>
+    `perspective(1500px) rotateX(30deg) rotateY(${
+      r / 10
+    }deg) rotateZ(${r}deg) scale(${s})`;
+  const [gone] = useState(() => new Set());
+  const [props, set] = useSprings(cards.length, (i) => ({
+    ...toCustom(i),
+    from: from(i),
+  }));
+
+  const bind = useGesture({
+    onDrag: ({ args: [index], down }) => {
+      const velocity = 0.4;
+      const xDelta = 1;
+      const trigger = !down; // If you flick hard enough it should trigger the card to fly out
+      const dir = -1; // Direction should either point left or right
+      if (!down && trigger) gone.add(index); // If button/finger's up and trigger velocity is reached, we flag the card ready to fly out
+      set((i) => {
+        if (index !== i) return; // We're only interested in changing spring-data for the current spring
+        const isGone = gone.has(index);
+        const x = (200 + window.innerWidth) * xDir; // When a card is gone it flys out left or right, otherwise goes back to zero
+        const y = (200 + window.innerHeight) * yDir; // When a card is gone it flys out left or right, otherwise goes back to zero
+        const rot = xDelta / 10 + (isGone ? dir * 10 * velocity : 0); // How much the card tilts, flicking it harder makes it rotate faster
+        const scale = down ? 1.1 : 1; // Active cards lift up a bit
+        return {
+          x,
+          y,
+          rot,
+          scale,
+          delay: undefined,
+          config: { friction: 50, tension: down ? 800 : isGone ? 200 : 500 },
+        };
       });
-      setBorderRadius(Math.min(width * 0.08, 12));
-    }
-  }, [width, flipped]);
-
-  const handelFlip = () => {
-    if (!freeze) {
-      setFlipped(!flipped);
-      wasOpened(flipped, cardId);
-    }
-  };
-
-  useEffect(() => {
-    if (!freeze && flipped) {
-      setFlipped(false);
-    }
-  }, [freeze]);
-
+      if (!down && gone.size === cards.length && resetAfterEmpty)
+        setTimeout(() => {
+          gone.clear();
+          gone && set((i) => toCustom(i));
+        }, 600);
+    },
+  });
   return (
-    <div className={styles.cardContainer}>
-      <ReactCardFlip isFlipped={flipped} flipDirection="horizontal">
-        <div
-          className={styles.card}
-          onClick={() => handelFlip()}
-          role="button"
-          onKeyUp={() => null}
-          tabIndex={0}
-          style={{ borderRadius }}
-          ref={targetRef}
-        >
-          <ProgressiveImage
-            imgSrc={cardSrc}
-            blurPixel={2}
-            compressedSrc={compressedSrc}
-          />
-        </div>
-
-        <div
-          className={styles.cardContent}
+    <div className={styles.deck}>
+      {props.map(({ x, y, rot, scale }, i) => (
+        <animated.div
+          key={i.toString()}
           style={{
-            width: dimensions.width,
-            height: dimensions.height,
-            borderRadius,
-            // eslint-disable-next-line no-nested-ternary
-            fontSize: width <= 400 ? "8px" : width <= 668 ? "10.5px" : "18px",
+            transform: to([x, y], (x, y) => `translate3d(${x}px,${y}px,0)`),
           }}
-          onClick={() => handelFlip()}
-          role="button"
-          onKeyUp={() => null}
-          tabIndex={0}
         >
-          <Space>
-            <Text> {headings.won} </Text>{" "}
-            <Text strong type="success">
-              {" "}
-              {wonLost.won}
-            </Text>
-          </Space>
-          <Space>
-            <Text> {headings.won} </Text>{" "}
-            <Text strong type="danger">
-              {" "}
-              {wonLost.lost}
-            </Text>
-          </Space>
-        </div>
-      </ReactCardFlip>
+          {/* This is the card itself, we're binding our gesture to it (and inject its index so we know which is which) */}
+          <animated.div
+            {...bind(i)}
+            style={{
+              transform: to([rot, scale], trans),
+            }}
+          >
+            <ProgressiveImage
+              imgSrc={cards[i]}
+              compressedSrc={cards[i]}
+              blurPixel={0}
+              imgWidth="100%"
+            />
+          </animated.div>
+        </animated.div>
+      ))}
     </div>
   );
 };

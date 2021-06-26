@@ -1,15 +1,24 @@
-.card{
-    overflow: hidden;
-    box-shadow: 6px 0 6px -4px rgba(56, 56, 56, 0.8), -6px 0 8px -4px rgba(56, 56, 56, 0.8);
-    -moz-box-shadow: 6px 0 6px -4px rgba(56, 56, 56, 0.8), -6px 0 8px -4px rgba(56, 56, 56, 0.8);
-    -webkit-box-shadow: 6px 0 6px -4px rgba(56, 56, 56, 0.8), -6px 0 8px -4px rgba(56, 56, 56, 0.8);
-    -o-box-shadow:6px 0 6px -4px rgba(56, 56, 56, 0.8), -6px 0 8px -4px rgba(56, 56, 56, 0.8);
-}
-
-.cardContent{
-    padding: 10px;
+  .deck {
+    position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-}
+    align-items: center;
+    background: lightblue;
+    width: 100%;
+  }
+  
+  .deck > div {
+    position: absolute;
+    top: 0;
+    will-change: transform;
+  }
+  
+  .deck > div > div {
+    cursor: pointer;
+    will-change: transform;
+    border-radius: 10px;
+    border-radius: 12px;
+    box-shadow: 0 10px 10px -10px rgba(50, 50, 73, 0.8), 0 15px 10px -10px rgba(50, 50, 73, 0.8);
+  }
+  

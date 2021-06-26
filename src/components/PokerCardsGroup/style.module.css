@@ -1,6 +1,12 @@
 .groupContainer{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    width: 100%;
 }
+
+.groupContainer > div{
+    justify-content: space-between;
+    width: 100%;
+}
+
