@@ -10,7 +10,7 @@ export const iowaData = {
 
 // create data for cards here
 const trialsCount = 6;
-const cardsData = {
+const cardsData: { [key: string]: { won: number; lost: number }[] } = {
   a: [
     { won: 0, lost: 1 },
     { won: 1, lost: 1 },
