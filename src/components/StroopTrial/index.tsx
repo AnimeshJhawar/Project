@@ -9,18 +9,19 @@ import styles from "./style.module.css";
 export interface StroopTrialProps {
   stroopTrial: { text: string; ink: string; inkKey: string };
   result: Function;
+  startTime?: number;
 }
 
 export const StroopTrial: React.FC<StroopTrialProps> = ({
   stroopTrial,
   result = () => null,
+  startTime = Date.now(),
 }) => {
   const { text, ink, inkKey } = stroopTrial;
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(Date.now() - startTime > 500);
   const trialRef = useRef<HTMLDivElement>(null);
   const [correct, setCorrect] = useState(false);
   const [pressed, setPressed] = useState(false);
-  const [onScreenKey, setOnScreenKey] = useState<string>("");
 
   function handelKeyPress(event: KeyboardEvent) {
     if (
@@ -29,6 +30,7 @@ export const StroopTrial: React.FC<StroopTrialProps> = ({
       if (inkKey === event.key.toString().toLowerCase()) {
         setCorrect(true);
       }
+
       setPressed(true);
     }
   }
@@ -44,10 +46,13 @@ export const StroopTrial: React.FC<StroopTrialProps> = ({
     setTimeout(() => {
       setShow(true);
     }, stroopData.bufferTime);
+
     if (document.hasFocus() !== true) {
       window.focus();
     }
+
     document.addEventListener("keydown", handelKeyPress);
+
     setTimeout(() => {
       setPressed(true);
     }, stroopData.trialLength);
@@ -59,7 +64,7 @@ export const StroopTrial: React.FC<StroopTrialProps> = ({
 
   useEffect(() => {
     if (pressed) {
-      result({ result: correct, time: 0 });
+      result({ result: correct, time: Date.now() - startTime });
     }
   }, [pressed]);
 
@@ -71,6 +76,7 @@ export const StroopTrial: React.FC<StroopTrialProps> = ({
           <div className={styles.buttonGroup}>
             {stroopData.keys.map((key) => (
               <CustomButton
+                key={key}
                 isSecondary
                 text={key}
                 onClick={() => handelOnScreenKeys(key)}
@@ -85,7 +91,7 @@ export const StroopTrial: React.FC<StroopTrialProps> = ({
           </div>
         </>
       ) : (
-        <PlusOutlined style={{ fontSize: "28px" }} />
+        <PlusOutlined style={{ fontSize: "28px", justifySelf: "flex-start" }} />
       )}
     </div>
   );

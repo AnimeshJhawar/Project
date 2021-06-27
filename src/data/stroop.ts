@@ -1,11 +1,12 @@
 /* eslint-disable no-unused-vars */
 export const stroopData = {
+  trialsCount: 50,
   countdown: 5, // in seconds
   countDownColor: "black",
-  trialLength: 2500, // in mSeconds
+  bufferTime: 500, // in mSeconds, + sign  before showing coloured text.
+  trialLength: 2500, // in mSeconds this is the total time (buffer time) + inked text time.
   keys: ["b", "r", "g", "y"],
   trialResult: 1000, // in mSeconds, how much longer does, correct/ incoreect card be shown.
-  bufferTime: 500, // in mSeconds, + sign before showing coloured text.
 };
 
 const list = ["blue", "red", "green", "yellow"];
@@ -25,4 +26,4 @@ function generateStroopData(trials: number) {
   ];
   return data;
 }
-export const gameData = generateStroopData(75);
+export const gameData = generateStroopData(stroopData.trialsCount);

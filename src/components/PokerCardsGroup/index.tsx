@@ -29,7 +29,7 @@ export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = () => {
   const [amount, setAmount] = useState(initialLoan);
 
   const handelDeckClick = (deckId: string) => {
-    if (currentCardsIdx + 1 <= trialsCount) {
+    if (currentCardsIdx + 1 < trialsCount) {
       setCurrentCardsIdx(currentCardsIdx + 1);
       setRecentResult(cardsData[deckId][currentCardsIdx]);
       setAmount(recentResult.won - recentResult.lost + amount);

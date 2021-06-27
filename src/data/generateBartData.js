@@ -30,21 +30,3 @@ export default function getLifeArr(arrSize, lowLim, upLim, avg) {
   arr = arr.sort(() => Math.random() - 0.5);
   return arr;
 }
-const print = function (arr) {
-  const n = arr.length;
-  console.log(arr.toString());
-  let sum = 0;
-  for (let i = 0; i < n; i++) {
-    sum += arr[i];
-  }
-  console.log(sum / n);
-};
-const randomNumber = function (min, max) {
-  return Math.floor(Math.random() * (max - min) + min);
-};
-print(getLifeArr(15, 2, 8, 4));
-print(getLifeArr(15, 2, 32, 16));
-print(getLifeArr(15, 2, 64, 32));
-for (let i = 0; i < 100; i++) {
-  console.log(randomNumber(1, 4));
-}

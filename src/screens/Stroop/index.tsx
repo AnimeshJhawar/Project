@@ -17,8 +17,6 @@ export const Stroop: React.FC<StroopProps> = () => {
   const [end, setEnd] = useState(false);
   const { width } = useWindowDimensions();
 
-  useEffect(() => {}, []);
-
   const onStartHandeler = (e: React.MouseEvent) => {
     setStart(!start);
   };
@@ -50,7 +48,7 @@ export const Stroop: React.FC<StroopProps> = () => {
             <CustomButton text="START" onClick={onStartHandeler} />
           </animated.div>
         ) : (
-          <animated.div style={transition} className={styles.tunnel}>
+          <animated.div style={transition}>
             <StroopGame />
           </animated.div>
         )
