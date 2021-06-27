@@ -1,49 +1,112 @@
 /* eslint-disable no-unused-vars */
 import { Space, Typography, Row, Col } from "antd";
-import { bool, number } from "prop-types";
-import React, { useLayoutEffect, useRef, useState } from "react";
+import { number } from "prop-types";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useTransition, animated } from "react-spring";
-import { headings } from "../../data/iowa";
+import { iowaData, iowaGameData } from "../../data/iowa";
 import useWindowDimensions from "../../utils/viewport";
 import { CustomButton } from "../CustomButton";
 import { PokerDeck } from "../PokerCard";
+import { Progress } from "../Progress";
+import { StroopCard } from "../StroopCard";
 import styles from "./style.module.css";
 
-export interface PokerCardsGroupProps {
-  cardsData: {
-    [cardId: string]: { won: number; lost: number }[];
-  };
-  trialsCount: number;
-}
-export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = ({
-  cardsData,
-  trialsCount,
-}) => {
-  const [currentCardsIdx, setCurrentCardsIdx] = useState<number>(-1);
+const { won, lost, initialLoan, finalLimit, lastPage } = iowaData;
+const { cardsData, trialsCount } = iowaGameData;
+
+export interface PokerCardsGroupProps {}
+export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = () => {
+  const { width } = useWindowDimensions();
+  const [currentCardsIdx, setCurrentCardsIdx] = useState<number>(0);
   const [freeze, setFreeze] = useState(false);
-  const handelOpenCard = (open: boolean, id: string) => {
-    if (currentCardsIdx + 1 <= trialsCount - 1) {
+  const [timer, setTimer] = useState(0);
+  const [end, setEnd] = useState(false);
+  const [recentResult, setRecentResult] = useState<{
+    won: number;
+    lost: number;
+  }>({ won: 0, lost: 0 });
+  const fixedPercent = (initialLoan * 100) / finalLimit;
+  const [amount, setAmount] = useState(initialLoan);
+
+  const handelDeckClick = (deckId: string) => {
+    if (currentCardsIdx + 1 <= trialsCount) {
       setCurrentCardsIdx(currentCardsIdx + 1);
-      console.log(id, currentCardsIdx);
+      setRecentResult(cardsData[deckId][currentCardsIdx]);
+      setAmount(recentResult.won - recentResult.lost + amount);
+    } else {
+      setEnd(true);
     }
   };
 
-  const fadingTransition = useTransition(freeze, {
+  useEffect(() => {
+    if (currentCardsIdx > 0) {
+      setTimeout(() => setTimer(timer + 1), 1);
+    }
+  });
+
+  const onEnd = () => {
+    // write code to hnadel end click
+  };
+
+  const endTransition = useTransition(end, {
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
-    config: { tension: 220, friction: 120 },
+    delay: 0,
   });
 
   return (
     <div className={styles.groupContainer}>
-      <Row gutter={24}>
-        {Object.keys(cardsData).map((cardId: string) => (
-          <Col className="gutter-row" span={4} sm={6} xs={6} md={4}>
-            <PokerDeck />
-          </Col>
-        ))}
-      </Row>
+      <div className={styles.progressBars}>
+        <Progress
+          percent={fixedPercent}
+          strokeColor="orange"
+          title="Loan Amount"
+        />
+        <Progress
+          percent={(amount * 100) / finalLimit}
+          strokeColor={
+            fixedPercent > (amount * 100) / finalLimit ? "red" : undefined
+          }
+          title="Current Balance"
+        />
+      </div>
+      <div className={styles.result}>
+        <StroopCard text={`You Won : ${recentResult.won} Rs`} />
+        <StroopCard text={`You Lost : ${recentResult.lost} Rs`} />
+      </div>
+      {endTransition((transition, show) =>
+        show ? (
+          <animated.div
+            style={transition}
+            className={styles.endButtonContainer}
+          >
+            <CustomButton text={lastPage} onClick={onEnd} />
+          </animated.div>
+        ) : (
+          ""
+        )
+      )}
+
+      {endTransition((transition, show) =>
+        !show ? (
+          <animated.div style={transition} className={styles.decksContainer}>
+            <Row gutter={0}>
+              {Object.keys(cardsData).map((cardId: string) => (
+                <Col className="gutter-row" span={6}>
+                  <PokerDeck
+                    trials={trialsCount}
+                    deckId={cardId}
+                    sendId={handelDeckClick}
+                  />
+                </Col>
+              ))}
+            </Row>
+          </animated.div>
+        ) : (
+          ""
+        )
+      )}
     </div>
   );
 };

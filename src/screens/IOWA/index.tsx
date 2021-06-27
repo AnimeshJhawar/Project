@@ -4,7 +4,6 @@ import { Typography } from "antd";
 import { useTransition, animated } from "react-spring";
 import styles from "./style.module.css";
 import { PokerCardsGroup } from "../../components/PokerCardsGroup";
-import { iowaGameData } from "../../data/iowa";
 import useWindowDimensions from "../../utils/viewport";
 import { CustomButton } from "../../components/CustomButton";
 
@@ -44,16 +43,12 @@ export const IOWA: React.FC<IOWAProps> = () => {
         show ? (
           <animated.div
             style={{ ...transition, position: "absolute", top: "20px" }}
-            className={styles.tunnel}
           >
             <CustomButton text="START" onClick={onStartHandeler} />
           </animated.div>
         ) : (
-          <animated.div style={transition} className={styles.tunnel}>
-            <PokerCardsGroup
-              cardsData={iowaGameData.cardsData}
-              trialsCount={iowaGameData.trialsCount}
-            />
+          <animated.div style={transition} className={styles.iowaCards}>
+            <PokerCardsGroup />
           </animated.div>
         )
       )}

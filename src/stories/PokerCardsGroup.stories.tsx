@@ -7,7 +7,6 @@ import {
   PokerCardsGroupProps,
 } from "../components/PokerCardsGroup";
 import "antd/dist/antd.css";
-import { iowaGameData } from "../data/iowa";
 
 export default {
   title: "components/PokerCardsGroup",
@@ -19,7 +18,4 @@ const Template: Story<PokerCardsGroupProps> = (args) => (
 );
 
 export const Primary = Template.bind({});
-Primary.args = {
-  cardsData: iowaGameData.cardsData,
-  trialsCount: iowaGameData.trialsCount,
-};
+Primary.args = {};

@@ -1,24 +1,27 @@
   .deck {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: grid;
+    width: fit-content;
+    height: fit-content;
     align-items: center;
-    background: lightblue;
-    width: 100%;
+    justify-items: center;
+    padding: min(25px, calc(2vw));
   }
   
   .deck > div {
-    position: absolute;
-    top: 0;
-    will-change: transform;
+    justify-self: center;
+    align-self: center;
+    grid-area: 1 / 1 / 2 / 2;
   }
-  
   .deck > div > div {
     cursor: pointer;
     will-change: transform;
-    border-radius: 10px;
     border-radius: 12px;
-    box-shadow: 0 10px 10px -10px rgba(50, 50, 73, 0.8), 0 15px 10px -10px rgba(50, 50, 73, 0.8);
+    box-shadow: 0 10px 10px -10px rgba(50, 50, 73, 0.8), 0 10px 10px -10px rgba(50, 50, 73, 0.8);
+  }
+
+  @media only screen and (max-width: 980px){
+    .deck{
+      padding: min(20px, calc(2vw));
+    }
   }
   
