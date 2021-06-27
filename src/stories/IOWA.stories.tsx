@@ -11,6 +11,5 @@ export default {
 } as Meta;
 
 const Template: Story<IOWAProps> = (args) => <IOWA {...args} />;
-
 export const Primary = Template.bind({});
 Primary.args = {};
