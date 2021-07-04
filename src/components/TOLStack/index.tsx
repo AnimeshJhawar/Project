@@ -90,7 +90,6 @@ export const TOLStack: React.FC<TOLStackProps> = ({
                 {...provided.droppabdle}
                 ref={provided.innerRef}
               >
-                {provided.placeholder}
                 {stack.map((disc, idx) => (
                   <TOLChip
                     key={disc.id}
@@ -99,6 +98,7 @@ export const TOLStack: React.FC<TOLStackProps> = ({
                     index={idx}
                   />
                 ))}
+                {provided.placeholder}
               </div>
             )}
           </Droppable>

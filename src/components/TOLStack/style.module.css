@@ -1,6 +1,7 @@
 .container{
     display: flex;
     width: 100%;
+    height: fit-content;
 }
 .stack{
     display: flex;
@@ -11,4 +12,8 @@
     margin: 0 5px;
     align-self: flex-end;
     text-align: center;
+    background-color: thistle;
+    height: 100%;
+    min-height: 10px;
+    padding-bottom: 15px;
 }
