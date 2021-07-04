@@ -1,0 +1,14 @@
+.container{
+    display: flex;
+    width: 100%;
+}
+.stack{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: fit-content;
+    align-items: center;
+    margin: 0 5px;
+    align-self: flex-end;
+    text-align: center;
+}
