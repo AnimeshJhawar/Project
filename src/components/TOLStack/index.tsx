@@ -12,9 +12,10 @@ import style from "./style.module.css";
 export interface TOLStackProps {
   stackList: { id: string; color: string }[][];
   finalList: { id: string; color: string }[][];
-  width: string;
-  sendResult: Function;
   maxDrops: number;
+  sendResult?: Function;
+  width?: string;
+  stackIndex: number;
 }
 
 function colorStackFromStack(stackList: TOLStackProps["stackList"]) {
@@ -22,39 +23,12 @@ function colorStackFromStack(stackList: TOLStackProps["stackList"]) {
 }
 
 export const TOLStack: React.FC<TOLStackProps> = ({
-  stackList = [
-    [
-      { id: "1", color: "blue" },
-      { id: "2", color: "green" },
-    ],
-    [
-      { id: "3", color: "red" },
-      { id: "4", color: "green" },
-    ],
-    [
-      { id: "5", color: "grey" },
-      { id: "6", color: "blue" },
-      { id: "7", color: "red" },
-      { id: "8", color: "blue" },
-    ],
-  ],
-  finalList = [
-    [{ id: "2", color: "green" }],
-    [
-      { id: "3", color: "red" },
-      { id: "1", color: "blue" },
-      { id: "4", color: "green" },
-    ],
-    [
-      { id: "5", color: "grey" },
-      { id: "6", color: "blue" },
-      { id: "7", color: "red" },
-      { id: "8", color: "blue" },
-    ],
-  ],
-  maxDrops = 4,
+  stackList = [],
+  finalList = [],
+  maxDrops = 5,
   width = "100px",
   sendResult = () => null,
+  stackIndex,
 }) => {
   const [stacksUpdated, setStacksUpdated] = useState(stackList);
   const [end, setEnd] = useState(false);
@@ -104,9 +78,11 @@ export const TOLStack: React.FC<TOLStackProps> = ({
       JSON.stringify(colorStackFromStack(finalList))
     ) {
       setIsCorrect(true);
+      sendResult(true, dragDropCounts, stackIndex);
       setEnd(true);
     } else if (maxDrops === dragDropCounts) {
       setIsCorrect(false);
+      sendResult(false, dragDropCounts, stackIndex);
       setEnd(true);
     }
   }, [stacksUpdated]);
@@ -119,30 +95,36 @@ export const TOLStack: React.FC<TOLStackProps> = ({
 
       <>
         {end ? (
-          <strong> Result: {isCorrect ? "Correct" : "Wrong"}</strong>
+          <>
+            <strong> Result: {isCorrect ? "Correct" : "Wrong"}</strong>
+            <strong> Loading next trial...</strong>
+          </>
         ) : (
-          <strong> {tolData.finalHeading}</strong>
-        )}
-        <div className={style.container}>
-          {finalList.map((stack, index) => (
-            <div
-              className={style.stack}
-              style={{
-                width,
-                minHeight: `${totalDraggables * 30}px`,
-              }}
-            >
-              {stack.map((disc, idx) => (
-                <TOLChip
-                  key={disc.id}
-                  id={disc.id}
-                  color={disc.color}
-                  index={idx}
-                />
+          <>
+            <strong> {tolData.finalHeading}</strong>
+
+            <div className={style.container}>
+              {finalList.map((stack, index) => (
+                <div
+                  className={style.stack}
+                  style={{
+                    width,
+                    minHeight: `${totalDraggables * 30}px`,
+                  }}
+                >
+                  {stack.map((disc, idx) => (
+                    <TOLChip
+                      key={disc.id}
+                      id={disc.id}
+                      color={disc.color}
+                      index={idx}
+                    />
+                  ))}
+                </div>
               ))}
             </div>
-          ))}
-        </div>
+          </>
+        )}
         {end ? (
           <div className={style.container}>
             {finalList.map((stack, index) => (
