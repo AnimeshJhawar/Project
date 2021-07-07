@@ -15,6 +15,7 @@ export interface BalloonScreenAnimatedProps {
   balloonColors?: string[];
   initialBalloonDim?: [width: number, height: number];
   updateMethod?: Function;
+  practice?: boolean;
 }
 
 export const BalloonScreenAnimated: React.FC<BalloonScreenAnimatedProps> = ({
@@ -30,6 +31,7 @@ export const BalloonScreenAnimated: React.FC<BalloonScreenAnimatedProps> = ({
     Math.min(useWindowDimensions().width * 0.08 * 1.2, 140), // height
   ],
   updateMethod = () => null,
+  practice = false,
 }) => {
   const [start, setStart] = useState(false);
   const [collect, setCollect] = useState(false);
