@@ -11,17 +11,26 @@
     flex-direction: row;
     width: 100%;
     height: fit-content;
-    background-color: teal;
     width: fit-content;
     align-items: center;
 }
 .stack{
     display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: flex-end;
     margin: 0 5px;
     padding: 5px 2px;
-    background-color: thistle;
+    /* background-color: thistle; */
     min-height: 10px;
-    padding-bottom: 30px;
+}
+
+.stackStick{
+    position: absolute;
+    bottom: 0;
+    left: 45px;
+    width: 10px;
+    height: 100%;
+    background-color: #966f33;
+    border-radius: 10px;
 }

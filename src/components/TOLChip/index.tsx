@@ -1,9 +1,10 @@
+/* eslint-disable react/self-closing-comp */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-props-no-spreading */
 import Color from "color";
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
-import style from "./style.module.css";
+import styles from "./style.module.css";
 
 export interface TOLChipProps {
   color?: string;
@@ -15,7 +16,7 @@ export interface TOLChipProps {
 
 export const TOLChip: React.FC<TOLChipProps> = ({
   color = "blue",
-  height = "25px",
+  height = "50px",
   id = "",
   index = 1,
   draggable = false,
@@ -24,33 +25,182 @@ export const TOLChip: React.FC<TOLChipProps> = ({
   return (
     <>
       {!draggable ? (
-        <div
-          className={style.disc}
-          style={{
-            height,
-            backgroundColor: color,
-            boxShadow: `0px 4px ${shadowColor}`,
-          }}
-        >
-          {" "}
+        <div className={styles.scene}>
+          <div
+            className={styles.light}
+            style={{
+              height,
+              width: height,
+            }}
+          >
+            <div className={styles.clip}>
+              <div
+                className={styles.container}
+                style={{
+                  height,
+                  width: height,
+                }}
+              >
+                <div
+                  className={`${styles.circle} ${styles.border}`}
+                  style={{ backgroundColor: color }}
+                ></div>
+                <div
+                  className={`${styles.circle} ${styles.border}`}
+                  style={{ backgroundColor: color }}
+                ></div>
+                <div
+                  className={`${styles.circle} ${styles.border}`}
+                  style={{ backgroundColor: color }}
+                ></div>
+                <div
+                  className={`${styles.circle} ${styles.border}`}
+                  style={{ backgroundColor: color }}
+                ></div>
+                <div
+                  className={`${styles.circle} ${styles.border}`}
+                  style={{ backgroundColor: color }}
+                ></div>
+
+                <div
+                  className={`${styles.circle} ${styles.border}`}
+                  style={{ backgroundColor: color }}
+                ></div>
+                <div
+                  className={`${styles.circle} ${styles.border}`}
+                  style={{ backgroundColor: color }}
+                ></div>
+                <div
+                  className={`${styles.circle} ${styles.border}`}
+                  style={{ backgroundColor: color }}
+                ></div>
+                <div
+                  className={`${styles.circle} ${styles.border}`}
+                  style={{ backgroundColor: color }}
+                ></div>
+                <div
+                  className={`${styles.circle} ${styles.border}`}
+                  style={{ backgroundColor: color }}
+                ></div>
+
+                <div
+                  className={styles.circle}
+                  style={{ backgroundColor: color }}
+                ></div>
+                <div
+                  className={styles.circle}
+                  style={{ backgroundColor: color }}
+                ></div>
+                <div
+                  className={styles.circle}
+                  style={{ backgroundColor: color }}
+                ></div>
+                <div
+                  className={styles.circle}
+                  style={{ backgroundColor: color }}
+                ></div>
+                <div
+                  className={styles.circle}
+                  style={{ backgroundColor: color }}
+                ></div>
+              </div>
+            </div>
+          </div>
         </div>
       ) : (
         <Draggable draggableId={id} index={index}>
           {(provided: any) => (
             <div
+              className={styles.scene}
               {...provided.draggableProps}
               {...provided.dragHandleProps}
               ref={provided.innerRef}
-              className={style.disc}
               style={{
-                height,
-                backgroundColor: color,
                 cursor: "pointer",
-                boxShadow: `0px 4px ${shadowColor}`,
                 ...provided.draggableProps.style,
               }}
             >
-              {" "}
+              {provided.placeholder}
+              <div
+                className={styles.light}
+                style={{
+                  height,
+                  width: height,
+                }}
+              >
+                <div className={styles.clip}>
+                  <div
+                    className={styles.container}
+                    style={{
+                      height,
+                      width: height,
+                    }}
+                  >
+                    <div
+                      className={`${styles.circle} ${styles.border}`}
+                      style={{ backgroundColor: color }}
+                    ></div>
+                    <div
+                      className={`${styles.circle} ${styles.border}`}
+                      style={{ backgroundColor: color }}
+                    ></div>
+                    <div
+                      className={`${styles.circle} ${styles.border}`}
+                      style={{ backgroundColor: color }}
+                    ></div>
+                    <div
+                      className={`${styles.circle} ${styles.border}`}
+                      style={{ backgroundColor: color }}
+                    ></div>
+                    <div
+                      className={`${styles.circle} ${styles.border}`}
+                      style={{ backgroundColor: color }}
+                    ></div>
+
+                    <div
+                      className={`${styles.circle} ${styles.border}`}
+                      style={{ backgroundColor: color }}
+                    ></div>
+                    <div
+                      className={`${styles.circle} ${styles.border}`}
+                      style={{ backgroundColor: color }}
+                    ></div>
+                    <div
+                      className={`${styles.circle} ${styles.border}`}
+                      style={{ backgroundColor: color }}
+                    ></div>
+                    <div
+                      className={`${styles.circle} ${styles.border}`}
+                      style={{ backgroundColor: color }}
+                    ></div>
+                    <div
+                      className={`${styles.circle} ${styles.border}`}
+                      style={{ backgroundColor: color }}
+                    ></div>
+
+                    <div
+                      className={styles.circle}
+                      style={{ backgroundColor: color }}
+                    ></div>
+                    <div
+                      className={styles.circle}
+                      style={{ backgroundColor: color }}
+                    ></div>
+                    <div
+                      className={styles.circle}
+                      style={{ backgroundColor: color }}
+                    ></div>
+                    <div
+                      className={styles.circle}
+                      style={{ backgroundColor: color }}
+                    ></div>
+                    <div
+                      className={styles.circle}
+                      style={{ backgroundColor: color }}
+                    ></div>
+                  </div>
+                </div>
+              </div>
             </div>
           )}
         </Draggable>
