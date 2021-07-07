@@ -58,7 +58,7 @@ export const PokerDeck: React.FC<PokerDeckProps> = ({
       const velocity = 0.4;
       const xDelta = 1;
       const dir = -1; // Direction should either point left or right
-      if (down) {
+      if (!down) {
         gone.add(index); // If button/finger's up and trigger velocity is reached, we flag the card ready to fly out
         sendId(deckId);
       }
