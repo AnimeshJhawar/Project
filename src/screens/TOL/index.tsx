@@ -21,14 +21,11 @@ export const TOL: React.FC<TOLProps> = () => {
     dropsUsed: number,
     stackIndex: number
   ) {
-    setTimeout(() => {
-      console.log(tolIndex, stackIndex);
-      if (stackIndex < trials.length - 1) {
-        setTolIndex(stackIndex + 1);
-      } else {
-        setEnd(true);
-      }
-    }, 2000);
+    if (stackIndex < trials.length - 1) {
+      setTolIndex(stackIndex + 1);
+    } else {
+      setEnd(true);
+    }
   }
 
   function onStartHandeler() {
@@ -77,7 +74,7 @@ export const TOL: React.FC<TOLProps> = () => {
     <div className={styles.tolCont}>
       {startButtonTransition((style, show) =>
         show ? (
-          <animated.div style={style} className={styles.tunnel}>
+          <animated.div style={style}>
             <CustomButton text="START" onClick={onStartHandeler} />
           </animated.div>
         ) : (
@@ -86,16 +83,14 @@ export const TOL: React.FC<TOLProps> = () => {
       )}
       {trialTransition((style, show) =>
         show ? (
-          <animated.div style={style} className={styles.tunnel}>
-            {trialList[tolIndex]}
-          </animated.div>
+          <animated.div style={style}>{trialList[tolIndex]}</animated.div>
         ) : (
           ""
         )
       )}
       {endTransition((transition, show) =>
         show ? (
-          <animated.div style={transition} className={styles.tunnel}>
+          <animated.div style={transition}>
             <CustomButton
               text={tolData.lastpageText}
               isSecondary

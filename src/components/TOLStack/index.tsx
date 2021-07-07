@@ -6,6 +6,7 @@
 import React, { useState, useEffect } from "react";
 import { Droppable, DragDropContext } from "react-beautiful-dnd";
 import { tolData } from "../../data/TOL";
+import { CustomButton } from "../CustomButton";
 import { TOLChip } from "../TOLChip";
 import style from "./style.module.css";
 
@@ -81,57 +82,18 @@ export const TOLStack: React.FC<TOLStackProps> = ({
       JSON.stringify(colorStackFromStack(finalList))
     ) {
       setIsCorrect(true);
-      sendResult(true, dragDropCounts, stackIndex);
       setEnd(true);
     } else if (maxDrops === dragDropCounts) {
       setIsCorrect(false);
-      sendResult(false, dragDropCounts, stackIndex);
       setEnd(true);
     }
   }, [stacksUpdated]);
   return (
     <div className={style.mainStacksCont}>
-      <div className={style.header}>
-        {" "}
-        {tolData.dragRemainText} : {maxDrops - dragDropCounts}{" "}
-      </div>
-
-      <>
-        {end ? (
-          <>
-            <strong> Result: {isCorrect ? "Correct" : "Wrong"}</strong>
-            <strong> Loading next trial...</strong>
-          </>
-        ) : (
-          <>
-            <strong> {tolData.finalHeading}</strong>
-
-            <div className={style.container}>
-              {finalList.map((stack, index) => (
-                <div
-                  className={style.stack}
-                  style={{
-                    width,
-                    minHeight: `${totalDraggables * 30}px`,
-                  }}
-                >
-                  <div className={style.stackStick}> </div>
-
-                  {stack.map((disc, idx) => (
-                    <TOLChip
-                      key={disc.id}
-                      id={disc.id}
-                      color={disc.color}
-                      index={idx}
-                    />
-                  ))}
-                </div>
-              ))}
-            </div>
-          </>
-        )}
-        {end ? (
-          <div className={style.container}>
+      <div className={style.tolColumn}>
+        <strong style={{ width: "fit-content" }}>{tolData.finalHeading}</strong>
+        <div className={style.tolStacks}>
+          <div className={style.finalcontainer}>
             {finalList.map((stack, index) => (
               <div
                 className={style.stack}
@@ -141,6 +103,7 @@ export const TOLStack: React.FC<TOLStackProps> = ({
                 }}
               >
                 <div className={style.stackStick}> </div>
+
                 {stack.map((disc, idx) => (
                   <TOLChip
                     key={disc.id}
@@ -152,44 +115,64 @@ export const TOLStack: React.FC<TOLStackProps> = ({
               </div>
             ))}
           </div>
-        ) : (
-          <div className={style.container} style={{ paddingBottom: "50px" }}>
-            <DragDropContext onDragEnd={onDragEnd}>
-              {stacksUpdated.map((stack, index) => (
-                <Droppable
-                  droppableId={index.toString()}
-                  key={index.toString()}
-                >
-                  {(provided: any) => (
-                    <div
-                      className={style.stack}
-                      style={{
-                        width,
-                        minHeight: `${totalDraggables * 30}px`,
-                      }}
-                      {...provided.droppabdle}
-                      ref={provided.innerRef}
-                    >
-                      <div className={style.stackStick}> </div>
-                      {stack.map((disc, idx) => (
-                        <TOLChip
-                          key={disc.id}
-                          id={disc.id}
-                          color={disc.color}
-                          index={idx}
-                          draggable
-                        />
-                      ))}
-                    </div>
-                  )}
-                </Droppable>
-              ))}
-            </DragDropContext>
+          <div className={style.container}>
+            <div className={style.container} style={{ paddingBottom: "50px" }}>
+              <DragDropContext onDragEnd={onDragEnd}>
+                {stacksUpdated.map((stack, index) => (
+                  <Droppable
+                    droppableId={index.toString()}
+                    key={index.toString()}
+                  >
+                    {(provided: any) => (
+                      <div
+                        className={style.stack}
+                        style={{
+                          width,
+                          minHeight: `${totalDraggables * 30}px`,
+                        }}
+                        {...provided.droppabdle}
+                        ref={provided.innerRef}
+                      >
+                        <div className={style.stackStick}> </div>
+                        {stack.map((disc, idx) => (
+                          <TOLChip
+                            key={disc.id}
+                            id={disc.id}
+                            color={disc.color}
+                            index={idx}
+                            draggable
+                          />
+                        ))}
+                      </div>
+                    )}
+                  </Droppable>
+                ))}
+              </DragDropContext>
+            </div>
           </div>
-        )}
+          <strong> {!end && tolData.dragDropText}</strong>
+        </div>
+        <div className={style.status}>
+          {tolData.dragRemainText} : {maxDrops - dragDropCounts} <br />
+          {end ? (
+            <>
+              <strong>
+                {isCorrect ? "Trial Complete" : tolData.wrongtext}
+              </strong>
+              <br />
 
-        <strong> {tolData.dragDropText}</strong>
-      </>
+              <CustomButton
+                text={tolData.nextTrialButton}
+                onClick={() =>
+                  sendResult(isCorrect, dragDropCounts, stackIndex)
+                }
+              />
+            </>
+          ) : (
+            <></>
+          )}
+        </div>
+      </div>
     </div>
   );
 };
