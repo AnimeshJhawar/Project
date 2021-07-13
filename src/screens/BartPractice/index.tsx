@@ -60,6 +60,7 @@ export const BartPractice: React.FC<BartPracticeProps> = () => {
         updateMethod={(d: { push: number; next: boolean; burst: boolean }) =>
           updateData(d)
         }
+        onEnd={() => null}
       />
     </div>
   );

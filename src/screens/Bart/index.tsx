@@ -6,9 +6,11 @@ import { bartText, gameData } from "../../data/bart";
 import { IconInContainer } from "../../components/IconInContainer";
 
 const { Text } = Typography;
-export interface BartProps {}
+export interface BartProps {
+  onNext: Function;
+}
 
-export const Bart: React.FC<BartProps> = () => {
+export const Bart: React.FC<BartProps> = ({ onNext }) => {
   const moneyHeading = (text: string, money: string) => {
     return (
       <div className={styles.moneyHeading}>
@@ -60,6 +62,7 @@ export const Bart: React.FC<BartProps> = () => {
         updateMethod={(d: { push: number; next: boolean; burst: boolean }) =>
           updateData(d)
         }
+        onEnd={onNext}
       />
     </div>
   );

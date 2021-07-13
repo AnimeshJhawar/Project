@@ -10,18 +10,17 @@ import { CustomButton } from "../../components/CustomButton";
 import { StroopGame } from "../../components/StroopGame";
 
 const { Text } = Typography;
-export interface StroopProps {}
+export interface StroopProps {
+  onNext: Function;
+}
 
-export const Stroop: React.FC<StroopProps> = () => {
+export const Stroop: React.FC<StroopProps> = ({ onNext }) => {
   const [start, setStart] = useState(false);
   const [end, setEnd] = useState(false);
   const { width } = useWindowDimensions();
 
   const onStartHandeler = (e: React.MouseEvent) => {
     setStart(!start);
-  };
-  const onEnd = () => {
-    // write code to hnadel end click
   };
 
   const startButtonTransition = useTransition(!start, {
@@ -49,7 +48,7 @@ export const Stroop: React.FC<StroopProps> = () => {
           </animated.div>
         ) : (
           <animated.div style={transition}>
-            <StroopGame />
+            <StroopGame onEnd={onNext} />
           </animated.div>
         )
       )}

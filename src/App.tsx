@@ -1,10 +1,10 @@
 /* eslint-disable import/extensions */
 import { FC } from "react";
 import "antd/dist/antd.css";
-import { PokerDeck } from "./components/PokerCard";
+import { Main } from "./screens/Main";
 
 const App: FC = () => {
-  return <PokerDeck />;
+  return <Main />;
 };
 
 export default App;

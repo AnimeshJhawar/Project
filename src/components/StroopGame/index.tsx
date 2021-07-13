@@ -7,12 +7,15 @@ import { StroopCard, StroopCardProps } from "../StroopCard";
 import { StroopText } from "../StroopText";
 import { StroopTrial } from "../StroopTrial";
 import styles from "./style.module.css";
+import { CustomButton } from "../CustomButton";
 
 const { countdown, countDownColor } = stroopData;
 
-export interface StroopGameProps {}
+export interface StroopGameProps {
+  onEnd: Function;
+}
 
-export const StroopGame: React.FC<StroopCardProps> = () => {
+export const StroopGame: React.FC<StroopGameProps> = ({ onEnd }) => {
   const [counter, setCounter] = useState(countdown);
   const [dataIndex, setDataIndex] = useState(0);
   const [toggle, setToggle] = useState(false);
@@ -76,7 +79,7 @@ export const StroopGame: React.FC<StroopCardProps> = () => {
             <Card title="Result" bordered={false} style={{ width: 300 }}>
               <p>Analysed Data here</p>
               <p>Analysed Data</p>
-              <p> </p>
+              <CustomButton text="Click here to continue" onClick={onEnd} />
             </Card>
           </animated.div>
         ) : (

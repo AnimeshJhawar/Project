@@ -14,8 +14,10 @@ import styles from "./style.module.css";
 const { won, lost, initialLoan, finalLimit, lastPage } = iowaData;
 const { cardsData, trialsCount } = iowaGameData;
 
-export interface PokerCardsGroupProps {}
-export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = () => {
+export interface PokerCardsGroupProps {
+  onEnd: Function;
+}
+export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = ({ onEnd }) => {
   const { width } = useWindowDimensions();
   const [currentCardsIdx, setCurrentCardsIdx] = useState<number>(0);
   const [freeze, setFreeze] = useState(false);
@@ -38,15 +40,11 @@ export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = () => {
     }
   };
 
-  useEffect(() => {
-    if (currentCardsIdx > 0) {
-      setTimeout(() => setTimer(timer + 1), 1);
-    }
-  });
-
-  const onEnd = () => {
-    // write code to hnadel end click
-  };
+  // useEffect(() => {
+  //   if (currentCardsIdx > 0) {
+  //     setTimeout(() => setTimer(timer + 1), 1);
+  //   }
+  // });
 
   const endTransition = useTransition(end, {
     from: { opacity: 0 },
@@ -93,7 +91,7 @@ export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = () => {
           <animated.div style={transition} className={styles.decksContainer}>
             <Row gutter={0}>
               {Object.keys(cardsData).map((cardId: string) => (
-                <Col className="gutter-row" span={6}>
+                <Col key={cardId} className="gutter-row" span={6}>
                   <PokerDeck
                     trials={trialsCount}
                     deckId={cardId}

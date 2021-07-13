@@ -8,9 +8,11 @@ import useWindowDimensions from "../../utils/viewport";
 import { CustomButton } from "../../components/CustomButton";
 
 const { Text } = Typography;
-export interface IOWAProps {}
+export interface IOWAProps {
+  onNext: Function;
+}
 
-export const IOWA: React.FC<IOWAProps> = () => {
+export const IOWA: React.FC<IOWAProps> = ({ onNext }) => {
   const [start, setStart] = useState(false);
   const [end, setEnd] = useState(false);
   const { width } = useWindowDimensions();
@@ -19,9 +21,6 @@ export const IOWA: React.FC<IOWAProps> = () => {
 
   const onStartHandeler = (e: React.MouseEvent) => {
     setStart(!start);
-  };
-  const onEnd = () => {
-    // write code to hnadel end click
   };
 
   const startButtonTransition = useTransition(!start, {
@@ -48,7 +47,7 @@ export const IOWA: React.FC<IOWAProps> = () => {
           </animated.div>
         ) : (
           <animated.div style={transition} className={styles.iowaCards}>
-            <PokerCardsGroup />
+            <PokerCardsGroup onEnd={onNext} />
           </animated.div>
         )
       )}

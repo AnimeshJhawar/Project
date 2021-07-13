@@ -7,9 +7,11 @@ import { tolData, trials } from "../../data/TOL";
 import useWindowDimensions from "../../utils/viewport";
 import styles from "./style.module.css";
 
-export interface TOLProps {}
+export interface TOLProps {
+  onNext: Function;
+}
 
-export const TOL: React.FC<TOLProps> = () => {
+export const TOL: React.FC<TOLProps> = ({ onNext }) => {
   const [tolIndex, setTolIndex] = useState(0);
   const [start, setStart] = useState(false);
   const [end, setEnd] = useState(false);
@@ -30,10 +32,6 @@ export const TOL: React.FC<TOLProps> = () => {
 
   function onStartHandeler() {
     setStart(true);
-  }
-
-  function onEnd() {
-    // handel END
   }
 
   useEffect(() => {
@@ -94,7 +92,7 @@ export const TOL: React.FC<TOLProps> = () => {
             <CustomButton
               text={tolData.lastpageText}
               isSecondary
-              onClick={onEnd}
+              onClick={onNext}
             />
           </animated.div>
         ) : (

@@ -16,6 +16,7 @@ export interface BalloonScreenAnimatedProps {
   initialBalloonDim?: [width: number, height: number];
   updateMethod?: Function;
   practice?: boolean;
+  onEnd: Function;
 }
 
 export const BalloonScreenAnimated: React.FC<BalloonScreenAnimatedProps> = ({
@@ -32,6 +33,7 @@ export const BalloonScreenAnimated: React.FC<BalloonScreenAnimatedProps> = ({
   ],
   updateMethod = () => null,
   practice = false,
+  onEnd,
 }) => {
   const [start, setStart] = useState(false);
   const [collect, setCollect] = useState(false);
@@ -108,10 +110,6 @@ export const BalloonScreenAnimated: React.FC<BalloonScreenAnimatedProps> = ({
         setEnd(true);
       }
     }
-  };
-
-  const onEnd = () => {
-    // write code to hnadel end click
   };
 
   const startButtonTransition = useTransition(!start, {
