@@ -16,22 +16,15 @@ export const trials: {
 }[] = [
   {
     stack: [
-      [
-        { id: "1", color: "blue" },
-        { id: "2", color: "green" },
-      ],
-      [
-        { id: "3", color: "red" },
-        { id: "4", color: "green" },
-      ],
+      [{ id: "1", color: "blue" }],
+      [{ id: "3", color: "red" }],
       [{ id: "5", color: "grey" }],
     ],
     final: [
-      [{ id: "2", color: "green" }],
+      [],
       [
         { id: "3", color: "red" },
-        { id: "1", color: "blue" },
-        { id: "4", color: "green" },
+        { id: "1", color: "red" },
       ],
       [{ id: "5", color: "grey" }],
     ],
@@ -43,46 +36,23 @@ export const trials: {
         { id: "1", color: "blue" },
         { id: "2", color: "green" },
       ],
-      [
-        { id: "3", color: "red" },
-        { id: "4", color: "green" },
-      ],
-      [
-        { id: "5", color: "grey" },
-        { id: "6", color: "blue" },
-      ],
+      [],
+      [{ id: "6", color: "blue" }],
     ],
     final: [
       [{ id: "2", color: "green" }],
-      [
-        { id: "3", color: "red" },
-
-        { id: "4", color: "green" },
-      ],
+      [{ id: "4", color: "green" }],
       [{ id: "5", color: "grey" }],
     ],
     maxDrops: 4,
   },
   {
     stack: [
-      [
-        { id: "1", color: "blue" },
-        { id: "2", color: "green" },
-      ],
-      [
-        { id: "3", color: "red" },
-        { id: "4", color: "green" },
-      ],
+      [{ id: "1", color: "blue" }],
+      [{ id: "3", color: "red" }],
       [{ id: "5", color: "grey" }],
     ],
-    final: [
-      [{ id: "2", color: "green" }],
-      [
-        { id: "3", color: "red" },
-        { id: "1", color: "blue" },
-      ],
-      [{ id: "5", color: "grey" }],
-    ],
+    final: [[{ id: "2", color: "green" }], [], [{ id: "5", color: "grey" }]],
     maxDrops: 4,
   },
 ];
