@@ -41,7 +41,6 @@ export const StroopGame: React.FC<StroopGameProps> = ({ onEnd }) => {
       }
       return 0;
     });
-    console.log(results);
   };
 
   // eslint-disable-next-line prefer-const

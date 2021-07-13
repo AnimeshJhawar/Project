@@ -8,10 +8,10 @@ export default function getLifeArr(arrSize, lowLim, upLim, avg) {
   for (let i = 0; i < n; i++) {
     arr.push(a);
   }
-  const randomNumber = function (min, max) {
+  const randomNumber = (min, max) => {
     return Math.floor(Math.random() * (max - min) + min);
   };
-  const min = function (ai, bi) {
+  const min = (ai, bi) => {
     if (ai < bi) {
       return ai;
     }
