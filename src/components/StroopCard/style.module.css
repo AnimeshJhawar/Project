@@ -8,13 +8,13 @@
 
     width: 100%;
     min-height: 60px;
-    max-width: 400px;
+    max-width: 200px;
     padding: 8px;
     border-radius: 8px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
 
     font-size: 24px !important;
-    font-size: max(24px, 3vw) !important;
+    font-size: min(24px, 3vw) !important;
     letter-spacing: 0.8px;
     font-weight: 500;
 

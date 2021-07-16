@@ -11,58 +11,31 @@ import styles from "./style.module.css";
 export interface MainProps {}
 
 export const Main: React.FC<MainProps> = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(-1);
   const [surveyIndex, setSurveyIndex] = useState(0);
-  const [showSurvey, setShowSurvey] = useState(false);
-
-  useEffect(() => {
-    const parsedIndex = Number(sessionStorage.getItem("currentIndex") || 0);
-    setCurrentIndex(parsedIndex);
-    const parsedSurveyIndex = Number(
-      sessionStorage.getItem("surveyIndex") || 0
-    );
-    setSurveyIndex(parsedSurveyIndex);
-  }, []);
-
-  useEffect(() => {
-    return sessionStorage.setItem("currentIndex", currentIndex.toString());
-  }, [currentIndex]);
-
-  useEffect(() => {
-    return sessionStorage.setItem("surveyIndex", currentIndex.toString());
-  }, [surveyIndex]);
-
-  function onNext() {
-    setSurveyIndex(surveyIndex + 1);
-    setShowSurvey(true);
-  }
+  const [showSurvey, setShowSurvey] = useState(true);
 
   const [gamesList, setGamesList] = useState<ReactNode[]>([
     <Bart
       onNext={() => {
-        setSurveyIndex(0);
+        setSurveyIndex(2);
         setShowSurvey(true);
       }}
     />,
     <IOWA
       onNext={() => {
-        setSurveyIndex(1);
+        setSurveyIndex(3);
         setShowSurvey(true);
       }}
     />,
     <Stroop
       onNext={() => {
-        setSurveyIndex(1);
+        setSurveyIndex(4);
         setShowSurvey(true);
       }}
     />,
     <TOL onNext={() => {}} />,
   ]);
-
-  function surveyNext() {
-    setCurrentIndex(currentIndex + 1);
-    setShowSurvey(false);
-  }
 
   const [surveysList, setSurveysList] = useState<ReactNode[]>([]);
 
@@ -74,8 +47,23 @@ export const Main: React.FC<MainProps> = () => {
           key={index.toString()}
           surveyLink={link}
           onNext={() => {
-            setCurrentIndex(index + 1);
-            setShowSurvey(false);
+            if (index === 0) {
+              setSurveyIndex(1);
+            } else if (index === 1) {
+              setCurrentIndex(0);
+              setShowSurvey(false);
+            } else if (index === 2) {
+              setCurrentIndex(1);
+              setShowSurvey(false);
+            } else if (index === 3) {
+              setCurrentIndex(2);
+              setShowSurvey(false);
+            } else if (index === 4) {
+              setSurveyIndex(5);
+            } else if (index === 5) {
+              setCurrentIndex(3);
+              setShowSurvey(false);
+            }
           }}
         />
       )),
