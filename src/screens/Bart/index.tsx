@@ -38,10 +38,10 @@ export const Bart: React.FC<BartProps> = ({ onNext }) => {
       firestore
         ?.collection("Games")
         .doc("Bart")
-        .collection("userID")
+        .collection(sessionStorage.getItem("uuid")!)
         .doc(data.trial.toString())
         .set({
-          id: "userID",
+          id: sessionStorage.getItem("uuid"),
           trialCount: data.trial,
           burst: data.burst,
           totalAmount,

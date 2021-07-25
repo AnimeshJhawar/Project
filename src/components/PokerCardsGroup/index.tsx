@@ -39,10 +39,10 @@ export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = ({ onEnd }) => {
       firestore
         ?.collection("Games")
         .doc("IOWA")
-        .collection("userID")
+        .collection(sessionStorage.getItem("uuid")!)
         .doc((currentCardsIdx + 1).toString())
         .set({
-          id: "userID",
+          id: sessionStorage.getItem("uuid"),
           trialCount: (currentCardsIdx + 1).toString(),
           chosenDeck: recentDeck,
           win: recentResult.won,

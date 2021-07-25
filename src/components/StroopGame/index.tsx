@@ -52,10 +52,10 @@ export const StroopGame: React.FC<StroopGameProps> = ({ onEnd }) => {
     firestore
       ?.collection("Games")
       .doc("Stroop")
-      .collection("userID")
+      .collection(sessionStorage.getItem("uuid")!)
       .doc((dataIndex + 1).toString())
       .set({
-        id: "userID",
+        id: sessionStorage.getItem("uuid"),
         trialCount: (dataIndex + 1).toString(),
         color: gameData[dataIndex].ink,
         word: gameData[dataIndex].text,
