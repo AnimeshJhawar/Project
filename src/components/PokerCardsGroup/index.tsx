@@ -35,15 +35,15 @@ export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = ({ onEnd }) => {
   const firestore = firebase?.firebase.firestore();
 
   const handelDeckClick = (deckId: string) => {
-    if (currentCardsIdx + 1 < trialsCount) {
+    if (currentCardsIdx + 1 <= trialsCount) {
       firestore
         ?.collection("Games")
         .doc("IOWA")
         .collection("userID")
-        .doc(currentCardsIdx.toString())
+        .doc((currentCardsIdx + 1).toString())
         .set({
           id: "userID",
-          trialCount: currentCardsIdx.toString(),
+          trialCount: (currentCardsIdx + 1).toString(),
           chosenDeck: recentDeck,
           win: recentResult.won,
           loose: recentResult.lost,
@@ -57,6 +57,8 @@ export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = ({ onEnd }) => {
         .catch((error) => {
           console.error("Error adding document: ", error);
         });
+    }
+    if (currentCardsIdx + 1 < trialsCount) {
       setCurrentCardsIdx(currentCardsIdx + 1);
       setRecentResult(cardsData[deckId][currentCardsIdx]);
       setRecentDeck(deckId);

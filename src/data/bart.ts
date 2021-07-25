@@ -15,7 +15,7 @@ export const bartText = {
 
 const colors = ["red", "green", "blue", "grey"];
 // array code
-const arraySize = 30;
+const arraySize = 2;
 const lowerLim = 2;
 const upperLim = 32;
 const avg = 20;
