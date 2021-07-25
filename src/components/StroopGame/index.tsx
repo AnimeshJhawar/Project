@@ -8,6 +8,7 @@ import { StroopText } from "../StroopText";
 import { StroopTrial } from "../StroopTrial";
 import styles from "./style.module.css";
 import { CustomButton } from "../CustomButton";
+import { FirebaseContext } from "../../firebase";
 
 const { countdown, countDownColor } = stroopData;
 
@@ -43,8 +44,31 @@ export const StroopGame: React.FC<StroopGameProps> = ({ onEnd }) => {
     });
   };
 
+  const firebase = React.useContext(FirebaseContext);
+  const firestore = firebase?.firebase.firestore();
+
   // eslint-disable-next-line prefer-const
   const handeltrial = (data: { result: boolean; time: number }) => {
+    firestore
+      ?.collection("Games")
+      .doc("Stroop")
+      .collection("userID")
+      .doc((dataIndex + 1).toString())
+      .set({
+        id: "userID",
+        trialCount: (dataIndex + 1).toString(),
+        color: gameData[dataIndex].ink,
+        word: gameData[dataIndex].text,
+        correct: data.result,
+        timestamp: Date.now(),
+      })
+      .then(() => {
+        console.log("Document written");
+      })
+      .catch((error) => {
+        console.error("Error adding document: ", error);
+      });
+
     setToggle(true);
     setResults([...results, { ...data, index: dataIndex }]);
     setCorrect(data.result);
