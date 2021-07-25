@@ -4,6 +4,7 @@ import { number } from "prop-types";
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useTransition, animated } from "react-spring";
 import { iowaData, iowaGameData } from "../../data/iowa";
+import { FirebaseContext } from "../../firebase";
 import useWindowDimensions from "../../utils/viewport";
 import { CustomButton } from "../CustomButton";
 import { PokerDeck } from "../PokerCard";
@@ -29,11 +30,36 @@ export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = ({ onEnd }) => {
   }>({ won: 0, lost: 0 });
   const fixedPercent = (initialLoan * 100) / finalLimit;
   const [amount, setAmount] = useState(initialLoan);
+  const [recentDeck, setRecentDeck] = useState("");
+  const firebase = React.useContext(FirebaseContext);
+  const firestore = firebase?.firebase.firestore();
 
   const handelDeckClick = (deckId: string) => {
     if (currentCardsIdx + 1 < trialsCount) {
+      firestore
+        ?.collection("Games")
+        .doc("IOWA")
+        .collection("userID")
+        .doc(currentCardsIdx.toString())
+        .set({
+          id: "userID",
+          trialCount: currentCardsIdx.toString(),
+          chosenDeck: recentDeck,
+          win: recentResult.won,
+          loose: recentResult.lost,
+          net: recentResult.won - recentResult.lost,
+          total: recentResult.won - recentResult.lost + amount,
+          timestamp: Date.now(),
+        })
+        .then(() => {
+          console.log("Document written");
+        })
+        .catch((error) => {
+          console.error("Error adding document: ", error);
+        });
       setCurrentCardsIdx(currentCardsIdx + 1);
       setRecentResult(cardsData[deckId][currentCardsIdx]);
+      setRecentDeck(deckId);
       setAmount(recentResult.won - recentResult.lost + amount);
     } else {
       setEnd(true);
@@ -69,10 +95,10 @@ export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = ({ onEnd }) => {
           title="Current Balance"
         />
       </div>
-      <div className={styles.result}>
+      {/* <div className={styles.result}>
         <StroopCard text={`You Won : ${recentResult.won} Rs`} />
         <StroopCard text={`You Lost : ${recentResult.lost} Rs`} />
-      </div>
+      </div> */}
       {endTransition((transition, show) =>
         show ? (
           <animated.div
@@ -92,11 +118,20 @@ export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = ({ onEnd }) => {
             <Row gutter={0}>
               {Object.keys(cardsData).map((cardId: string) => (
                 <Col key={cardId} className="gutter-row" span={6}>
-                  <PokerDeck
-                    trials={trialsCount}
-                    deckId={cardId}
-                    sendId={handelDeckClick}
-                  />
+                  <>
+                    <PokerDeck
+                      trials={trialsCount}
+                      deckId={cardId}
+                      sendId={handelDeckClick}
+                    />
+                    {recentDeck === cardId && (
+                      <>
+                        <span>{`You Won : ${recentResult.won} Rs`}</span>
+                        <br />
+                        <span>{`You Lost : ${recentResult.lost} Rs`}</span>
+                      </>
+                    )}
+                  </>
                 </Col>
               ))}
             </Row>

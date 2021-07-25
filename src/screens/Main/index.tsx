@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
+import { ConsoleSqlOutlined } from "@ant-design/icons";
 import React, { useState, useEffect, ReactNode } from "react";
 import { surveys } from "../../data/survey.data";
+import { FirebaseContext } from "../../firebase";
 import { Bart } from "../Bart";
 import { IOWA } from "../IOWA";
 import { Stroop } from "../Stroop";
@@ -11,6 +13,22 @@ import styles from "./style.module.css";
 export interface MainProps {}
 
 export const Main: React.FC<MainProps> = () => {
+  const firebase = React.useContext(FirebaseContext);
+  const user = firebase?.firebase.auth().currentUser;
+  const firestore = firebase?.firebase.firestore();
+
+  // if (firebase?.firebase.auth().currentUser === null) {
+  //   firebase?.firebase
+  //     .auth()
+  //     .signInAnonymously()
+  //     .then(() => {
+  //       console.log("signed in");
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //       // ...
+  //     });
+  // }
   const [currentIndex, setCurrentIndex] = useState(-1);
   const [surveyIndex, setSurveyIndex] = useState(0);
   const [showSurvey, setShowSurvey] = useState(true);

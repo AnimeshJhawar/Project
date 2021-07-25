@@ -65,6 +65,7 @@ export const BalloonScreenAnimated: React.FC<BalloonScreenAnimatedProps> = ({
   const handelBalloonCollect = () => {
     setCollect(true);
     updateMethod({
+      trial: balloonNumberWithFills[0],
       push: balloonNumberWithFills[1] + 1,
       burst: false,
       next: true,
@@ -88,6 +89,7 @@ export const BalloonScreenAnimated: React.FC<BalloonScreenAnimatedProps> = ({
     ]);
 
     updateMethod({
+      trial: balloonNumberWithFills[0],
       push: balloonNumberWithFills[1] + 1,
       burst: false,
       next: false,
@@ -99,6 +101,7 @@ export const BalloonScreenAnimated: React.FC<BalloonScreenAnimatedProps> = ({
       setBalloonDimensions([10, 10]);
       setExplode(true);
       updateMethod({
+        trial: balloonNumberWithFills[0],
         push: balloonNumberWithFills[1],
         burst: true,
         next: true,
