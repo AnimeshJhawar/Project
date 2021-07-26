@@ -10,6 +10,7 @@
     position: relative;
     display: flex;
     justify-content: center;
+    align-items: center;
     overflow: hidden;
 }
 
@@ -22,12 +23,21 @@
     bottom: 0;
 }
 
+
+.button{
+    width: 10%;
+    max-width: 100px;
+    position: absolute;
+    display: flex; 
+    justify-content: center;
+}
+
+
 .startButton{
-    position: relative;
-    margin-top: 10px;
     display: flex;
     align-items: center; 
     justify-content: center;
+    margin-top: 50%
 }
 
 .controlButtons{

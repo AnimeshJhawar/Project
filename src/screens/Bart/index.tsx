@@ -71,12 +71,12 @@ export const Bart: React.FC<BartProps> = ({ onNext }) => {
       <div className={styles.money}>
         <IconInContainer
           iconLink="/assets/balloon/money-bag.png"
-          rightComponent={moneyHeading(bartText.total, `${totalAmount} Rs.`)}
+          rightComponent={moneyHeading(bartText.last, `${lastAmount} Rs.`)}
           avatarColor="gold"
         />
         <IconInContainer
           iconLink="/assets/balloon/money-bag.png"
-          rightComponent={moneyHeading(bartText.last, `${lastAmount} Rs.`)}
+          rightComponent={moneyHeading(bartText.total, `${totalAmount} Rs.`)}
           avatarColor="gold"
         />
       </div>

@@ -116,14 +116,14 @@ export const BalloonScreenAnimated: React.FC<BalloonScreenAnimatedProps> = ({
   };
 
   const startButtonTransition = useTransition(!start, {
-    from: { x: 0, y: 0, opacity: 0 },
-    enter: { x: 0, y: (-1 * width) / 5, opacity: 1 },
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
     leave: { x: 0, y: -200, opacity: 0 },
   });
 
   const endTransition = useTransition(end, {
-    from: { x: 0, y: 0, opacity: 0 },
-    enter: { x: 0, y: (-1 * width) / 5, opacity: 1 },
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
     leave: { x: 0, y: -200, opacity: 0 },
     delay: 1000,
   });
@@ -158,7 +158,7 @@ export const BalloonScreenAnimated: React.FC<BalloonScreenAnimatedProps> = ({
         </div>
         {startButtonTransition((transition, show) =>
           show ? (
-            <animated.div style={transition} className={styles.tunnel}>
+            <animated.div style={transition} className={styles.button}>
               <CustomButton text="START" onClick={onStartHandeler} />
             </animated.div>
           ) : (
@@ -168,7 +168,7 @@ export const BalloonScreenAnimated: React.FC<BalloonScreenAnimatedProps> = ({
 
         {endTransition((transition, show) =>
           show ? (
-            <animated.div style={transition} className={styles.tunnel}>
+            <animated.div style={transition} className={styles.button}>
               <CustomButton
                 text={bartText.lastPage}
                 isSecondary
