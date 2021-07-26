@@ -4,6 +4,7 @@ import { animated, useTransition } from "react-spring";
 import { CustomButton } from "../../components/CustomButton";
 import { TOLStack } from "../../components/TOLStack";
 import { tolData, trials } from "../../data/TOL";
+import { FirebaseContext } from "../../firebase";
 import useWindowDimensions from "../../utils/viewport";
 import styles from "./style.module.css";
 
@@ -18,11 +19,34 @@ export const TOL: React.FC<TOLProps> = ({ onNext }) => {
 
   const [trialList, setTrialList] = useState<ReactNode[]>([]);
 
+  const firebase = React.useContext(FirebaseContext);
+  const firestore = firebase?.firebase.firestore();
+
   function onResultCallback(
     result: boolean,
     dropsUsed: number,
     stackIndex: number
   ) {
+    if (stackIndex < trials.length) {
+      firestore
+        ?.collection("Games")
+        .doc("Bart")
+        .collection(sessionStorage.getItem("uuid")!)
+        .doc(tolIndex.toString())
+        .set({
+          id: sessionStorage.getItem("uuid"),
+          trialCount: tolIndex,
+          result,
+          moves: dropsUsed,
+          timestamp: Date.now(),
+        })
+        .then(() => {
+          console.log("Document written");
+        })
+        .catch((error) => {
+          console.error("Error adding document: ", error);
+        });
+    }
     if (stackIndex < trials.length - 1) {
       setTolIndex(stackIndex + 1);
     } else {

@@ -56,6 +56,13 @@ export const TOLStack: React.FC<TOLStackProps> = ({
       return;
     }
 
+    if (
+      parseInt(destination.droppableId, 10) + 1 <
+      stacksUpdated[destination.droppableId].length + 1
+    ) {
+      return;
+    }
+
     const sourceStack = stacksUpdated[source.droppableId];
     const draggedDisc = sourceStack.find((disc) => disc.id === draggableId);
     const destinationStack = stacksUpdated[destination.droppableId];
@@ -99,10 +106,15 @@ export const TOLStack: React.FC<TOLStackProps> = ({
                 className={style.stack}
                 style={{
                   width,
-                  minHeight: `${totalDraggables * 30}px`,
+                  minHeight: `${totalDraggables * 50}px`,
                 }}
               >
-                <div className={style.stackStick}> </div>
+                <div
+                  className={style.stackStick}
+                  style={{ maxHeight: (index + 1) * 50 }}
+                >
+                  {" "}
+                </div>
 
                 {stack.map((disc, idx) => (
                   <TOLChip
@@ -128,12 +140,17 @@ export const TOLStack: React.FC<TOLStackProps> = ({
                         className={style.stack}
                         style={{
                           width,
-                          minHeight: `${totalDraggables * 30}px`,
+                          minHeight: `${totalDraggables * 50}px`,
                         }}
                         {...provided.droppabdle}
                         ref={provided.innerRef}
                       >
-                        <div className={style.stackStick}> </div>
+                        <div
+                          className={style.stackStick}
+                          style={{ maxHeight: (index + 1) * 50 }}
+                        >
+                          {" "}
+                        </div>
                         {stack.map((disc, idx) => (
                           <TOLChip
                             key={disc.id}
