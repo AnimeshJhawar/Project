@@ -41,10 +41,10 @@ export const TOL: React.FC<TOLProps> = ({ onNext }) => {
           timestamp: Date.now(),
         })
         .then(() => {
-          console.log("Document written");
+          // console.log("Document written");
         })
         .catch((error) => {
-          console.error("Error adding document: ", error);
+          // console.error("Error adding document: ", error);
         });
     }
     if (stackIndex < trials.length - 1) {

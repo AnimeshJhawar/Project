@@ -63,10 +63,10 @@ export const StroopGame: React.FC<StroopGameProps> = ({ onEnd }) => {
         timestamp: Date.now(),
       })
       .then(() => {
-        console.log("Document written");
+        // console.log("Document written");
       })
       .catch((error) => {
-        console.error("Error adding document: ", error);
+        // console.error("Error adding document: ", error);
       });
 
     setToggle(true);
