@@ -10,7 +10,7 @@ export const tolData = {
   nextTrialButton: "Click here to start next trial",
 };
 
-export const trials: {
+export const toltrials: {
   stack: { id: string; color: string }[][];
   final: { id: string; color: string }[][];
   maxDrops: number;
@@ -22,6 +22,7 @@ export const trials: {
         { id: "1", color: "blue" },
       ],
       [{ id: "3", color: "green" }],
+      [],
     ],
     final: [
       [],
@@ -40,6 +41,7 @@ export const trials: {
         { id: "1", color: "blue" },
       ],
       [{ id: "3", color: "green" }],
+      [],
     ],
     final: [
       [{ id: "2", color: "red" }],
@@ -55,6 +57,7 @@ export const trials: {
         { id: "1", color: "blue" },
       ],
       [{ id: "3", color: "green" }],
+      [],
     ],
     final: [
       [
@@ -73,6 +76,7 @@ export const trials: {
         { id: "1", color: "blue" },
       ],
       [{ id: "3", color: "green" }],
+      [],
     ],
     final: [
       [{ id: "2", color: "red" }],
@@ -91,6 +95,7 @@ export const trials: {
         { id: "1", color: "blue" },
       ],
       [{ id: "3", color: "green" }],
+      [],
     ],
     final: [
       [
@@ -109,6 +114,7 @@ export const trials: {
         { id: "1", color: "blue" },
       ],
       [{ id: "3", color: "green" }],
+      [],
     ],
     final: [
       [{ id: "3", color: "green" }],
@@ -127,6 +133,7 @@ export const trials: {
         { id: "1", color: "blue" },
       ],
       [{ id: "3", color: "green" }],
+      [],
     ],
     final: [
       [
@@ -145,6 +152,7 @@ export const trials: {
         { id: "1", color: "blue" },
       ],
       [{ id: "3", color: "green" }],
+      [],
     ],
     final: [
       [],
@@ -163,6 +171,7 @@ export const trials: {
         { id: "1", color: "blue" },
       ],
       [{ id: "3", color: "green" }],
+      [],
     ],
     final: [
       [
@@ -182,6 +191,7 @@ export const trials: {
         { id: "1", color: "blue" },
       ],
       [{ id: "3", color: "green" }],
+      [],
     ],
     final: [
       [
@@ -201,6 +211,7 @@ export const trials: {
         { id: "1", color: "blue" },
       ],
       [{ id: "3", color: "green" }],
+      [],
     ],
     final: [
       [
@@ -219,6 +230,7 @@ export const trials: {
         { id: "1", color: "blue" },
       ],
       [{ id: "3", color: "green" }],
+      [],
     ],
     final: [
       [{ id: "3", color: "green" }],
@@ -227,4 +239,22 @@ export const trials: {
     ],
     maxDrops: 5,
   },
+];
+
+export const trials = [
+  ...toltrials.map((trial) => {
+    return {
+      stack: [
+        ...trial.stack.map((t) => {
+          return [...t];
+        }),
+      ].reverse(),
+      final: [
+        ...trial.final.map((t) => {
+          return [...t];
+        }),
+      ],
+      maxDrops: trial.maxDrops,
+    };
+  }),
 ];
