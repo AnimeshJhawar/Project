@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable import/prefer-default-export */
 export const tolData = {
   finalHeading: "Target Stacks",
@@ -16,18 +17,214 @@ export const trials: {
 }[] = [
   {
     stack: [
-      [{ id: "0", color: "blue" }],
-      [{ id: "1", color: "red" }],
-      [{ id: "2", color: "grey" }],
+      [
+        { id: "2", color: "red" },
+        { id: "1", color: "blue" },
+      ],
+      [{ id: "3", color: "green" }],
     ],
     final: [
       [],
       [
-        { id: "0", color: "red" },
+        { id: "3", color: "green" },
+        { id: "2", color: "red" },
+      ],
+      [{ id: "1", color: "blue" }],
+    ],
+    maxDrops: 2,
+  },
+  {
+    stack: [
+      [
+        { id: "2", color: "red" },
         { id: "1", color: "blue" },
       ],
-      [{ id: "2", color: "grey" }],
+      [{ id: "3", color: "green" }],
+    ],
+    final: [
+      [{ id: "2", color: "red" }],
+      [{ id: "1", color: "blue" }],
+      [{ id: "3", color: "green" }],
+    ],
+    maxDrops: 2,
+  },
+  {
+    stack: [
+      [
+        { id: "2", color: "red" },
+        { id: "1", color: "blue" },
+      ],
+      [{ id: "3", color: "green" }],
+    ],
+    final: [
+      [
+        { id: "2", color: "red" },
+        { id: "3", color: "green" },
+      ],
+      [{ id: "1", color: "blue" }],
+      [],
+    ],
+    maxDrops: 3,
+  },
+  {
+    stack: [
+      [
+        { id: "2", color: "red" },
+        { id: "1", color: "blue" },
+      ],
+      [{ id: "3", color: "green" }],
+    ],
+    final: [
+      [{ id: "2", color: "red" }],
+      [
+        { id: "1", color: "blue" },
+        { id: "3", color: "green" },
+      ],
+      [],
+    ],
+    maxDrops: 3,
+  },
+  {
+    stack: [
+      [
+        { id: "2", color: "red" },
+        { id: "1", color: "blue" },
+      ],
+      [{ id: "3", color: "green" }],
+    ],
+    final: [
+      [
+        { id: "1", color: "blue" },
+        { id: "2", color: "red" },
+      ],
+      [{ id: "3", color: "green" }],
+      [],
     ],
     maxDrops: 4,
+  },
+  {
+    stack: [
+      [
+        { id: "2", color: "red" },
+        { id: "1", color: "blue" },
+      ],
+      [{ id: "3", color: "green" }],
+    ],
+    final: [
+      [{ id: "3", color: "green" }],
+      [
+        { id: "1", color: "blue" },
+        { id: "2", color: "red" },
+      ],
+      [],
+    ],
+    maxDrops: 4,
+  },
+  {
+    stack: [
+      [
+        { id: "2", color: "red" },
+        { id: "1", color: "blue" },
+      ],
+      [{ id: "3", color: "green" }],
+    ],
+    final: [
+      [
+        { id: "1", color: "blue" },
+        { id: "3", color: "green" },
+      ],
+      [],
+      [{ id: "2", color: "red" }],
+    ],
+    maxDrops: 4,
+  },
+  {
+    stack: [
+      [
+        { id: "2", color: "red" },
+        { id: "1", color: "blue" },
+      ],
+      [{ id: "3", color: "green" }],
+    ],
+    final: [
+      [],
+      [
+        { id: "1", color: "blue" },
+        { id: "3", color: "green" },
+      ],
+      [{ id: "2", color: "red" }],
+    ],
+    maxDrops: 4,
+  },
+  {
+    stack: [
+      [
+        { id: "2", color: "red" },
+        { id: "1", color: "blue" },
+      ],
+      [{ id: "3", color: "green" }],
+    ],
+    final: [
+      [
+        { id: "1", color: "blue" },
+        { id: "2", color: "red" },
+        { id: "3", color: "green" },
+      ],
+      [],
+      [],
+    ],
+    maxDrops: 5,
+  },
+  {
+    stack: [
+      [
+        { id: "2", color: "red" },
+        { id: "1", color: "blue" },
+      ],
+      [{ id: "3", color: "green" }],
+    ],
+    final: [
+      [
+        { id: "1", color: "blue" },
+        { id: "3", color: "green" },
+        { id: "2", color: "red" },
+      ],
+      [],
+      [],
+    ],
+    maxDrops: 5,
+  },
+  {
+    stack: [
+      [
+        { id: "2", color: "red" },
+        { id: "1", color: "blue" },
+      ],
+      [{ id: "3", color: "green" }],
+    ],
+    final: [
+      [
+        { id: "3", color: "green" },
+        { id: "2", color: "red" },
+      ],
+      [{ id: "1", color: "blue" }],
+      [],
+    ],
+    maxDrops: 5,
+  },
+  {
+    stack: [
+      [
+        { id: "2", color: "red" },
+        { id: "1", color: "blue" },
+      ],
+      [{ id: "3", color: "green" }],
+    ],
+    final: [
+      [{ id: "3", color: "green" }],
+      [{ id: "1", color: "blue" }],
+      [{ id: "2", color: "red" }],
+    ],
+    maxDrops: 5,
   },
 ];
