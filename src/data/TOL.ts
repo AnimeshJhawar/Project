@@ -248,7 +248,7 @@ export const trials = [
         ...trial.stack.map((t) => {
           return [...t];
         }),
-      ].reverse(),
+      ],
       final: [
         ...trial.final.map((t) => {
           return [...t];
