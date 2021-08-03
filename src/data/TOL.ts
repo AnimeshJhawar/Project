@@ -245,14 +245,18 @@ export const trials = [
   ...toltrials.map((trial) => {
     return {
       stack: [
-        ...trial.stack.map((t) => {
-          return [...t];
-        }),
+        ...trial.stack
+          .map((t) => {
+            return [...t].reverse();
+          })
+          .reverse(),
       ],
       final: [
-        ...trial.final.map((t) => {
-          return [...t];
-        }),
+        ...trial.final
+          .map((t) => {
+            return [...t].reverse();
+          })
+          .reverse(),
       ],
       maxDrops: trial.maxDrops,
     };
