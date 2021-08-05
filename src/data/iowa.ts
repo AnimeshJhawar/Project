@@ -184,3 +184,28 @@ export const iowaGameData = {
   trialsCount,
   cardsData,
 };
+
+const practiceCount = 2;
+const practiceData: { [key: string]: { won: number; lost: number }[] } = {
+  a: [
+    { won: 7500, lost: 0 },
+    { won: 7500, lost: 0 },
+  ],
+  b: [
+    { won: 7500, lost: 0 },
+    { won: 7500, lost: 0 },
+  ],
+  c: [
+    { won: 7500, lost: 0 },
+    { won: 7500, lost: 0 },
+  ],
+  d: [
+    { won: 7500, lost: 0 },
+    { won: 7500, lost: 0 },
+  ],
+};
+
+export const iowaPractceData = {
+  trialsCount: practiceCount,
+  cardsData: practiceData,
+};

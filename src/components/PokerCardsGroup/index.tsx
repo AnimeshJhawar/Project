@@ -3,7 +3,7 @@ import { Space, Typography, Row, Col } from "antd";
 import { number } from "prop-types";
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useTransition, animated } from "react-spring";
-import { iowaData, iowaGameData } from "../../data/iowa";
+import { iowaData, iowaGameData, iowaPractceData } from "../../data/iowa";
 import { FirebaseContext } from "../../firebase";
 import useWindowDimensions from "../../utils/viewport";
 import { CustomButton } from "../CustomButton";
@@ -12,13 +12,16 @@ import { Progress } from "../Progress";
 import { StroopCard } from "../StroopCard";
 import styles from "./style.module.css";
 
-const { won, lost, initialLoan, finalLimit, lastPage } = iowaData;
-const { cardsData, trialsCount } = iowaGameData;
-
 export interface PokerCardsGroupProps {
   onEnd: Function;
+  practice?: boolean;
 }
-export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = ({ onEnd }) => {
+export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = ({
+  onEnd,
+  practice = false,
+}) => {
+  const { won, lost, initialLoan, finalLimit, lastPage } = iowaData;
+  const { cardsData, trialsCount } = practice ? iowaPractceData : iowaGameData;
   const { width } = useWindowDimensions();
   const [currentCardsIdx, setCurrentCardsIdx] = useState<number>(0);
   const [freeze, setFreeze] = useState(false);
