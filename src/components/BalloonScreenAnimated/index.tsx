@@ -35,7 +35,7 @@ export const BalloonScreenAnimated: React.FC<BalloonScreenAnimatedProps> = ({
   practice = false,
   onEnd,
 }) => {
-  const [start, setStart] = useState(false);
+  const start = true;
   const [collect, setCollect] = useState(false);
   const [explode, setExplode] = useState(false);
   const [balloonNumberWithFills, setBalloonNumberWithFills] = useState([1, 0]);
@@ -48,15 +48,10 @@ export const BalloonScreenAnimated: React.FC<BalloonScreenAnimatedProps> = ({
       if (balloonNumberWithFills[0] > 1) {
         setBalloonDimensions(initialBalloonDim);
         setCollect(false);
-        setStart(true);
         setExplode(false);
       }
     }, 1000);
   }, [balloonNumberWithFills[0]]);
-
-  const onStartHandeler = (e: React.MouseEvent) => {
-    setStart(!start);
-  };
 
   const pushNextBalloon = () => {
     setBalloonNumberWithFills([balloonNumberWithFills[0] + 1, 0]);
@@ -156,15 +151,6 @@ export const BalloonScreenAnimated: React.FC<BalloonScreenAnimatedProps> = ({
         <div className={styles.background}>
           <BalloonBackground />
         </div>
-        {startButtonTransition((transition, show) =>
-          show ? (
-            <animated.div style={transition} className={styles.button}>
-              <CustomButton text="START" onClick={onStartHandeler} />
-            </animated.div>
-          ) : (
-            ""
-          )
-        )}
 
         {endTransition((transition, show) =>
           show ? (
