@@ -2,10 +2,10 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  padding: 5vw;
 }
 
 .buttons {
-  align-self: center;
   width: 100%;
   margin: 10px 0;
   display: flex;

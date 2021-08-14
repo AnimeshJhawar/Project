@@ -156,7 +156,7 @@ export const BalloonScreenAnimated: React.FC<BalloonScreenAnimatedProps> = ({
           show ? (
             <animated.div style={transition} className={styles.button}>
               <CustomButton
-                text={bartText.lastPage}
+                text={practice ? bartText.endPractice : bartText.lastPage}
                 isSecondary
                 onClick={onEnd}
               />

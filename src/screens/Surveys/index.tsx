@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router";
 import Iframe from "react-iframe";
 import { CustomButton } from "../../components/CustomButton";
 import { iframeScreen } from "../../data/survey.data";
@@ -6,10 +7,12 @@ import styles from "./style.module.css";
 
 export interface SurveysProps {
   surveyLink: string;
-  onNext: Function;
+  next: string;
 }
 
-export const Surveys: React.FC<SurveysProps> = ({ surveyLink, onNext }) => {
+export const Surveys: React.FC<SurveysProps> = ({ surveyLink, next }) => {
+  const history = useHistory();
+
   return (
     <div className={styles.iframeContainer}>
       <Iframe
@@ -26,7 +29,7 @@ export const Surveys: React.FC<SurveysProps> = ({ surveyLink, onNext }) => {
           bottom: "10px",
         }}
         text={iframeScreen.buttonText}
-        onClick={onNext}
+        onClick={() => history.push(next)}
         block
       />
     </div>

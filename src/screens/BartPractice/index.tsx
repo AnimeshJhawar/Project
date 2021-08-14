@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Typography } from "antd";
+import { useHistory } from "react-router";
 import { BalloonScreenAnimated } from "../../components/BalloonScreenAnimated";
 import styles from "./style.module.css";
-import { bartText, gameData } from "../../data/bart";
+import { bartText, practiceData } from "../../data/bart";
 import { IconInContainer } from "../../components/IconInContainer";
 
 const { Text } = Typography;
 export interface BartPracticeProps {}
 
 export const BartPractice: React.FC<BartPracticeProps> = () => {
+  const history = useHistory();
+
   const moneyHeading = (text: string, money: string) => {
     return (
       <div className={styles.moneyHeading}>
@@ -41,6 +44,7 @@ export const BartPractice: React.FC<BartPracticeProps> = () => {
 
   return (
     <div className={styles.bart}>
+      <p> Practice Trials</p>
       <div className={styles.money}>
         <IconInContainer
           iconLink="/assets/balloon/money-bag.png"
@@ -55,12 +59,12 @@ export const BartPractice: React.FC<BartPracticeProps> = () => {
       </div>
 
       <BalloonScreenAnimated
-        trialCounts={gameData.trialCounts}
-        balloonColors={gameData.ballonsColors}
+        trialCounts={practiceData.trialCounts}
+        balloonColors={practiceData.ballonsColors}
         updateMethod={(d: { push: number; next: boolean; burst: boolean }) =>
           updateData(d)
         }
-        onEnd={() => null}
+        onEnd={() => history.push("/bart")}
       />
     </div>
   );

@@ -1,5 +1,5 @@
-.iframeContainer{
-  height: 100%;
+.iframeContainer {
+  height: 100vh;
   width: 100%;
 }
 
@@ -8,4 +8,3 @@
   width: 100%;
   border: none;
 }
-
