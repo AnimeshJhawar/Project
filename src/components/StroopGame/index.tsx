@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Card } from "antd";
 import { animated, useTransition } from "react-spring";
-import { stroopData, gameData } from "../../data/stroop";
+import { stroopData, gameData, practiceGameData } from "../../data/stroop";
 import { StroopCard, StroopCardProps } from "../StroopCard";
 import { StroopText } from "../StroopText";
 import { StroopTrial } from "../StroopTrial";
@@ -14,9 +14,13 @@ const { countdown, countDownColor } = stroopData;
 
 export interface StroopGameProps {
   onEnd: Function;
+  practice?: boolean;
 }
 
-export const StroopGame: React.FC<StroopGameProps> = ({ onEnd }) => {
+export const StroopGame: React.FC<StroopGameProps> = ({
+  onEnd,
+  practice = false,
+}) => {
   const [counter, setCounter] = useState(countdown);
   const [dataIndex, setDataIndex] = useState(0);
   const [toggle, setToggle] = useState(false);
@@ -30,6 +34,7 @@ export const StroopGame: React.FC<StroopGameProps> = ({ onEnd }) => {
   let correctTrials = 0;
   let incorrectTotal = 0;
   let correctTotal = 0;
+  const game = practice ? practiceGameData : gameData;
 
   const analysis = () => {
     results.map((trial) => {
@@ -57,8 +62,8 @@ export const StroopGame: React.FC<StroopGameProps> = ({ onEnd }) => {
       .set({
         id: sessionStorage.getItem("uuid"),
         trialCount: (dataIndex + 1).toString(),
-        color: gameData[dataIndex].ink,
-        word: gameData[dataIndex].text,
+        color: game[dataIndex].ink,
+        word: game[dataIndex].text,
         correct: data.result,
         timestamp: Date.now(),
       })
@@ -73,7 +78,7 @@ export const StroopGame: React.FC<StroopGameProps> = ({ onEnd }) => {
     setResults([...results, { ...data, index: dataIndex }]);
     setCorrect(data.result);
     setTimeout(() => {
-      if (dataIndex < gameData.length - 1) {
+      if (dataIndex < game.length - 1) {
         setDataIndex(dataIndex + 1);
         setToggle(false);
       } else {
@@ -120,7 +125,7 @@ export const StroopGame: React.FC<StroopGameProps> = ({ onEnd }) => {
                   <StroopTrial
                     result={handeltrial}
                     stroopTrial={{
-                      ...gameData[dataIndex],
+                      ...game[dataIndex],
                     }}
                     key={dataIndex.toString()}
                     startTime={Date.now()}

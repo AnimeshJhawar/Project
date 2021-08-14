@@ -26,4 +26,5 @@ function generateStroopData(trials: number) {
   ];
   return data;
 }
+export const practiceGameData = generateStroopData(10);
 export const gameData = generateStroopData(stroopData.trialsCount);

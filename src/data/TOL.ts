@@ -241,6 +241,28 @@ export const toltrials: {
   },
 ];
 
+export const practiceTrials = [
+  ...toltrials.map((trial) => {
+    return {
+      stack: [
+        ...trial.stack
+          .map((t) => {
+            return [...t].reverse();
+          })
+          .reverse(),
+      ],
+      final: [
+        ...trial.final
+          .map((t) => {
+            return [...t].reverse();
+          })
+          .reverse(),
+      ],
+      maxDrops: trial.maxDrops,
+    };
+  }),
+].slice(0, 2);
+
 export const trials = [
   ...toltrials.map((trial) => {
     return {
