@@ -56,7 +56,7 @@ export const Stroop: React.FC<StroopProps> = () => {
           </animated.div>
         ) : (
           <animated.div style={transition}>
-            <StroopGame onEnd={() => history.push("/tol")} />
+            <StroopGame onEnd={() => history.push("/emotions")} />
           </animated.div>
         )
       )}

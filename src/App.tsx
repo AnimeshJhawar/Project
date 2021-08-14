@@ -39,8 +39,14 @@ const App: FC = () => {
   const activities2 = () => {
     return <Surveys surveyLink={surveys[3]} next="/stroopInstructions" />;
   };
+  const emotions = () => {
+    return <Surveys surveyLink={surveys[3]} next="/impulsivity" />;
+  };
+  const impulsivity = () => {
+    return <Surveys surveyLink={surveys[3]} next="/tolInstructions" />;
+  };
   const routes: { [key: string]: any } = {
-    // "/": RiskTaker,
+    "/": RiskTaker,
     "/ask": Ask,
     "/generalInstructions": GeneralInstructions,
     "/demographic": demographic,
@@ -53,10 +59,12 @@ const App: FC = () => {
     "/iowaInstructions2": IOWAInstructions2,
     "/iowaPractice": IOWAPractice,
     "/iowa": IOWA,
-    "/": activities2,
+    "/actities2": activities2,
     "/stroopInstructions": StroopInstructions,
     "/stroopPractice": StroopPractice,
     "/stroop": Stroop,
+    "/emotions": emotions,
+    "/impulsivity": impulsivity,
   };
 
   return (
