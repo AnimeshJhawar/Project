@@ -14,7 +14,6 @@ export interface TOLProps {
 
 export const TOL: React.FC<TOLProps> = ({ onNext }) => {
   const [tolIndex, setTolIndex] = useState(0);
-  const [start, setStart] = useState(false);
   const [end, setEnd] = useState(false);
 
   const [trialList, setTrialList] = useState<ReactNode[]>([]);
@@ -54,10 +53,6 @@ export const TOL: React.FC<TOLProps> = ({ onNext }) => {
     }
   }
 
-  function onStartHandeler() {
-    setStart(true);
-  }
-
   useEffect(() => {
     setTrialList([
       ...trials.map((trial, index) => (
@@ -73,12 +68,6 @@ export const TOL: React.FC<TOLProps> = ({ onNext }) => {
     ]);
   }, []);
 
-  const startButtonTransition = useTransition(!start, {
-    from: { x: 0, y: 0, opacity: 0 },
-    enter: { x: 0, y: (-1 * 10) / 5, opacity: 1 },
-    leave: { x: 0, y: -200, opacity: 0 },
-  });
-
   const endTransition = useTransition(end, {
     from: { x: 0, y: 0, opacity: 0 },
     enter: { x: 0, y: (-1 * 20) / 5, opacity: 1 },
@@ -86,30 +75,8 @@ export const TOL: React.FC<TOLProps> = ({ onNext }) => {
     delay: 1000,
   });
 
-  const trialTransition = useTransition(start && !end, {
-    from: { x: 0, y: 100, opacity: 0 },
-    enter: { x: 0, y: 0, opacity: 1 },
-    leave: { x: 0, y: -100, opacity: 0 },
-  });
-
   return (
     <div className={styles.tolCont}>
-      {startButtonTransition((style, show) =>
-        show ? (
-          <animated.div style={style}>
-            <CustomButton text="START" onClick={onStartHandeler} />
-          </animated.div>
-        ) : (
-          ""
-        )
-      )}
-      {trialTransition((style, show) =>
-        show ? (
-          <animated.div style={style}>{trialList[tolIndex]}</animated.div>
-        ) : (
-          ""
-        )
-      )}
       {endTransition((transition, show) =>
         show ? (
           <animated.div style={transition}>
@@ -120,7 +87,7 @@ export const TOL: React.FC<TOLProps> = ({ onNext }) => {
             />
           </animated.div>
         ) : (
-          ""
+          <animated.div style={transition}>{trialList[tolIndex]}</animated.div>
         )
       )}
     </div>

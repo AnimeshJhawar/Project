@@ -6,6 +6,8 @@ export const tolData = {
     "Trial Incomplete, You failed to complete the trial in numbers of moves required.",
   dragDropText: "Drag and Drop to achieve final position",
   dragRemainText: "Drops remaining",
+  startText: "Start Trial",
+  startPractice: "Start TOL Practice",
   lastpageText: "Thank you for your participation",
   nextTrialButton: "Click here to start next trial",
 };

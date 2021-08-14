@@ -97,7 +97,7 @@ export const TOLPractice: React.FC<TOLPracticeProps> = ({ onNext }) => {
       {startButtonTransition((style, show) =>
         show ? (
           <animated.div style={style}>
-            <CustomButton text="START" onClick={onStartHandeler} />
+            <CustomButton text={tolData.startText} onClick={onStartHandeler} />
           </animated.div>
         ) : (
           ""
@@ -114,7 +114,7 @@ export const TOLPractice: React.FC<TOLPracticeProps> = ({ onNext }) => {
         show ? (
           <animated.div style={transition}>
             <CustomButton
-              text={tolData.lastpageText}
+              text={tolData.startText}
               isSecondary
               onClick={onNext}
             />
