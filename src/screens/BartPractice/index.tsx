@@ -65,6 +65,7 @@ export const BartPractice: React.FC<BartPracticeProps> = () => {
           updateData(d)
         }
         onEnd={() => history.push("/bart")}
+        practice
       />
     </div>
   );
