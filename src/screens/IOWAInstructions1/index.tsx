@@ -21,12 +21,11 @@ export const IOWAInstructions1: React.FC = () => {
 
       <br />
       <p>{iowainstructions1.clicktext}</p>
-      <div className={styles.buttons}>
-        <CustomButton
-          text={iowainstructions1.next}
-          onClick={() => history.push("/generalInstructions")}
-        />
-      </div>
+
+      <CustomButton
+        text={iowainstructions1.next}
+        onClick={() => history.push("/iowaInstructions2")}
+      />
     </div>
   );
 };

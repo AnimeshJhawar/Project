@@ -2,6 +2,7 @@
 export const iowaData = {
   won: "You won Rs.",
   lost: "You lost Rs.",
+  practiceLastPage: "Practice Completed, Click To Play Game",
   lastPage:
     "Thank you for participating in the task. Please click here for the next task.",
   initialLoan: 225000,
@@ -185,23 +186,35 @@ export const iowaGameData = {
   cardsData,
 };
 
-const practiceCount = 2;
+const practiceCount = 5;
 const practiceData: { [key: string]: { won: number; lost: number }[] } = {
   a: [
-    { won: 7500, lost: 0 },
-    { won: 7500, lost: 0 },
+    { won: 7500, lost: 5000 },
+    { won: 1500, lost: 2000 },
+    { won: 7500, lost: 3000 },
+    { won: 1000, lost: 3000 },
+    { won: 1500, lost: 3500 },
   ],
   b: [
+    { won: 7500, lost: 3000 },
+    { won: 1000, lost: 3000 },
+    { won: 1500, lost: 3500 },
     { won: 7500, lost: 0 },
-    { won: 7500, lost: 0 },
+    { won: 7500, lost: 5000 },
   ],
   c: [
+    { won: 1500, lost: 3500 },
     { won: 7500, lost: 0 },
-    { won: 7500, lost: 0 },
+    { won: 1000, lost: 2000 },
+    { won: 3500, lost: 1000 },
+    { won: 7500, lost: 5000 },
   ],
   d: [
-    { won: 7500, lost: 0 },
-    { won: 7500, lost: 0 },
+    { won: 1000, lost: 2000 },
+    { won: 3500, lost: 1000 },
+    { won: 7500, lost: 5000 },
+    { won: 1500, lost: 2000 },
+    { won: 7500, lost: 5000 },
   ],
 };
 

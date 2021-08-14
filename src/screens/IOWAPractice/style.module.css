@@ -1,0 +1,9 @@
+.iowaPractice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.iowaPractice > p {
+  padding: 10px;
+}

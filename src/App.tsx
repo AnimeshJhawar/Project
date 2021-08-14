@@ -12,6 +12,11 @@ import { surveys } from "./data/survey.data";
 import { BartInstructions } from "./screens/BartInstructions";
 import { BartPractice } from "./screens/BartPractice";
 import { Bart } from "./screens/Bart";
+import { IOWAInstructions1 } from "./screens/IOWAInstructions1";
+import { iowainstructions2 } from "./data/iowainstructions";
+import { IOWAPractice } from "./screens/IOWAPractice";
+import { IOWA } from "./screens/IOWA";
+import { IOWAInstructions2 } from "./screens/IOWAInstructions2";
 
 const App: FC = () => {
   const history = useHistory();
@@ -25,11 +30,14 @@ const App: FC = () => {
   const details = () => {
     return <Surveys surveyLink={surveys[1]} next="/bartInstructions" />;
   };
-  const activities = () => {
-    return <Surveys surveyLink={surveys[2]} next="/" />;
+  const activities1 = () => {
+    return <Surveys surveyLink={surveys[2]} next="/iowaInstructions1" />;
+  };
+  const activities2 = () => {
+    return <Surveys surveyLink={surveys[3]} next="/stroopInstructions" />;
   };
   const routes: { [key: string]: any } = {
-    "/": RiskTaker,
+    // "/": RiskTaker,
     "/ask": Ask,
     "/generalInstructions": GeneralInstructions,
     "/demographic": demographic,
@@ -37,7 +45,12 @@ const App: FC = () => {
     "/bartInstructions": BartInstructions,
     "/bartPractice": BartPractice,
     "/bart": Bart,
-    "/activities": activities,
+    "/activities1": activities1,
+    "/iowaInstructions1": IOWAInstructions1,
+    "/iowaInstructions2": IOWAInstructions2,
+    "/iowaPractice": IOWAPractice,
+    "/iowa": IOWA,
+    "/": activities2,
   };
 
   return (

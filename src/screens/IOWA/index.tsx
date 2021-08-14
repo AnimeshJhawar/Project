@@ -1,21 +1,16 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
-import { Typography } from "antd";
-import { useTransition, animated } from "react-spring";
+import { useHistory } from "react-router";
 import styles from "./style.module.css";
 import { PokerCardsGroup } from "../../components/PokerCardsGroup";
-import useWindowDimensions from "../../utils/viewport";
-import { CustomButton } from "../../components/CustomButton";
 
-const { Text } = Typography;
-export interface IOWAProps {
-  onNext: Function;
-}
+export interface IOWAProps {}
 
-export const IOWA: React.FC<IOWAProps> = ({ onNext }) => {
+export const IOWA: React.FC<IOWAProps> = () => {
+  const history = useHistory();
   return (
     <div className={styles.iowa}>
-      <PokerCardsGroup onEnd={onNext} />
+      <PokerCardsGroup onEnd={() => history.push("/activities2")} />
     </div>
   );
 };

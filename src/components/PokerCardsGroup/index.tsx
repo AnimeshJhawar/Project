@@ -20,7 +20,8 @@ export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = ({
   onEnd,
   practice = false,
 }) => {
-  const { won, lost, initialLoan, finalLimit, lastPage } = iowaData;
+  const { won, lost, initialLoan, finalLimit, lastPage, practiceLastPage } =
+    iowaData;
   const { cardsData, trialsCount } = practice ? iowaPractceData : iowaGameData;
   const { width } = useWindowDimensions();
   const [currentCardsIdx, setCurrentCardsIdx] = useState<number>(0);
@@ -110,7 +111,10 @@ export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = ({
             style={transition}
             className={styles.endButtonContainer}
           >
-            <CustomButton text={lastPage} onClick={onEnd} />
+            <CustomButton
+              text={practice ? practiceLastPage : lastPage}
+              onClick={onEnd}
+            />
           </animated.div>
         ) : (
           ""
