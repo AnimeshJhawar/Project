@@ -104,19 +104,30 @@ export const StroopGame: React.FC<StroopGameProps> = ({
       {endTransition((transition, show) =>
         show ? (
           <animated.div style={transition}>
-            <Card title="Result" bordered={false} style={{ width: 300 }}>
-              <p>Analysed Data here</p>
-              <p>Analysed Data</p>
-              <CustomButton text="Click here to continue" onClick={onEnd} />
-            </Card>
+            {practice ? (
+              <>
+                <p>{stroopData.complete}</p>
+                <br />
+                <br />
+              </>
+            ) : (
+              ""
+            )}
+            <CustomButton
+              text={practice ? stroopData.practuceEnd : stroopData.end}
+              onClick={onEnd}
+              block
+            />
           </animated.div>
         ) : (
           <animated.div style={transition}>
             {counter > 0 ? (
-              <StroopText
-                text={`Starting in ${counter} sec.`}
-                ink={countDownColor}
-              />
+              <>
+                <StroopText
+                  text={`Starting in ${counter} sec.`}
+                  ink={countDownColor}
+                />
+              </>
             ) : (
               <>
                 {toggle ? (

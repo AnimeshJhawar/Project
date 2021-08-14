@@ -1,20 +1,19 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import { Typography } from "antd";
+import { useHistory } from "react-router";
 import { useTransition, animated } from "react-spring";
 import styles from "./style.module.css";
-import { PokerCardsGroup } from "../../components/PokerCardsGroup";
-import { gameData, stroopData } from "../../data/stroop";
 import useWindowDimensions from "../../utils/viewport";
 import { CustomButton } from "../../components/CustomButton";
 import { StroopGame } from "../../components/StroopGame";
+import { stroopInstructions } from "../../data/stroopInstructions";
 
 const { Text } = Typography;
-export interface StroopProps {
-  onNext: Function;
-}
+export interface StroopProps {}
 
-export const Stroop: React.FC<StroopProps> = ({ onNext }) => {
+export const Stroop: React.FC<StroopProps> = () => {
+  const history = useHistory();
   const [start, setStart] = useState(false);
   const [end, setEnd] = useState(false);
   const { width } = useWindowDimensions();
@@ -44,11 +43,20 @@ export const Stroop: React.FC<StroopProps> = ({ onNext }) => {
             style={{ ...transition, position: "absolute", top: "20px" }}
             className={styles.tunnel}
           >
-            <CustomButton text="START" onClick={onStartHandeler} />
+            <h1>{stroopInstructions.heading}</h1>
+            <p>
+              <b>{stroopInstructions.remember}</b>
+            </p>
+            <ul>
+              {stroopInstructions.points.map((point) => (
+                <li>{point}</li>
+              ))}
+            </ul>
+            <CustomButton text="START" block onClick={onStartHandeler} />
           </animated.div>
         ) : (
           <animated.div style={transition}>
-            <StroopGame onEnd={onNext} />
+            <StroopGame onEnd={() => history.push("/tol")} />
           </animated.div>
         )
       )}

@@ -17,6 +17,9 @@ import { iowainstructions2 } from "./data/iowainstructions";
 import { IOWAPractice } from "./screens/IOWAPractice";
 import { IOWA } from "./screens/IOWA";
 import { IOWAInstructions2 } from "./screens/IOWAInstructions2";
+import { StroopInstructions } from "./screens/StroopInstructions";
+import { StroopPractice } from "./screens/StroopPractice";
+import { Stroop } from "./screens/Stroop";
 
 const App: FC = () => {
   const history = useHistory();
@@ -51,6 +54,9 @@ const App: FC = () => {
     "/iowaPractice": IOWAPractice,
     "/iowa": IOWA,
     "/": activities2,
+    "/stroopInstructions": StroopInstructions,
+    "/stroopPractice": StroopPractice,
+    "/stroop": Stroop,
   };
 
   return (

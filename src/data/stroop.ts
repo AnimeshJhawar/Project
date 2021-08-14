@@ -3,6 +3,9 @@ export const stroopData = {
   trialsCount: 50,
   countdown: 5, // in seconds
   countDownColor: "black",
+  practuceEnd: "Practice Finished, Click To Continue",
+  end: "Play Next Task",
+  complete: "Task is completed !",
   bufferTime: 500, // in mSeconds, + sign  before showing coloured text.
   trialLength: 2500, // in mSeconds this is the total time (buffer time) + inked text time.
   keys: ["b", "r", "g", "y"],

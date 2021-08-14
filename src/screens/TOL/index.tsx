@@ -1,18 +1,17 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect, ReactNode } from "react";
+import { useHistory } from "react-router";
 import { animated, useTransition } from "react-spring";
 import { CustomButton } from "../../components/CustomButton";
 import { TOLStack } from "../../components/TOLStack";
 import { tolData, trials } from "../../data/TOL";
 import { FirebaseContext } from "../../firebase";
-import useWindowDimensions from "../../utils/viewport";
 import styles from "./style.module.css";
 
-export interface TOLProps {
-  onNext: Function;
-}
+export interface TOLProps {}
 
-export const TOL: React.FC<TOLProps> = ({ onNext }) => {
+export const TOL: React.FC<TOLProps> = () => {
+  const history = useHistory();
   const [tolIndex, setTolIndex] = useState(0);
   const [end, setEnd] = useState(false);
 
@@ -83,7 +82,7 @@ export const TOL: React.FC<TOLProps> = ({ onNext }) => {
             <CustomButton
               text={tolData.lastpageText}
               isSecondary
-              onClick={onNext}
+              onClick={() => history.push("/tol")}
             />
           </animated.div>
         ) : (
