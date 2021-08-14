@@ -20,6 +20,10 @@ import { IOWAInstructions2 } from "./screens/IOWAInstructions2";
 import { StroopInstructions } from "./screens/StroopInstructions";
 import { StroopPractice } from "./screens/StroopPractice";
 import { Stroop } from "./screens/Stroop";
+import { TOLInstructions1 } from "./screens/TOLInstructions1";
+import { TOLInstructions2 } from "./screens/TOLInstructions2";
+import { TOLPractice } from "./screens/TOLPractice";
+import { TOL } from "./screens/TOL";
 
 const App: FC = () => {
   const history = useHistory();
@@ -43,10 +47,10 @@ const App: FC = () => {
     return <Surveys surveyLink={surveys[3]} next="/impulsivity" />;
   };
   const impulsivity = () => {
-    return <Surveys surveyLink={surveys[3]} next="/tolInstructions" />;
+    return <Surveys surveyLink={surveys[3]} next="/tolInstructions1" />;
   };
   const routes: { [key: string]: any } = {
-    "/": RiskTaker,
+    // "/": RiskTaker,
     "/ask": Ask,
     "/generalInstructions": GeneralInstructions,
     "/demographic": demographic,
@@ -64,7 +68,11 @@ const App: FC = () => {
     "/stroopPractice": StroopPractice,
     "/stroop": Stroop,
     "/emotions": emotions,
-    "/impulsivity": impulsivity,
+    "/": impulsivity,
+    "/tolInstructions1": TOLInstructions1,
+    "/tolInstructions2": TOLInstructions2,
+    "/tolPractice": TOLPractice,
+    "/tol": TOL,
   };
 
   return (

@@ -1,20 +1,19 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect, ReactNode } from "react";
+import { useHistory } from "react-router";
 import { animated, useTransition } from "react-spring";
 import { CustomButton } from "../../components/CustomButton";
 import { TOLStack } from "../../components/TOLStack";
 import { tolData, practiceTrials } from "../../data/TOL";
 import { FirebaseContext } from "../../firebase";
-import useWindowDimensions from "../../utils/viewport";
 import styles from "./style.module.css";
 
-export interface TOLPracticeProps {
-  onNext: Function;
-}
+export interface TOLPracticeProps {}
 
-export const TOLPractice: React.FC<TOLPracticeProps> = ({ onNext }) => {
+export const TOLPractice: React.FC<TOLPracticeProps> = () => {
+  const history = useHistory();
   const [tolIndex, setTolIndex] = useState(0);
-  const [start, setStart] = useState(false);
+  const start = true;
   const [end, setEnd] = useState(false);
 
   const [trialList, setTrialList] = useState<ReactNode[]>([]);
@@ -54,10 +53,6 @@ export const TOLPractice: React.FC<TOLPracticeProps> = ({ onNext }) => {
     }
   }
 
-  function onStartHandeler() {
-    setStart(true);
-  }
-
   useEffect(() => {
     setTrialList([
       ...practiceTrials.map((trial, index) => (
@@ -94,15 +89,7 @@ export const TOLPractice: React.FC<TOLPracticeProps> = ({ onNext }) => {
 
   return (
     <div className={styles.tolCont}>
-      {startButtonTransition((style, show) =>
-        show ? (
-          <animated.div style={style}>
-            <CustomButton text={tolData.startText} onClick={onStartHandeler} />
-          </animated.div>
-        ) : (
-          ""
-        )
-      )}
+      TOL Practice Trials
       {trialTransition((style, show) =>
         show ? (
           <animated.div style={style}>{trialList[tolIndex]}</animated.div>
@@ -113,10 +100,12 @@ export const TOLPractice: React.FC<TOLPracticeProps> = ({ onNext }) => {
       {endTransition((transition, show) =>
         show ? (
           <animated.div style={transition}>
+            <br />
+            <p> {tolData.endedPractice} </p>
             <CustomButton
-              text={tolData.startText}
-              isSecondary
-              onClick={onNext}
+              text={tolData.practiceEndButton}
+              onClick={() => history.push("/tol")}
+              block
             />
           </animated.div>
         ) : (
