@@ -82,7 +82,7 @@ export const TOL: React.FC<TOLProps> = () => {
             <CustomButton
               text={tolData.lastpageText}
               isSecondary
-              onClick={() => history.push("/tol")}
+              onClick={() => history.push("")}
             />
           </animated.div>
         ) : (
