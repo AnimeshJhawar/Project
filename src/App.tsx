@@ -24,6 +24,7 @@ import { TOLInstructions1 } from "./screens/TOLInstructions1";
 import { TOLInstructions2 } from "./screens/TOLInstructions2";
 import { TOLPractice } from "./screens/TOLPractice";
 import { TOL } from "./screens/TOL";
+import { Demographic } from "./Surveys/Demographic";
 
 const App: FC = () => {
   const history = useHistory();
@@ -50,6 +51,7 @@ const App: FC = () => {
     return <Surveys surveyLink={surveys[3]} next="/tolInstructions1" />;
   };
   const routes: { [key: string]: any } = {
+    // "/": demographic,
     "/": RiskTaker,
     "/ask": Ask,
     "/generalInstructions": GeneralInstructions,
@@ -78,7 +80,9 @@ const App: FC = () => {
   return (
     <MemoryRouter>
       {Object.keys(routes).map((route) => {
-        return <Route exact path={route} component={routes[route]} />;
+        return (
+          <Route key={route} exact path={route} component={routes[route]} />
+        );
       })}
     </MemoryRouter>
   );
