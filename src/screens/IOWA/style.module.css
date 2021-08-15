@@ -1,11 +1,12 @@
-.iowa{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.iowa {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-.iowaCards{
-    height: 100px;
-    width: 100%;
+.iowaCards {
+  height: 100px;
+  width: 100%;
 }

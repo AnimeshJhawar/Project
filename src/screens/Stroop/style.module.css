@@ -1,6 +1,7 @@
-.stroop{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.stroop {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }

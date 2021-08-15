@@ -40,8 +40,9 @@ export const Surveys: React.FC<SurveysProps> = ({ surveyLink, next }) => {
           setFormRef(r);
           runScript(r);
         }}
+        className={styles.form}
       >
-        {" "}
+        Loading Survey...
       </div>
       <br />
       <CustomButton

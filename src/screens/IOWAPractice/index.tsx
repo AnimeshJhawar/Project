@@ -14,7 +14,7 @@ export const IOWAPractice: React.FC<IOWAPracticeProps> = () => {
   const history = useHistory();
   return (
     <div className={styles.iowaPractice}>
-      <p>IOWA Practice Trials</p>
+      <p style={{ textAlign: "center" }}>IOWA Practice Trials</p>
       <PokerCardsGroup onEnd={() => history.push("/iowa")} practice />
     </div>
   );

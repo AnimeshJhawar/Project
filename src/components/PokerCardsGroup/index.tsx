@@ -91,14 +91,14 @@ export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = ({
         <Progress
           percent={fixedPercent}
           strokeColor="orange"
-          title="Loan Amount"
+          title={`Loan Amount: Rs. ${initialLoan.toString()}`}
         />
         <Progress
           percent={(amount * 100) / finalLimit}
           strokeColor={
             fixedPercent > (amount * 100) / finalLimit ? "red" : undefined
           }
-          title="Current Balance"
+          title={`Current Balance: Rs. ${amount.toString()}`}
         />
       </div>
       {/* <div className={styles.result}>
@@ -127,20 +127,34 @@ export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = ({
             <Row gutter={0}>
               {Object.keys(cardsData).map((cardId: string) => (
                 <Col key={cardId} className="gutter-row" span={6}>
-                  <>
+                  <Row
+                    style={{
+                      height: "100%",
+                      display: "flex",
+                      alignItems: "flex-end",
+                    }}
+                  >
+                    {recentDeck === cardId && (
+                      <div
+                        style={{
+                          textAlign: "center",
+                        }}
+                      >
+                        <span>{`You Won : ${recentResult.won} Rs`}</span>
+                        <br />
+                        <span
+                          style={{
+                            color: "red",
+                          }}
+                        >{`You Lost : ${recentResult.lost} Rs`}</span>
+                      </div>
+                    )}
                     <PokerDeck
                       trials={trialsCount}
                       deckId={cardId}
                       sendId={handelDeckClick}
                     />
-                    {recentDeck === cardId && (
-                      <>
-                        <span>{`You Won : ${recentResult.won} Rs`}</span>
-                        <br />
-                        <span>{`You Lost : ${recentResult.lost} Rs`}</span>
-                      </>
-                    )}
-                  </>
+                  </Row>
                 </Col>
               ))}
             </Row>

@@ -1,28 +1,28 @@
-.bart{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.bart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-.bart > *{
-    margin-top: 10px;
+.bart > * {
+  margin-top: 10px;
 }
 
-.money{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: min(100%, 720px);
+.money {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: min(100%, 720px);
 }
 .moneyHeading * {
-    font-size: 16px !important;
+  font-size: 16px !important;
 }
-.moneyHeading{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.moneyHeading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-
