@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 export const iowaData = {
-  won: "You won Rs.",
-  lost: "You lost Rs.",
+  won: "Won Rs.",
+  lost: "Lost Rs.",
   practiceLastPage: "Practice Completed, Click To Play Game",
   lastPage:
     "Thank you for participating in the task. Please click here for the next task.",
