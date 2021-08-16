@@ -3,7 +3,12 @@
 import { FC } from "react";
 import "antd/dist/antd.css";
 import { v4 as uuidv4 } from "uuid";
-import { MemoryRouter, Route, useHistory } from "react-router";
+import {
+  MemoryRouter,
+  Route,
+  useHistory,
+  BrowserRouter,
+} from "react-router-dom";
 import { RiskTaker } from "./screens/RiskTaker";
 import { GeneralInstructions } from "./screens/GeneralInstructions";
 import { Ask } from "./screens/Ask";
@@ -77,13 +82,13 @@ const App: FC = () => {
   };
 
   return (
-    <MemoryRouter>
+    <BrowserRouter>
       {Object.keys(routes).map((route) => {
         return (
           <Route key={route} exact path={route} component={routes[route]} />
         );
       })}
-    </MemoryRouter>
+    </BrowserRouter>
   );
 };
 
