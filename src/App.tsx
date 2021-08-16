@@ -82,13 +82,13 @@ const App: FC = () => {
   };
 
   return (
-    <MemoryRouter>
+    <BrowserRouter basename="/games">
       {Object.keys(routes).map((route) => {
         return (
           <Route key={route} exact path={route} component={routes[route]} />
         );
       })}
-    </MemoryRouter>
+    </BrowserRouter>
   );
 };
 
