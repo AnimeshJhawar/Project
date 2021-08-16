@@ -39,8 +39,6 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "lint": "eslint src/*.[js, jsx, ts, tsx] src/**/*.[js, jsx, ts, tsx]",
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
