@@ -1,5 +1,6 @@
 {
   "name": "games",
+  "homepage": "https://4rr0w.github.io/games/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
