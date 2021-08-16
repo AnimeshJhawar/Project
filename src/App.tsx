@@ -57,7 +57,7 @@ const App: FC = () => {
     return <Surveys surveyLink={surveys[3]} next="/tolInstructions1" />;
   };
   const routes: { [key: string]: any } = {
-    "/": RiskTaker,
+    // "/": RiskTaker,
     "/ask": Ask,
     "/generalInstructions": GeneralInstructions,
     "/demographic": demographic,
@@ -70,7 +70,7 @@ const App: FC = () => {
     "/iowaInstructions2": IOWAInstructions2,
     "/iowaPractice": IOWAPractice,
     "/iowa": IOWA,
-    "/actities2": activities2,
+    "/activities2": activities2,
     "/stroopInstructions": StroopInstructions,
     "/stroopPractice": StroopPractice,
     "/stroop": Stroop,
