@@ -47,6 +47,7 @@ export const Stroop: React.FC<StroopProps> = () => {
             <p>
               <b>{stroopInstructions.remember}</b>
             </p>
+            {/* t{" "} */}
             <ul>
               {stroopInstructions.points.map((point) => (
                 <li>{point}</li>
