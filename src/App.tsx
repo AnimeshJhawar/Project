@@ -8,6 +8,7 @@ import {
   Route,
   useHistory,
   BrowserRouter,
+  Switch,
 } from "react-router-dom";
 import { RiskTaker } from "./screens/RiskTaker";
 import { GeneralInstructions } from "./screens/GeneralInstructions";
@@ -83,11 +84,13 @@ const App: FC = () => {
 
   return (
     <BrowserRouter>
-      {Object.keys(routes).map((route) => {
-        return (
-          <Route key={route} exact path={route} component={routes[route]} />
-        );
-      })}
+      <Switch>
+        {Object.keys(routes).map((route) => {
+          return (
+            <Route key={route} exact path={route} component={routes[route]} />
+          );
+        })}
+      </Switch>
     </BrowserRouter>
   );
 };
