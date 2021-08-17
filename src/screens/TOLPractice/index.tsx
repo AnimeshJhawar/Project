@@ -68,12 +68,6 @@ export const TOLPractice: React.FC<TOLPracticeProps> = () => {
     ]);
   }, []);
 
-  const startButtonTransition = useTransition(!start, {
-    from: { x: 0, y: 0, opacity: 0 },
-    enter: { x: 0, y: (-1 * 10) / 5, opacity: 1 },
-    leave: { x: 0, y: -200, opacity: 0 },
-  });
-
   const endTransition = useTransition(end, {
     from: { x: 0, y: 0, opacity: 0 },
     enter: { x: 0, y: (-1 * 20) / 5, opacity: 1 },
