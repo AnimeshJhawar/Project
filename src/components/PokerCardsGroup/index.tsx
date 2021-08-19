@@ -20,8 +20,16 @@ export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = ({
   onEnd,
   practice = false,
 }) => {
-  const { won, lost, initialLoan, finalLimit, lastPage, practiceLastPage } =
-    iowaData;
+  const {
+    currentText,
+    loanText,
+    won,
+    lost,
+    initialLoan,
+    finalLimit,
+    lastPage,
+    practiceLastPage,
+  } = iowaData;
   const { cardsData, trialsCount } = practice ? iowaPractceData : iowaGameData;
   const { width } = useWindowDimensions();
   const [currentCardsIdx, setCurrentCardsIdx] = useState<number>(0);
@@ -91,14 +99,14 @@ export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = ({
         <Progress
           percent={fixedPercent}
           strokeColor="orange"
-          title={`Loan Amount: Rs. ${initialLoan.toString()}`}
+          title={`${loanText} ${initialLoan.toString()}`}
         />
         <Progress
           percent={(amount * 100) / finalLimit}
           strokeColor={
             fixedPercent > (amount * 100) / finalLimit ? "red" : undefined
           }
-          title={`Current Balance: Rs. ${amount.toString()}`}
+          title={`${currentText} ${amount.toString()}`}
         />
       </div>
       {/* <div className={styles.result}>
@@ -132,6 +140,7 @@ export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = ({
                       height: "100%",
                       display: "flex",
                       alignItems: "flex-end",
+                      justifyContent: "center",
                     }}
                   >
                     {recentDeck === cardId && (
@@ -140,13 +149,13 @@ export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = ({
                           textAlign: "center",
                         }}
                       >
-                        <span>{`You Won : ${recentResult.won} Rs`}</span>
+                        <span>{`${won} ${recentResult.won} Rs`}</span>
                         <br />
                         <span
                           style={{
                             color: "red",
                           }}
-                        >{`You Lost : ${recentResult.lost} Rs`}</span>
+                        >{`${lost} ${recentResult.lost} Rs`}</span>
                       </div>
                     )}
                     <PokerDeck

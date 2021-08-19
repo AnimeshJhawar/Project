@@ -20,7 +20,7 @@ const lowerLim = 2;
 const upperLim = 32;
 const avg = 20;
 const trialCounts = getLifeArr(arraySize, lowerLim, upperLim, avg);
-const practiceCounts = getLifeArr(5, lowerLim, upperLim, avg);
+const practiceCounts = getLifeArr(3, lowerLim, upperLim, avg);
 const ballonsColors = [
   ...Array.from(
     { length: arraySize },
