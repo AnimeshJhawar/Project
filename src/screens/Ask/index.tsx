@@ -15,12 +15,10 @@ export const Ask: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <p>
-        <i> {agreeData.ackn}</i>
-      </p>
+      <p>{agreeData.ackn}</p>
       <p> {agreeData.advice} </p>
       <div className={styles.radioButtons}>
-        <Radio.Group onChange={onChange} value={value}>
+        <Radio.Group onChange={onChange} value={value} className={styles.radio}>
           <Radio value={1}>{agreeData.agree}</Radio>
           <Radio value={2}>{agreeData.no}</Radio>
         </Radio.Group>

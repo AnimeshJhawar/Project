@@ -3,6 +3,7 @@
   flex-direction: column;
   width: 100%;
   padding: 5vw;
+  font-size: min(20px, calc(16px + 0.2vw)) !important;
 }
 
 .buttons {
