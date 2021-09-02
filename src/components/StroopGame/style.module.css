@@ -1,8 +1,10 @@
-.stroopGameContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100px;
-    width: 100%;
+.stroopGameContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
+  width: 100%;
+  background-color: black;
+  color: white !important;
 }

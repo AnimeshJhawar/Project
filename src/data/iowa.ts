@@ -1,12 +1,14 @@
 /* eslint-disable import/prefer-default-export */
 export const iowaData = {
-  won: "You won Rs.",
-  lost: "You lost Rs.",
+  loanText: "Loan Amount: Rs. ",
+  currentText: "Current Balance: Rs. ",
+  won: "Won Rs.",
+  lost: "Lost Rs.",
   practiceLastPage: "Practice Completed, Click To Play Game",
   lastPage:
     "Thank you for participating in the task. Please click here for the next task.",
   initialLoan: 225000,
-  finalLimit: 225000 * 3,
+  finalLimit: 225000 * 2,
 };
 export const iowaDataHindi = {
   won: "रुपये जीते",

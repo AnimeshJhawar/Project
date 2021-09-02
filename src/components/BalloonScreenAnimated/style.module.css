@@ -1,53 +1,52 @@
-.page{
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
-.container{
-    max-width: 720px;
-    height: max-content;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+.container {
+  max-width: 720px;
+  height: max-content;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
-.tunnel{
-    width: 10%;
-    max-width: 100px;
-    position: absolute;
-    display: flex; 
-    justify-content: center;
-    bottom: 0;
+.tunnel {
+  width: 10%;
+  max-width: 100px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  bottom: 0;
 }
 
-
-.button{
-    width: 10%;
-    max-width: 100px;
-    position: absolute;
-    display: flex; 
-    justify-content: center;
+.button {
+  width: 10%;
+  max-width: 100px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
 }
 
-
-.startButton{
-    display: flex;
-    align-items: center; 
-    justify-content: center;
-    margin-top: 50%
+.startButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50%;
 }
 
-.controlButtons{
-    max-width: 720px;
-    width: 100%;
-    flex: 1;
-    height: max-content;
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    overflow: hidden;
+.controlButtons {
+  max-width: 720px;
+  width: 100%;
+  flex: 1;
+  height: max-content;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
 }
-

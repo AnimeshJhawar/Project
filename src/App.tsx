@@ -3,7 +3,13 @@
 import { FC } from "react";
 import "antd/dist/antd.css";
 import { v4 as uuidv4 } from "uuid";
-import { MemoryRouter, Route, useHistory } from "react-router";
+import {
+  MemoryRouter,
+  Route,
+  useHistory,
+  BrowserRouter,
+  Switch,
+} from "react-router-dom";
 import { RiskTaker } from "./screens/RiskTaker";
 import { GeneralInstructions } from "./screens/GeneralInstructions";
 import { Ask } from "./screens/Ask";
@@ -24,6 +30,7 @@ import { TOLInstructions1 } from "./screens/TOLInstructions1";
 import { TOLInstructions2 } from "./screens/TOLInstructions2";
 import { TOLPractice } from "./screens/TOLPractice";
 import { TOL } from "./screens/TOL";
+import { Demographic } from "./Surveys/Demographic";
 
 const App: FC = () => {
   const history = useHistory();
@@ -63,7 +70,7 @@ const App: FC = () => {
     "/iowaInstructions2": IOWAInstructions2,
     "/iowaPractice": IOWAPractice,
     "/iowa": IOWA,
-    "/actities2": activities2,
+    "/activities2": activities2,
     "/stroopInstructions": StroopInstructions,
     "/stroopPractice": StroopPractice,
     "/stroop": Stroop,
@@ -76,11 +83,15 @@ const App: FC = () => {
   };
 
   return (
-    <MemoryRouter>
-      {Object.keys(routes).map((route) => {
-        return <Route exact path={route} component={routes[route]} />;
-      })}
-    </MemoryRouter>
+    <BrowserRouter>
+      <Switch>
+        {Object.keys(routes).map((route) => {
+          return (
+            <Route key={route} exact path={route} component={routes[route]} />
+          );
+        })}
+      </Switch>
+    </BrowserRouter>
   );
 };
 

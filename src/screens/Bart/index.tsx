@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import { Typography } from "antd";
+import { useHistory } from "react-router";
 import { BalloonScreenAnimated } from "../../components/BalloonScreenAnimated";
 import styles from "./style.module.css";
 import { bartText, gameData } from "../../data/bart";
@@ -8,11 +9,10 @@ import { IconInContainer } from "../../components/IconInContainer";
 import { FirebaseContext } from "../../firebase";
 
 const { Text } = Typography;
-export interface BartProps {
-  onNext: Function;
-}
+export interface BartProps {}
 
-export const Bart: React.FC<BartProps> = ({ onNext }) => {
+export const Bart: React.FC<BartProps> = () => {
+  const history = useHistory();
   const moneyHeading = (text: string, money: string) => {
     return (
       <div className={styles.moneyHeading}>
@@ -91,7 +91,7 @@ export const Bart: React.FC<BartProps> = ({ onNext }) => {
           burst: boolean;
           trial: number;
         }) => updateData(d)}
-        onEnd={onNext}
+        onEnd={() => history.push("/activities1")}
       />
     </div>
   );

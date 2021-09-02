@@ -14,9 +14,8 @@ export const TOL: React.FC<TOLProps> = () => {
   const history = useHistory();
   const [tolIndex, setTolIndex] = useState(0);
   const [end, setEnd] = useState(false);
-
+  const start = true;
   const [trialList, setTrialList] = useState<ReactNode[]>([]);
-
   const firebase = React.useContext(FirebaseContext);
   const firestore = firebase?.firebase.firestore();
 
@@ -74,19 +73,35 @@ export const TOL: React.FC<TOLProps> = () => {
     delay: 1000,
   });
 
+  const trialTransition = useTransition(start && !end, {
+    from: { x: 0, y: 100, opacity: 0 },
+    enter: { x: 0, y: 0, opacity: 1 },
+    leave: { x: 0, y: -100, opacity: 0 },
+  });
+
   return (
     <div className={styles.tolCont}>
+      TOL Practice Trials
+      {trialTransition((style, show) =>
+        show ? (
+          <animated.div style={style}>{trialList[tolIndex]}</animated.div>
+        ) : (
+          ""
+        )
+      )}
       {endTransition((transition, show) =>
         show ? (
           <animated.div style={transition}>
+            <br />
+            <p> {tolData.endedPractice} </p>
             <CustomButton
-              text={tolData.lastpageText}
-              isSecondary
-              onClick={() => history.push("")}
+              text={tolData.practiceEndButton}
+              onClick={() => history.push("/tol")}
+              block
             />
           </animated.div>
         ) : (
-          <animated.div style={transition}>{trialList[tolIndex]}</animated.div>
+          ""
         )
       )}
     </div>

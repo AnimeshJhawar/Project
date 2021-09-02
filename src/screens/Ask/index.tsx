@@ -8,8 +8,7 @@ import { CustomButton } from "../../components/CustomButton";
 
 export const Ask: React.FC = () => {
   const history = useHistory();
-  const [value, setValue] = React.useState(1);
-
+  const [value, setValue] = React.useState(0);
   const onChange = (e: any) => {
     setValue(e.target.value);
   };
@@ -32,6 +31,7 @@ export const Ask: React.FC = () => {
         <CustomButton text={agreeData.prev} onClick={() => history.push("/")} />
         <CustomButton
           text={agreeData.next}
+          disabled={value !== 1}
           onClick={() => history.push("/generalInstructions")}
         />
       </div>
