@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 
 export interface LanguageContext {
   lang: "Hindi" | "English";
-  setLanguage: (_arg: { lang: "Hindi" | "English" }) => void;
+  setLanguage: (_arg: "Hindi" | "English") => void;
 }
 export const languageContext = React.createContext<LanguageContext>({
   lang: "English",
@@ -11,13 +11,11 @@ export const languageContext = React.createContext<LanguageContext>({
 });
 
 export const LocalStorageProvider: React.FC = ({ ...props }) => {
-  const [localStorageState, setLocalStorageState] = useState<{
-    lang: "Hindi" | "English";
-  }>({ lang: "English" });
+  const [lang, setLang] = useState<"Hindi" | "English">("English");
   const setLanguage = React.useCallback(
-    (updatedLanguage: { lang: "Hindi" | "English" }): void => {
-      setLocalStorageState(updatedLanguage);
-      localStorage.setItem("resourceState", updatedLanguage?.lang || "English");
+    (updatedLanguage: "Hindi" | "English"): void => {
+      setLang(updatedLanguage);
+      localStorage.setItem("resourceState", updatedLanguage || "English");
     },
     []
   );
@@ -26,7 +24,7 @@ export const LocalStorageProvider: React.FC = ({ ...props }) => {
     <languageContext.Provider
       value={{
         setLanguage,
-        ...localStorageState,
+        lang,
       }}
     >
       {props.children}

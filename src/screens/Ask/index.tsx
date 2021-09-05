@@ -3,8 +3,12 @@ import React from "react";
 import { Radio } from "antd";
 import { useHistory } from "react-router";
 import styles from "./style.module.css";
-import { agreeData } from "../../data/agree";
+import {
+  agreeData as English,
+  agreeDataHindi as Hindi,
+} from "../../data/agree";
 import { CustomButton } from "../../components/CustomButton";
+import { languageContext } from "../../context/languageContext";
 
 export const Ask: React.FC = () => {
   const history = useHistory();
@@ -12,6 +16,13 @@ export const Ask: React.FC = () => {
   const onChange = (e: any) => {
     setValue(e.target.value);
   };
+
+  const [agreeData, setAgreeData] = React.useState(English);
+  const { lang } = React.useContext(languageContext);
+
+  React.useEffect(() => {
+    setAgreeData(lang === "Hindi" ? Hindi : English);
+  }, [lang]);
 
   return (
     <div className={styles.container}>

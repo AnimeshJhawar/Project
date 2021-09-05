@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/extensions */
-import { FC } from "react";
+import React, { FC } from "react";
 import "antd/dist/antd.css";
 import { v4 as uuidv4 } from "uuid";
 import {
@@ -10,6 +10,7 @@ import {
   BrowserRouter,
   Switch,
 } from "react-router-dom";
+import { Switch as Toggle } from "antd";
 import { RiskTaker } from "./screens/RiskTaker";
 import { GeneralInstructions } from "./screens/GeneralInstructions";
 import { Ask } from "./screens/Ask";
@@ -30,7 +31,7 @@ import { TOLInstructions1 } from "./screens/TOLInstructions1";
 import { TOLInstructions2 } from "./screens/TOLInstructions2";
 import { TOLPractice } from "./screens/TOLPractice";
 import { TOL } from "./screens/TOL";
-import { Demographic } from "./Surveys/Demographic";
+import { languageContext } from "./context/languageContext";
 
 const App: FC = () => {
   const history = useHistory();
@@ -82,8 +83,19 @@ const App: FC = () => {
     "/tol": TOL,
   };
 
+  const { setLanguage } = React.useContext(languageContext);
+
+  function onChange(checked: any) {
+    setLanguage(checked ? "Hindi" : "English");
+  }
+
   return (
     <BrowserRouter>
+      <Toggle
+        checkedChildren="Hindi"
+        unCheckedChildren="English"
+        onChange={onChange}
+      />
       <Switch>
         {Object.keys(routes).map((route) => {
           return (

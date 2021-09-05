@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Typography } from "antd";
 import { useHistory } from "react-router";
 import { BalloonScreenAnimated } from "../../components/BalloonScreenAnimated";
@@ -39,8 +39,6 @@ export const BartPractice: React.FC<BartPracticeProps> = () => {
       setLastAmount(data.next ? 0 : data.push * bartText.perPushAmount);
     }
   };
-
-  useEffect(() => {}, []);
 
   return (
     <div className={styles.bart}>

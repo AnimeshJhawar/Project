@@ -3,10 +3,23 @@ import React from "react";
 import { useHistory } from "react-router";
 import styles from "./style.module.css";
 import { CustomButton } from "../../components/CustomButton";
-import { generalInstructionsData } from "../../data/generalInstructions";
+import {
+  generalInstructionsData as English,
+  generalInstructionsDataHindi as Hindi,
+} from "../../data/generalInstructions";
+import { languageContext } from "../../context/languageContext";
 
 export const GeneralInstructions: React.FC = () => {
   const history = useHistory();
+
+  const [generalInstructionsData, setInstructionsData] =
+    React.useState(English);
+  const { lang } = React.useContext(languageContext);
+
+  React.useEffect(() => {
+    setInstructionsData(lang === "Hindi" ? Hindi : English);
+  }, [lang]);
+
   return (
     <div className={styles.container}>
       <ul>
