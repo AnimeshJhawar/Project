@@ -12,6 +12,17 @@ export const bartText = {
   perPushAmount: 10,
   endPractice: "Practice Finished, Now click on play the game",
 };
+export const bartTextHindi = {
+  money: "रु",
+  collect: "रुपये इकट्ठा करे",
+  pump: "पम्प करो",
+  total: "कुल कमाई",
+  last: "आखिरी गुब्बारा से कमाई",
+  lastPage: "अगला कार्य खेलें",
+  startingAmount: 0,
+  perPushAmount: 10,
+  endPractice: "अभ्यास समाप्त",
+};
 
 const colors = ["red", "green", "blue", "grey"];
 // array code

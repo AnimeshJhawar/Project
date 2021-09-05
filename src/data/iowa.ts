@@ -10,6 +10,14 @@ export const iowaData = {
   initialLoan: 225000,
   finalLimit: 225000 * 2,
 };
+export const iowaDataHindi = {
+  won: "रुपये जीते",
+  lost: "रुपये हारे",
+  practiceLastPage: "अभ्यास पूर्ण, खेल खेलने पर क्लिक करें",
+  lastPage: "कार्य पूरा करने के लिए धन्यवाद। अगला कार्य खेलें",
+  initialLoan: 225000,
+  finalLimit: 225000 * 3,
+};
 
 // create data for cards here
 const trialsCount = 40;

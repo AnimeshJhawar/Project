@@ -1,29 +1,33 @@
 .title {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: min(20px, calc(16px + 0.2vw)) !important;
 }
 
 .steps {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  font-size: min(20px, calc(16px + 0.2vw)) !important;
 }
 
 .step {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 24px;
-    /* identical to box height, or 133% */
-    letter-spacing: 0.15px;
-    /* 00. On Surface / High Emphasis */
-    color: rgba(0, 0, 0, 0.87);
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  /* identical to box height, or 133% */
+  letter-spacing: 0.15px;
+  /* 00. On Surface / High Emphasis */
+  color: rgba(0, 0, 0, 0.87);
+  font-size: min(20px, calc(16px + 0.2vw)) !important;
 }
 
 .inactive {
-    color: rgba(0, 0, 0, 0.38);
+  color: rgba(0, 0, 0, 0.38);
+  font-size: min(20px, calc(16px + 0.2vw)) !important;
 }

@@ -2,7 +2,7 @@
 export const stroopData = {
   trialsCount: 50,
   countdown: 5, // in seconds
-  countDownColor: "black",
+  countDownColor: "white",
   practuceEnd: "Practice Finished, Click To Continue",
   end: "Play Next Task",
   complete: "Task is completed !",
@@ -12,6 +12,18 @@ export const stroopData = {
   trialResult: 1000, // in mSeconds, how much longer does, correct/ incoreect card be shown.
 };
 
+export const stroopDataHindi = {
+  trialsCount: 50,
+  countdown: 5, // in seconds
+  countDownColor: "black",
+  practuceEnd: "अभ्यास समाप्त, जारी रखें",
+  end: "अगला कार्य (टास्क) खेलें ",
+  complete: "टास्क पूरा हुआ!",
+  bufferTime: 500, // in mSeconds, + sign  before showing coloured text.
+  trialLength: 2500, // in mSeconds this is the total time (buffer time) + inked text time.
+  keys: ["b", "r", "g", "y"],
+  trialResult: 1000, // in mSeconds, how much longer does, correct/ incoreect card be shown.
+};
 const list = ["blue", "red", "green", "yellow"];
 
 // write script to generate data for the game here
