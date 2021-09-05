@@ -2,7 +2,7 @@
 export const stroopData = {
   trialsCount: 50,
   countdown: 5, // in seconds
-  countDownColor: "black",
+  countDownColor: "white",
   practuceEnd: "Practice Finished, Click To Continue",
   end: "Play Next Task",
   complete: "Task is completed !",

@@ -3,6 +3,7 @@
   flex-direction: column;
   width: 100%;
   padding: 5vw;
+  font-size: min(20px, calc(16px + 0.2vw));
 }
 
 .buttons {
@@ -11,4 +12,8 @@
   display: flex;
   justify-content: space-between;
   max-width: 720px;
+}
+
+.radio * {
+  font-size: min(20px, calc(16px + 0.2vw));
 }

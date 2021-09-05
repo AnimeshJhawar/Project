@@ -4,6 +4,7 @@
   align-items: center;
   width: 100%;
   padding: 10px 5vw;
+  font-size: min(20px, calc(16px + 0.2vw)) !important;
 }
 
 .img {
