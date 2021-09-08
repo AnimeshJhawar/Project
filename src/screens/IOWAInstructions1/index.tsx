@@ -3,10 +3,20 @@ import React from "react";
 import { useHistory } from "react-router";
 import styles from "./style.module.css";
 import { CustomButton } from "../../components/CustomButton";
-import { iowainstructions1 } from "../../data/iowainstructions";
+import {
+  iowainstructions1 as English,
+  iowainstructions1Hindi as Hindi,
+} from "../../data/iowainstructions";
+import { languageContext } from "../../context/languageContext";
 
 export const IOWAInstructions1: React.FC = () => {
   const history = useHistory();
+  const [iowainstructions1, setIowaInstructions1] = React.useState(English);
+  const { lang } = React.useContext(languageContext);
+
+  React.useEffect(() => {
+    setIowaInstructions1(lang === "Hindi" ? Hindi : English);
+  }, [lang]);
   return (
     <div className={styles.container}>
       <div className={styles.img}>

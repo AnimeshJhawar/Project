@@ -3,14 +3,25 @@ import { Typography } from "antd";
 import { useHistory } from "react-router";
 import { BalloonScreenAnimated } from "../../components/BalloonScreenAnimated";
 import styles from "./style.module.css";
-import { bartText, practiceData } from "../../data/bart";
+import {
+  bartText as English,
+  practiceData,
+  bartTextHindi as Hindi,
+} from "../../data/bart";
 import { IconInContainer } from "../../components/IconInContainer";
+import { languageContext } from "../../context/languageContext";
 
 const { Text } = Typography;
 export interface BartPracticeProps {}
 
 export const BartPractice: React.FC<BartPracticeProps> = () => {
   const history = useHistory();
+
+  const [bartText, setBartText] = React.useState(English);
+  const { lang } = React.useContext(languageContext);
+  React.useEffect(() => {
+    setBartText(lang === "Hindi" ? Hindi : English);
+  }, [lang]);
 
   const moneyHeading = (text: string, money: string) => {
     return (

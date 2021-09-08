@@ -15,7 +15,7 @@ import { RiskTaker } from "./screens/RiskTaker";
 import { GeneralInstructions } from "./screens/GeneralInstructions";
 import { Ask } from "./screens/Ask";
 import Surveys from "./screens/Surveys";
-import { surveys } from "./data/survey.data";
+import { surveys as surveysEnglish, surveysHindi } from "./data/survey.data";
 import { BartInstructions } from "./screens/BartInstructions";
 import { BartPractice } from "./screens/BartPractice";
 import { Bart } from "./screens/Bart";
@@ -35,6 +35,13 @@ import { languageContext } from "./context/languageContext";
 
 const App: FC = () => {
   const history = useHistory();
+
+  const [surveys, setSurveys] = React.useState(surveysEnglish);
+  const { lang } = React.useContext(languageContext);
+
+  React.useEffect(() => {
+    setSurveys(lang === "Hindi" ? surveysHindi : surveysEnglish);
+  }, [lang]);
 
   if (sessionStorage.getItem("uuid") === null) {
     sessionStorage.setItem("uuid", uuidv4());
