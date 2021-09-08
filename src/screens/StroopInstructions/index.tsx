@@ -3,10 +3,20 @@ import React from "react";
 import { useHistory } from "react-router";
 import styles from "./style.module.css";
 import { CustomButton } from "../../components/CustomButton";
-import { stroopInstructions } from "../../data/stroopInstructions";
+import {
+  stroopInstructions as English,
+  stroopInstructionsHindi as Hindi,
+} from "../../data/stroopInstructions";
+import { languageContext } from "../../context/languageContext";
 
 export const StroopInstructions: React.FC = () => {
   const history = useHistory();
+
+  const [stroopInstructions, setStroopInstructions] = React.useState(English);
+  const { lang } = React.useContext(languageContext);
+  React.useEffect(() => {
+    setStroopInstructions(lang === "Hindi" ? Hindi : English);
+  }, [lang]);
 
   return (
     <div className={styles.container}>
