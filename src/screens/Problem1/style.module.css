@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 5vw;
+  font-size: min(20px, calc(16px + 0.2vw));
+}
+
+.container > p:nth-child(2) {
+  font-weight: 600;
+}
+
+.container > p:nth-child(1) {
+  font-weight: 600;
+}
+
+.buttons {
+  width: 100%;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  max-width: 720px;
+}
+
+.radio * {
+  font-size: min(20px, calc(16px + 0.2vw));
+}
