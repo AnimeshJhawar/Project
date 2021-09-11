@@ -14,7 +14,7 @@ export const BartInstructions: React.FC = () => {
       })}
       <CustomButton
         text={bartInstructionsData.next}
-        onClick={() => history.push("/bartPractice")}
+        onClick={() => history.push("/bartStart")}
       />
     </div>
   );

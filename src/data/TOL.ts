@@ -2,8 +2,7 @@
 /* eslint-disable import/prefer-default-export */
 export const tolData = {
   finalHeading: "Target Stacks",
-  wrongtext:
-    "Trial Incomplete, You failed to complete the trial in numbers of moves required.",
+  wrongtext: "Trial Incomplete",
   dragDropText: "Drag and Drop to achieve final position",
   dragRemainText: "Drops remaining",
   endedPractice: "Practice Finished",
@@ -15,8 +14,7 @@ export const tolData = {
 
 export const tolDataHindi = {
   finalHeading: "Target Stacks",
-  wrongtext:
-    "Trial Incomplete, You failed to complete the trial in numbers of moves required.",
+  wrongtext: "Trial Incomplete",
   dragDropText: "Drag and Drop to achieve final position",
   dragRemainText: "Drops remaining",
   endedPractice: "अभ्यास समाप्त ",

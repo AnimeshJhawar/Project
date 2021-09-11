@@ -82,9 +82,11 @@ export const StroopTrial: React.FC<StroopTrialProps> = ({
                 onClick={() => handelOnScreenKeys(key)}
                 style={{
                   margin: "10px",
+                  padding: "15px",
                   border: "1px solid black",
                   borderRadius: "4px",
                   color: "black",
+                  fontSize: "30px",
                 }}
               />
             ))}

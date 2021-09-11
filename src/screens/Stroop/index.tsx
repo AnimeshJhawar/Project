@@ -41,17 +41,19 @@ export const Stroop: React.FC<StroopProps> = () => {
         show ? (
           <animated.div
             style={{ ...transition, position: "absolute", top: "20px" }}
-            className={styles.tunnel}
           >
-            <h1>{stroopInstructions.heading}</h1>
-            <p>
-              <b>{stroopInstructions.remember}</b>
-            </p>
-            <ul>
-              {stroopInstructions.points.map((point) => (
-                <li>{point}</li>
-              ))}
-            </ul>
+            <div className={styles.container}>
+              <h1>{stroopInstructions.heading}</h1>
+              <p>
+                <b>{stroopInstructions.remember}</b>
+              </p>
+              <ul>
+                {stroopInstructions.points.map((point) => (
+                  <li>{point}</li>
+                ))}
+              </ul>
+            </div>
+
             <CustomButton text="START" block onClick={onStartHandeler} />
           </animated.div>
         ) : (

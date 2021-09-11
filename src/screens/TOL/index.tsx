@@ -96,7 +96,7 @@ export const TOL: React.FC<TOLProps> = () => {
             <p> {tolData.endedPractice} </p>
             <CustomButton
               text={tolData.practiceEndButton}
-              onClick={() => history.push("/tol")}
+              onClick={() => history.push("/moreSurveys")}
               block
             />
           </animated.div>

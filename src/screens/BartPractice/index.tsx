@@ -53,7 +53,7 @@ export const BartPractice: React.FC<BartPracticeProps> = () => {
 
   return (
     <div className={styles.bart}>
-      <p> Practice Trials</p>
+      <p className={styles.practice}> Practice Trials</p>
       <div className={styles.money}>
         <IconInContainer
           iconLink="/assets/balloon/money-bag.png"

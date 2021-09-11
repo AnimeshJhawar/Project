@@ -2,8 +2,8 @@
 export const iowaData = {
   loanText: "Loan Amount: Rs. ",
   currentText: "Current Balance: Rs. ",
-  won: "Won Rs.",
-  lost: "Lost Rs.",
+  won: "Won ",
+  lost: "Lost ",
   practiceLastPage: "Practice Completed, Click To Play Game",
   lastPage:
     "Thank you for participating in the task. Please click here for the next task.",

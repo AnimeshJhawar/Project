@@ -62,7 +62,9 @@ export const TOLStack: React.FC<TOLStackProps> = ({
     ) {
       return;
     }
-
+    if (dragDropCounts + 1 > maxDrops) {
+      return;
+    }
     const sourceStack = stacksUpdated[source.droppableId];
     const draggedDisc = sourceStack.find((disc) => disc.id === draggableId);
     const destinationStack = stacksUpdated[destination.droppableId];
@@ -97,10 +99,13 @@ export const TOLStack: React.FC<TOLStackProps> = ({
   }, [stacksUpdated]);
   return (
     <div className={style.mainStacksCont}>
+      {tolData.dragRemainText} : {maxDrops - dragDropCounts} <br />
       <div className={style.tolColumn}>
-        <strong style={{ width: "fit-content" }}>{tolData.finalHeading}</strong>
         <div className={style.tolStacks}>
           <div className={style.finalcontainer}>
+            <strong style={{ width: "fit-content" }}>
+              {tolData.finalHeading}
+            </strong>
             {finalList.map((stack, index) => (
               <div
                 className={style.stack}
@@ -170,7 +175,6 @@ export const TOLStack: React.FC<TOLStackProps> = ({
           <strong> {!end && tolData.dragDropText}</strong>
         </div>
         <div className={style.status}>
-          {tolData.dragRemainText} : {maxDrops - dragDropCounts} <br />
           {end ? (
             <>
               <strong>

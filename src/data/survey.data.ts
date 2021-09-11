@@ -11,6 +11,10 @@ export const surveys = [
   "https://formfacade.com/include/118024647094610445616/form/1FAIpQLSfLPfHYKBTETf-q-1nl5-clNCFYESPp5ibXWUbPAJEH5oOcqQ/classic.js?div=ff-compose",
   "https://formfacade.com/include/118024647094610445616/form/1FAIpQLSfLPfHYKBTETf-q-1nl5-clNCFYESPp5ibXWUbPAJEH5oOcqQ/classic.js?div=ff-compose",
   "https://formfacade.com/include/118024647094610445616/form/1FAIpQLSfLPfHYKBTETf-q-1nl5-clNCFYESPp5ibXWUbPAJEH5oOcqQ/classic.js?div=ff-compose",
+  "https://formfacade.com/include/103074607153766352801/form/1FAIpQLSf7BX9VXsRPbu--_3j0rtk07TqChuNE5JBKjhJJ3tVjGGaQdw/classic.js?div=ff-compose",
+  "https://formfacade.com/include/103074607153766352801/form/1FAIpQLSfoZ4ZQ0U93fAy2ZLr9S6uPI9o-hlhfCIAjExfdihKcaweJfQ/classic.js?div=ff-compose",
+  "https://formfacade.com/include/103074607153766352801/form/1FAIpQLSdKvzC2cYyv13H_3iVW3jhlJnQjqww4F-_yAQz7Oh6jeiY73Q/classic.js?div=ff-compose",
+  "https://formfacade.com/include/103074607153766352801/form/1FAIpQLSeF3qNJlF7XrsOQ-9Bx5TW5f9sEix2P2OS2gAuehkP4Rf2TNg/classic.js?div=ff-compose",
 ];
 
 export const surveysHindi = [

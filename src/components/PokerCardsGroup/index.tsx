@@ -98,15 +98,17 @@ export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = ({
       <div className={styles.progressBars}>
         <Progress
           percent={fixedPercent}
-          strokeColor="orange"
+          strokeColor="green"
           title={`${loanText} ${initialLoan.toString()}`}
+          size="default"
         />
         <Progress
           percent={(amount * 100) / finalLimit}
           strokeColor={
-            fixedPercent > (amount * 100) / finalLimit ? "red" : undefined
+            fixedPercent > (amount * 100) / finalLimit ? "red" : "green"
           }
           title={`${currentText} ${amount.toString()}`}
+          size="default"
         />
       </div>
       {/* <div className={styles.result}>

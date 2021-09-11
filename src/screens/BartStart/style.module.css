@@ -1,0 +1,13 @@
+.container {
+  font-size: 16px;
+}
+
+.heading {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.button {
+  align-items: center;
+  width: 100%;
+}

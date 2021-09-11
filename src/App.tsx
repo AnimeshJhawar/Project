@@ -20,7 +20,6 @@ import { BartInstructions } from "./screens/BartInstructions";
 import { BartPractice } from "./screens/BartPractice";
 import { Bart } from "./screens/Bart";
 import { IOWAInstructions1 } from "./screens/IOWAInstructions1";
-import { iowainstructions2 } from "./data/iowainstructions";
 import { IOWAPractice } from "./screens/IOWAPractice";
 import { IOWA } from "./screens/IOWA";
 import { IOWAInstructions2 } from "./screens/IOWAInstructions2";
@@ -32,6 +31,8 @@ import { TOLInstructions2 } from "./screens/TOLInstructions2";
 import { TOLPractice } from "./screens/TOLPractice";
 import { TOL } from "./screens/TOL";
 import { languageContext } from "./context/languageContext";
+import { BartStart } from "./screens/BartStart";
+import { Proceed } from "./screens/Proceed";
 
 const App: FC = () => {
   const history = useHistory();
@@ -59,10 +60,22 @@ const App: FC = () => {
     return <Surveys surveyLink={surveys[3]} next="/stroopInstructions" />;
   };
   const emotions = () => {
-    return <Surveys surveyLink={surveys[3]} next="/impulsivity" />;
+    return <Surveys surveyLink={surveys[4]} next="/impulsivity" />;
   };
   const impulsivity = () => {
-    return <Surveys surveyLink={surveys[3]} next="/tolInstructions1" />;
+    return <Surveys surveyLink={surveys[5]} next="/tolInstructions1" />;
+  };
+  const gritScale = () => {
+    return <Surveys surveyLink={surveys[6]} next="/identityScale" />;
+  };
+  const identityScale = () => {
+    return <Surveys surveyLink={surveys[7]} next="/PERMA" />;
+  };
+  const PERMA = () => {
+    return <Surveys surveyLink={surveys[8]} next="/creativity" />;
+  };
+  const creativity = () => {
+    return <Surveys surveyLink={surveys[9]} next="/exit" />;
   };
   const routes: { [key: string]: any } = {
     "/": RiskTaker,
@@ -71,6 +84,7 @@ const App: FC = () => {
     "/demographic": demographic,
     "/details": details,
     "/bartInstructions": BartInstructions,
+    "/bartStart": BartStart,
     "/bartPractice": BartPractice,
     "/bart": Bart,
     "/activities1": activities1,
@@ -88,6 +102,11 @@ const App: FC = () => {
     "/tolInstructions2": TOLInstructions2,
     "/tolPractice": TOLPractice,
     "/tol": TOL,
+    "/moreSurveys": Proceed,
+    "/gritScale": gritScale,
+    "/identityScale": identityScale,
+    "/PERMA": PERMA,
+    "/creativity": creativity,
   };
 
   const { setLanguage } = React.useContext(languageContext);
