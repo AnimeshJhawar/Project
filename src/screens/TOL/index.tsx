@@ -81,7 +81,6 @@ export const TOL: React.FC<TOLProps> = () => {
 
   return (
     <div className={styles.tolCont}>
-      TOL Practice Trials
       {trialTransition((style, show) =>
         show ? (
           <animated.div style={style}>{trialList[tolIndex]}</animated.div>
