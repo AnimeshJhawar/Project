@@ -33,6 +33,9 @@ import { TOL } from "./screens/TOL";
 import { languageContext } from "./context/languageContext";
 import { BartStart } from "./screens/BartStart";
 import { Proceed } from "./screens/Proceed";
+import { Problem1 } from "./screens/Problem1";
+import { Problem2 } from "./screens/Problem2";
+import { Problem3 } from "./screens/Problem3";
 
 const App: FC = () => {
   const history = useHistory();
@@ -102,6 +105,9 @@ const App: FC = () => {
     "/tolInstructions2": TOLInstructions2,
     "/tolPractice": TOLPractice,
     "/tol": TOL,
+    "/problem1": Problem1,
+    "/problem2": Problem2,
+    "/problem3": Problem3,
     "/moreSurveys": Proceed,
     "/gritScale": gritScale,
     "/identityScale": identityScale,

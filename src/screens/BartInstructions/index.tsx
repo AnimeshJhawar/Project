@@ -9,6 +9,7 @@ export const BartInstructions: React.FC = () => {
   const history = useHistory();
   return (
     <div className={styles.container}>
+      TASK 1
       {bartInstructionsData.points.map((p) => {
         return <p> {p} </p>;
       })}

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable import/prefer-default-export */
 import React from "react";
 import { Radio } from "antd";
@@ -9,6 +10,7 @@ import {
 } from "../../data/problem1";
 import { CustomButton } from "../../components/CustomButton";
 import { languageContext } from "../../context/languageContext";
+import { FirebaseContext } from "../../firebase";
 
 export const Problem1: React.FC = () => {
   const history = useHistory();
@@ -16,6 +18,7 @@ export const Problem1: React.FC = () => {
   const onChange = (e: any) => {
     setValue(e.target.value);
   };
+  const [startTime, setStartTime] = React.useState(0);
 
   const [problemData, setProblemData] = React.useState(English);
   const { lang } = React.useContext(languageContext);
@@ -23,6 +26,13 @@ export const Problem1: React.FC = () => {
   React.useEffect(() => {
     setProblemData(lang === "Hindi" ? Hindi : English);
   }, [lang]);
+
+  React.useEffect(() => {
+    setStartTime(Date.now());
+  }, []);
+
+  const firebase = React.useContext(FirebaseContext);
+  const firestore = firebase?.firebase.firestore();
 
   return (
     <div className={styles.container}>
@@ -43,7 +53,23 @@ export const Problem1: React.FC = () => {
           text={problemData.next}
           disabled={value === -1}
           onClick={() => {
-            history.push("/generalInstructions");
+            firestore
+              ?.collection("Games")
+              .doc("Problem1")
+              .collection(sessionStorage.getItem("uuid")!)
+              .doc("Answere")
+              .set({
+                id: sessionStorage.getItem("uuid"),
+                answere: value,
+                timeTaken: Date.now() - startTime,
+              })
+              .then(() => {
+                // console.log("Document written");
+              })
+              .catch((error) => {
+                // console.error("Error adding document: ", error);
+              });
+            history.push("/problem2");
           }}
         />
       </div>

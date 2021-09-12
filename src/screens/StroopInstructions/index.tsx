@@ -20,7 +20,7 @@ export const StroopInstructions: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <p>{stroopInstructions.intro}</p>
+      TASK 3<p>{stroopInstructions.intro}</p>
       <p style={{ color: stroopInstructions.example[1] }}>
         {stroopInstructions.example[0]}
       </p>
@@ -38,7 +38,6 @@ export const StroopInstructions: React.FC = () => {
         })}
       </ul>
       <p>{stroopInstructions.final}</p>
-
       <CustomButton
         text={stroopInstructions.button}
         onClick={() => history.push("/stroopPractice")}
