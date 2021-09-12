@@ -33,7 +33,6 @@ export const TOLStack: React.FC<TOLStackProps> = ({
 }) => {
   const [stacksUpdated, setStacksUpdated] = useState(stackList);
   const [end, setEnd] = useState(false);
-  const [isCorrect, setIsCorrect] = useState(false);
   const [dragDropCounts, setDragDropCounts] = useState(0);
 
   let totalDraggables = 0;
@@ -90,10 +89,10 @@ export const TOLStack: React.FC<TOLStackProps> = ({
       JSON.stringify(colorStackFromStack(stacksUpdated)) ===
       JSON.stringify(colorStackFromStack(finalList))
     ) {
-      setIsCorrect(true);
+      sendResult(true, dragDropCounts, stackIndex);
       setEnd(true);
     } else if (maxDrops === dragDropCounts) {
-      setIsCorrect(false);
+      sendResult(false, dragDropCounts, stackIndex);
       setEnd(true);
     }
   }, [stacksUpdated]);
@@ -174,7 +173,7 @@ export const TOLStack: React.FC<TOLStackProps> = ({
           </div>
           <strong> {!end && tolData.dragDropText}</strong>
         </div>
-        <div className={style.status}>
+        {/* <div className={style.status}>
           {end ? (
             <>
               <strong>
@@ -192,7 +191,7 @@ export const TOLStack: React.FC<TOLStackProps> = ({
           ) : (
             <></>
           )}
-        </div>
+        </div> */}
       </div>
     </div>
   );

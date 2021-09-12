@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import { message } from "antd";
 import React, { useState, useEffect, ReactNode } from "react";
 import { useHistory } from "react-router";
 import { animated, useTransition } from "react-spring";
@@ -24,7 +25,14 @@ export const TOL: React.FC<TOLProps> = () => {
     dropsUsed: number,
     stackIndex: number
   ) {
+    console.log(result);
     if (stackIndex < trials.length) {
+      if (result) {
+        message.info("Trial Completed!");
+      } else {
+        message.info("You failed the trial.");
+      }
+
       firestore
         ?.collection("Games")
         .doc("Bart")
