@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-plusplus */
 import getLifeArr from "./generateBartData";
 
 // eslint-disable-next-line import/prefer-default-export
@@ -24,20 +26,46 @@ export const bartTextHindi = {
   endPractice: "अभ्यास समाप्त",
 };
 
-const colors = ["red", "green", "blue", "grey"];
-// array code
-const arraySize = 30;
 const lowerLim = 2;
 const upperLim = 32;
 const avg = 20;
-const trialCounts = getLifeArr(arraySize, lowerLim, upperLim, avg);
+function shuffleFisherYates(array: any) {
+  let i = array.length;
+  while (i--) {
+    const ri = Math.floor(Math.random() * i);
+    [array[i], array[ri]] = [array[ri], array[i]];
+  }
+  return array;
+}
+
+let mixedCounts = getLifeArr(5, 2, 8, 4).concat(
+  getLifeArr(5, 2, 16, 8).concat(getLifeArr(5, 2, 32, 16))
+);
+const blockCounts = getLifeArr(5, 2, 8, 4).concat(
+  getLifeArr(5, 2, 16, 8).concat(getLifeArr(5, 2, 32, 16))
+);
+const indices = shuffleFisherYates([
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
+]);
+const foo = Array(15).fill(0);
+const mixedBalloons = Array(15).fill("green");
+const blockBalloons = Array(15).fill("green");
+for (let i = 0; i < 15; i++) {
+  foo[indices[i]] = mixedCounts[i];
+  if (i < 5) {
+    mixedBalloons[indices[i]] = "red";
+    blockBalloons[i] = "red";
+  } else if (i < 10) {
+    mixedBalloons[indices[i]] = "yellow";
+    blockBalloons[i] = "yellow";
+  }
+}
+
+mixedCounts = foo;
+
+const trialCounts = mixedCounts.concat(blockCounts);
 const practiceCounts = getLifeArr(3, lowerLim, upperLim, avg);
-const ballonsColors = [
-  ...Array.from(
-    { length: arraySize },
-    () => colors[Math.floor(Math.random() * colors.length)]
-  ),
-];
+const ballonsColors = mixedBalloons.concat(blockBalloons);
 
 const gameData = {
   trialCounts,
