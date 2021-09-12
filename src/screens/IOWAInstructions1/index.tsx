@@ -29,7 +29,6 @@ export const IOWAInstructions1: React.FC = () => {
       </div>
       <p> {iowainstructions1.text} </p>
       <br />
-      <p>{iowainstructions1.clicktext}</p>
       <CustomButton
         text={iowainstructions1.next}
         onClick={() => history.push("/iowaInstructions2")}
