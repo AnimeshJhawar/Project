@@ -87,10 +87,10 @@ const App: FC = () => {
     return <Surveys surveyLink={surveys[9]} next="/exit" />;
   };
   const routes: { [key: string]: any } = {
-    "/": Home,
-    "/about": About,
-    "/contact": Contact,
-    "/risk": RiskTaker,
+    // "/": Home,
+    // "/about": About,
+    // "/contact": Contact,
+    "/": RiskTaker,
     "/ask": Ask,
     "/generalInstructions": GeneralInstructions,
     "/demographic": demographic,
