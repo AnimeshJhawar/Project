@@ -34,6 +34,10 @@ export const Surveys: React.FC<SurveysProps> = ({ surveyLink, next }) => {
 
   return (
     <div className={styles.container}>
+      <p>
+        Copy-Paste the following code in the subject id field of survey:
+        <b> {sessionStorage.getItem("uuid")}</b>
+      </p>
       <div
         id="ff-compose"
         ref={(r) => {
