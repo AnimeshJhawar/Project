@@ -4,6 +4,11 @@ export const iframeScreen = {
   checkStr: "Your response has been recorded",
 };
 
+export const iframeScreenHindi = {
+  buttonText: "Finished filling survey? Click Here",
+  checkStr: "आपकी प्रतिक्रिया दर्ज कर ली गई है।",
+};
+
 export const surveys = [
   "https://formfacade.com/include/103074607153766352801/form/1FAIpQLSdEKSiNf-Z4fNTI0eco5Wprd7EZt1jXHhjJ5CSB5UWsZ0mBgA/classic.js?div=ff-compose",
   "https://formfacade.com/include/103074607153766352801/form/1FAIpQLSfqmrfBjcevRJ7AE1WVN8klgFWRxx1NPcMASPYjF_PzY04tsA/classic.js?div=ff-compose",

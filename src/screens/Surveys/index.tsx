@@ -3,8 +3,12 @@ import React, { useState, useEffect, useRef } from "react";
 import { useHistory } from "react-router";
 import { message } from "antd";
 import { CustomButton } from "../../components/CustomButton";
-import { iframeScreen } from "../../data/survey.data";
+import {
+  iframeScreen as English,
+  iframeScreenHindi as Hindi,
+} from "../../data/survey.data";
 import styles from "./style.module.css";
+import { languageContext } from "../../context/languageContext";
 
 export interface SurveysProps {
   surveyLink: string;
@@ -24,8 +28,15 @@ export const Surveys: React.FC<SurveysProps> = ({ surveyLink, next }) => {
     reference.appendChild(script);
   }
 
+  const [surveyFormData, setSurveyFormData] = React.useState(English);
+  const { lang } = React.useContext(languageContext);
+
+  React.useEffect(() => {
+    setSurveyFormData(lang === "Hindi" ? Hindi : English);
+  }, [lang]);
+
   function formCheck() {
-    if (!formRef?.innerText.includes(iframeScreen.checkStr)) {
+    if (!formRef?.innerText.includes(surveyFormData.checkStr)) {
       message.info("Please fill the survey!");
     } else {
       history.push(next);
@@ -55,7 +66,7 @@ export const Surveys: React.FC<SurveysProps> = ({ surveyLink, next }) => {
           left: "10%",
           marginBottom: "20px",
         }}
-        text={iframeScreen.buttonText}
+        text={surveyFormData.buttonText}
         onClick={formCheck}
         block
       />
