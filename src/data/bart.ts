@@ -12,7 +12,7 @@ export const bartText = {
   lastPage: "Please click here for the next task.",
   startingAmount: 0,
   perPushAmount: 10,
-  endPractice: "Practice Finished, Now click on play the game",
+  endPractice: "Click here play the game",
 };
 export const bartTextHindi = {
   money: "रु",

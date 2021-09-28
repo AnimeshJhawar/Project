@@ -104,18 +104,19 @@ export const StroopGame: React.FC<StroopGameProps> = ({
       {endTransition((transition, show) =>
         show ? (
           <animated.div style={transition}>
-            {practice ? (
+            {/* {practice ? (
               <>
-                <p>{stroopData.complete}</p>
+                <p style={{ alignSelf: "center" }}>{stroopData.complete}</p>
                 <br />
                 <br />
               </>
             ) : (
               ""
-            )}
+            )} */}
             <CustomButton
               text={practice ? stroopData.practuceEnd : stroopData.end}
               onClick={onEnd}
+              className={styles.font}
               block
             />
           </animated.div>

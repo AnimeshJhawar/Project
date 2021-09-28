@@ -100,7 +100,7 @@ export const TOL: React.FC<TOLProps> = () => {
         show ? (
           <animated.div style={transition}>
             <br />
-            <p> {tolData.endedPractice} </p>
+            <p> {tolData.completed} </p>
             <CustomButton
               text={tolData.practiceEndButton}
               onClick={() => history.push("/problem1")}

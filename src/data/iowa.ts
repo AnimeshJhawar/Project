@@ -8,7 +8,7 @@ export const iowaData = {
   lastPage:
     "Thank you for participating in the task. Please click here for the next task.",
   initialLoan: 225000,
-  finalLimit: 225000 * 2,
+  finalLimit: 225000 * 1.3,
 };
 export const iowaDataHindi = {
   won: "रुपये जीते",
@@ -16,7 +16,7 @@ export const iowaDataHindi = {
   practiceLastPage: "अभ्यास पूर्ण, खेल खेलने पर क्लिक करें",
   lastPage: "कार्य पूरा करने के लिए धन्यवाद। अगला कार्य खेलें",
   initialLoan: 225000,
-  finalLimit: 225000 * 3,
+  finalLimit: 225000 * 1.3,
 };
 
 // create data for cards here

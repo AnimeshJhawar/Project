@@ -8,6 +8,7 @@
   height: 100vh;
   background: black;
   color: white;
+  font-size: min(20px, calc(16px + 0.2vw));
 }
 
 .container {

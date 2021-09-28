@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import { CompassOutlined } from "@ant-design/icons";
 import { Space, Typography, Row, Col } from "antd";
 import { number } from "prop-types";
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
@@ -57,10 +58,15 @@ export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = ({
           id: sessionStorage.getItem("uuid"),
           trialCount: (currentCardsIdx + 1).toString(),
           chosenDeck: recentDeck,
-          win: recentResult.won,
-          loose: recentResult.lost,
-          net: recentResult.won - recentResult.lost,
-          total: recentResult.won - recentResult.lost + amount,
+          win: cardsData[deckId][currentCardsIdx].won,
+          loose: cardsData[deckId][currentCardsIdx].lost,
+          net:
+            cardsData[deckId][currentCardsIdx].won -
+            cardsData[deckId][currentCardsIdx].lost,
+          total:
+            cardsData[deckId][currentCardsIdx].won -
+            cardsData[deckId][currentCardsIdx].lost +
+            amount,
           timestamp: Date.now(),
         })
         .then(() => {
@@ -71,10 +77,14 @@ export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = ({
         });
     }
     if (currentCardsIdx + 1 < trialsCount) {
+      setRecentDeck(deckId);
+      setAmount(
+        cardsData[deckId][currentCardsIdx].won -
+          cardsData[deckId][currentCardsIdx].lost +
+          amount
+      );
       setCurrentCardsIdx(currentCardsIdx + 1);
       setRecentResult(cardsData[deckId][currentCardsIdx]);
-      setRecentDeck(deckId);
-      setAmount(recentResult.won - recentResult.lost + amount);
     } else {
       setEnd(true);
     }
@@ -112,8 +122,8 @@ export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = ({
         />
       </div>
       {/* <div className={styles.result}>
-        <StroopCard text={`You Won : ${recentResult.won} Rs`} />
-        <StroopCard text={`You Lost : ${recentResult.lost} Rs`} />
+        <StroopCard text={`You Won : ${cardsData[deckId][currentCardsIdx].won} Rs`} />
+        <StroopCard text={`You Lost : ${cardsData[deckId][currentCardsIdx].lost} Rs`} />
       </div> */}
       {endTransition((transition, show) =>
         show ? (
@@ -124,6 +134,7 @@ export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = ({
             <CustomButton
               text={practice ? practiceLastPage : lastPage}
               onClick={onEnd}
+              className={styles.font}
             />
           </animated.div>
         ) : (

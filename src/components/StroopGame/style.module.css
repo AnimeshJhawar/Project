@@ -8,3 +8,7 @@
   background-color: black;
   color: white !important;
 }
+
+.font {
+  font-size: min(18px, calc(16px + 0.5vw)) !important;
+}

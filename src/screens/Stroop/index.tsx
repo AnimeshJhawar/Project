@@ -7,7 +7,11 @@ import styles from "./style.module.css";
 import useWindowDimensions from "../../utils/viewport";
 import { CustomButton } from "../../components/CustomButton";
 import { StroopGame } from "../../components/StroopGame";
-import { stroopInstructions } from "../../data/stroopInstructions";
+import {
+  stroopInstructions as English,
+  stroopInstructionsHindi as Hindi,
+} from "../../data/stroopInstructions";
+import { languageContext } from "../../context/languageContext";
 
 const { Text } = Typography;
 export interface StroopProps {}
@@ -15,8 +19,6 @@ export interface StroopProps {}
 export const Stroop: React.FC<StroopProps> = () => {
   const history = useHistory();
   const [start, setStart] = useState(false);
-  const [end, setEnd] = useState(false);
-  const { width } = useWindowDimensions();
 
   const onStartHandeler = (e: React.MouseEvent) => {
     setStart(!start);
@@ -28,12 +30,12 @@ export const Stroop: React.FC<StroopProps> = () => {
     leave: { opacity: 0 },
   });
 
-  const endTransition = useTransition(end, {
-    from: { x: 0, y: 0, opacity: 0 },
-    enter: { x: 0, y: (-1 * width) / 5, opacity: 1 },
-    leave: { x: 0, y: -200, opacity: 0 },
-    delay: 1000,
-  });
+  const [stroopInstructions, setStroopInstructions] = useState(English);
+  const { lang } = React.useContext(languageContext);
+
+  useEffect(() => {
+    setStroopInstructions(lang === "Hindi" ? Hindi : English);
+  }, [lang]);
 
   return (
     <div className={styles.stroop}>

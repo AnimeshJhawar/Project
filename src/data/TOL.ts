@@ -10,6 +10,7 @@ export const tolData = {
   startPractice: "Start TOL Practice",
   lastpageText: "Thank you for your participation",
   nextTrialButton: "Click here to start next trial",
+  completed: "Task Completed",
 };
 
 export const tolDataHindi = {
@@ -22,6 +23,7 @@ export const tolDataHindi = {
   startPractice: "Start TOL Practice",
   lastpageText: "Thank you for your participation",
   nextTrialButton: "Click here to start next trial",
+  completed: "Task Completed",
 };
 
 export const toltrials: {
