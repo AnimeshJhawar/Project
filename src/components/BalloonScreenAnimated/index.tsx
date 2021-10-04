@@ -64,6 +64,7 @@ export const BalloonScreenAnimated: React.FC<BalloonScreenAnimatedProps> = ({
       push: balloonNumberWithFills[1] + 1,
       burst: false,
       next: true,
+      life: balloonNumberWithFills[1],
     });
 
     if (trialCounts.length > balloonNumberWithFills[0]) {
@@ -88,6 +89,7 @@ export const BalloonScreenAnimated: React.FC<BalloonScreenAnimatedProps> = ({
       push: balloonNumberWithFills[1] + 1,
       burst: false,
       next: false,
+      life: balloonNumberWithFills[1],
     });
 
     if (
@@ -100,6 +102,7 @@ export const BalloonScreenAnimated: React.FC<BalloonScreenAnimatedProps> = ({
         push: balloonNumberWithFills[1],
         burst: true,
         next: true,
+        life: balloonNumberWithFills[1],
       });
       setCollect(true);
       if (trialCounts.length > balloonNumberWithFills[0]) {

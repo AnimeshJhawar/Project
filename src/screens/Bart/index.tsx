@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Typography } from "antd";
 import { useHistory } from "react-router";
+import { isMobile } from "react-device-detect";
 import { BalloonScreenAnimated } from "../../components/BalloonScreenAnimated";
 import styles from "./style.module.css";
 import {
@@ -18,6 +19,7 @@ export interface BartProps {}
 
 export const Bart: React.FC<BartProps> = () => {
   const history = useHistory();
+  const [startTime, setStartTime] = useState(0);
 
   const [bartText, setBartText] = React.useState(English);
   const { lang } = React.useContext(languageContext);
@@ -45,6 +47,7 @@ export const Bart: React.FC<BartProps> = () => {
     next: boolean;
     burst: boolean;
     trial: number;
+    life: number;
   }) => {
     if (data.next) {
       setTotalAmount(totalAmount + (data.burst ? 0 : lastAmount));
@@ -55,9 +58,11 @@ export const Bart: React.FC<BartProps> = () => {
         .doc(data.trial.toString())
         .set({
           id: sessionStorage.getItem("uuid"),
-          trialCount: data.trial,
+          device: isMobile ? "Not Mobile" : "Not Mobile",
+          startTime,
+          trialnumber: data.trial,
           burst: data.burst,
-          totalAmount,
+          totalearning: totalAmount,
           lastAmount,
           push: data.push,
           timestamp: Date.now(),
@@ -77,7 +82,9 @@ export const Bart: React.FC<BartProps> = () => {
     }
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    setStartTime(Date.now());
+  }, []);
 
   return (
     <div className={styles.bart}>
@@ -102,6 +109,7 @@ export const Bart: React.FC<BartProps> = () => {
           next: boolean;
           burst: boolean;
           trial: number;
+          life: number;
         }) => updateData(d)}
         onEnd={() => history.push("/activities1")}
       />
