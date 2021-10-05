@@ -4,6 +4,7 @@ import { Space, Typography, Row, Col } from "antd";
 import { number } from "prop-types";
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useTransition, animated } from "react-spring";
+import { isMobile } from "react-device-detect";
 import { iowaData, iowaGameData, iowaPractceData } from "../../data/iowa";
 import { FirebaseContext } from "../../firebase";
 import useWindowDimensions from "../../utils/viewport";
@@ -47,6 +48,12 @@ export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = ({
   const firebase = React.useContext(FirebaseContext);
   const firestore = firebase?.firebase.firestore();
 
+  const [startTime, setStartTime] = useState(0);
+
+  useEffect(() => {
+    setStartTime(Date.now());
+  }, []);
+
   const handelDeckClick = (deckId: string) => {
     if (currentCardsIdx + 1 <= trialsCount) {
       firestore
@@ -55,11 +62,13 @@ export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = ({
         .collection(sessionStorage.getItem("uuid")!)
         .doc((currentCardsIdx + 1).toString())
         .set({
-          id: sessionStorage.getItem("uuid"),
-          trialCount: (currentCardsIdx + 1).toString(),
+          subjectid: sessionStorage.getItem("uuid"),
+          device: isMobile ? "Not Mobile" : "Not Mobile",
+          starttime: startTime,
+          trialnumber: (currentCardsIdx + 1).toString(),
           chosenDeck: recentDeck,
           win: cardsData[deckId][currentCardsIdx].won,
-          loose: cardsData[deckId][currentCardsIdx].lost,
+          lose: cardsData[deckId][currentCardsIdx].lost,
           net:
             cardsData[deckId][currentCardsIdx].won -
             cardsData[deckId][currentCardsIdx].lost,

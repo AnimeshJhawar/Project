@@ -58,15 +58,16 @@ export const Bart: React.FC<BartProps> = () => {
         .collection(sessionStorage.getItem("uuid")!)
         .doc(data.trial.toString())
         .set({
-          id: sessionStorage.getItem("uuid"),
+          subjectid: sessionStorage.getItem("uuid"),
           device: isMobile ? "Not Mobile" : "Not Mobile",
-          startTime,
+          starttime: startTime,
           trialnumber: data.trial,
           burst: data.burst,
           totalearning: totalAmount,
           lastAmount,
           push: data.push,
           type: data.type,
+          life: data.life,
           timestamp: Date.now(),
         })
         .then(() => {
