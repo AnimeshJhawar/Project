@@ -48,6 +48,7 @@ export const Bart: React.FC<BartProps> = () => {
     burst: boolean;
     trial: number;
     life: number;
+    type: string;
   }) => {
     if (data.next) {
       setTotalAmount(totalAmount + (data.burst ? 0 : lastAmount));
@@ -65,6 +66,7 @@ export const Bart: React.FC<BartProps> = () => {
           totalearning: totalAmount,
           lastAmount,
           push: data.push,
+          type: data.type,
           timestamp: Date.now(),
         })
         .then(() => {
@@ -110,6 +112,7 @@ export const Bart: React.FC<BartProps> = () => {
           burst: boolean;
           trial: number;
           life: number;
+          type: string;
         }) => updateData(d)}
         onEnd={() => history.push("/activities1")}
       />
