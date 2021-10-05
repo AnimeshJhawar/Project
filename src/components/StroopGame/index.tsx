@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Card } from "antd";
 import { animated, useTransition } from "react-spring";
+import { isMobile } from "react-device-detect";
 import { stroopData, gameData, practiceGameData } from "../../data/stroop";
 import { StroopCard, StroopCardProps } from "../StroopCard";
 import { StroopText } from "../StroopText";
@@ -52,6 +53,12 @@ export const StroopGame: React.FC<StroopGameProps> = ({
   const firebase = React.useContext(FirebaseContext);
   const firestore = firebase?.firebase.firestore();
 
+  const [startTime, setStartTime] = useState(0);
+
+  useEffect(() => {
+    setStartTime(Date.now());
+  }, []);
+
   // eslint-disable-next-line prefer-const
   const handeltrial = (data: { result: boolean; time: number }) => {
     firestore
@@ -60,10 +67,12 @@ export const StroopGame: React.FC<StroopGameProps> = ({
       .collection(sessionStorage.getItem("uuid")!)
       .doc((dataIndex + 1).toString())
       .set({
-        id: sessionStorage.getItem("uuid"),
-        trialCount: (dataIndex + 1).toString(),
+        subjectid: sessionStorage.getItem("uuid"),
+        device: isMobile ? "Not Mobile" : "Not Mobile",
+        starttime: startTime,
+        trialnumber: (dataIndex + 1).toString(),
         color: game[dataIndex].ink,
-        word: game[dataIndex].text,
+        stimulusitem: game[dataIndex].text,
         correct: data.result,
         timestamp: Date.now(),
       })

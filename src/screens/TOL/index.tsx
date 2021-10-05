@@ -3,6 +3,7 @@ import { message } from "antd";
 import React, { useState, useEffect, ReactNode } from "react";
 import { useHistory } from "react-router";
 import { animated, useTransition } from "react-spring";
+import { isMobile } from "react-device-detect";
 import { CustomButton } from "../../components/CustomButton";
 import { TOLStack } from "../../components/TOLStack";
 import { tolData, trials } from "../../data/TOL";
@@ -20,12 +21,17 @@ export const TOL: React.FC<TOLProps> = () => {
   const firebase = React.useContext(FirebaseContext);
   const firestore = firebase?.firebase.firestore();
 
+  const [startTime, setStartTime] = useState(0);
+
+  useEffect(() => {
+    setStartTime(Date.now());
+  }, []);
+
   function onResultCallback(
     result: boolean,
     dropsUsed: number,
     stackIndex: number
   ) {
-    console.log(result);
     if (stackIndex < trials.length) {
       if (result) {
         message.info("Trial Completed!");
@@ -39,10 +45,12 @@ export const TOL: React.FC<TOLProps> = () => {
         .collection(sessionStorage.getItem("uuid")!)
         .doc(tolIndex.toString())
         .set({
-          id: sessionStorage.getItem("uuid"),
-          trialCount: tolIndex,
+          subjectid: sessionStorage.getItem("uuid"),
+          device: isMobile ? "Not Mobile" : "Not Mobile",
+          starttime: startTime,
+          trialnumber: tolIndex,
           result,
-          moves: dropsUsed,
+          subjectattempts: dropsUsed,
           timestamp: Date.now(),
         })
         .then(() => {
