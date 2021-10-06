@@ -52,7 +52,7 @@ export const TOL: React.FC<TOLProps> = () => {
           device: isMobile ? "Not Mobile" : "Not Mobile",
           starttime: startTime,
           trialnumber: tolIndex,
-          result,
+          targetachieved: result,
           subjectattempts: dropsUsed,
           lastdropsource,
           lastdroptarget,
