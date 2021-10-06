@@ -34,6 +34,8 @@ export const TOLStack: React.FC<TOLStackProps> = ({
   const [stacksUpdated, setStacksUpdated] = useState(stackList);
   const [end, setEnd] = useState(false);
   const [dragDropCounts, setDragDropCounts] = useState(0);
+  const [lastSourceTarget, setLastSourceTarget] = useState([0, 0]);
+  const [startTime, setStartTime] = useState(0);
 
   let totalDraggables = 0;
   stackList.map((stack) => stack.map((e) => (totalDraggables += 1)));
@@ -44,6 +46,7 @@ export const TOLStack: React.FC<TOLStackProps> = ({
 
   function onDragEnd(result: any) {
     const { destination, source, draggableId } = result;
+    setLastSourceTarget([source, destination]);
 
     if (destination === null) {
       return;
@@ -61,6 +64,7 @@ export const TOLStack: React.FC<TOLStackProps> = ({
     ) {
       return;
     }
+
     if (dragDropCounts + 1 > maxDrops) {
       return;
     }
@@ -80,6 +84,10 @@ export const TOLStack: React.FC<TOLStackProps> = ({
       [draggedDisc, ...destinationStack]
     );
 
+    if (dragDropCounts < maxDrops) {
+      setStartTime(Date.now());
+    }
+
     setStacksUpdated(finalUpdate);
     setDragDropCounts(dragDropCounts + 1);
   }
@@ -89,10 +97,24 @@ export const TOLStack: React.FC<TOLStackProps> = ({
       JSON.stringify(colorStackFromStack(stacksUpdated)) ===
       JSON.stringify(colorStackFromStack(finalList))
     ) {
-      sendResult(true, dragDropCounts, stackIndex);
+      sendResult(
+        true,
+        dragDropCounts,
+        stackIndex,
+        lastSourceTarget[0],
+        lastSourceTarget[1],
+        Date.now() - startTime
+      );
       setEnd(true);
     } else if (maxDrops === dragDropCounts) {
-      sendResult(false, dragDropCounts, stackIndex);
+      sendResult(
+        false,
+        dragDropCounts,
+        stackIndex,
+        lastSourceTarget[0],
+        lastSourceTarget[1],
+        Date.now() - startTime
+      );
       setEnd(true);
     }
   }, [stacksUpdated]);

@@ -30,7 +30,10 @@ export const TOL: React.FC<TOLProps> = () => {
   function onResultCallback(
     result: boolean,
     dropsUsed: number,
-    stackIndex: number
+    stackIndex: number,
+    lastdropsource: number,
+    lastdroptarget: number,
+    lastdroplatency: number
   ) {
     if (stackIndex < trials.length) {
       if (result) {
@@ -51,6 +54,9 @@ export const TOL: React.FC<TOLProps> = () => {
           trialnumber: tolIndex,
           result,
           subjectattempts: dropsUsed,
+          lastdropsource,
+          lastdroptarget,
+          lastdroplatency,
           timestamp: Date.now(),
         })
         .then(() => {
