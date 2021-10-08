@@ -14,9 +14,9 @@ import {
 import { languageContext } from "../../context/languageContext";
 
 const { Text } = Typography;
-export interface StroopProps {}
+export interface StroopPracticeProps {}
 
-export const StroopPractice: React.FC<StroopProps> = () => {
+export const StroopPractice: React.FC<StroopPracticeProps> = () => {
   const history = useHistory();
   const [start, setStart] = useState(false);
 
