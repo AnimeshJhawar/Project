@@ -33,7 +33,9 @@ export const TOL: React.FC<TOLProps> = () => {
     stackIndex: number,
     lastdropsource: number,
     lastdroptarget: number,
-    lastdroplatency: number
+    lastdroplatency: number,
+    movestring: string,
+    firstmovetime: number
   ) {
     if (stackIndex < trials.length) {
       if (result) {
@@ -57,7 +59,9 @@ export const TOL: React.FC<TOLProps> = () => {
           lastdropsource,
           lastdroptarget,
           lastdroplatency,
-          timestamp: Date.now(),
+          endtime: Date.now(),
+          movestring,
+          firstmovetime: firstmovetime - startTime,
         })
         .then(() => {
           // console.log("Document written");
