@@ -4,7 +4,7 @@ import { Space, Typography, Row, Col } from "antd";
 import { number } from "prop-types";
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useTransition, animated } from "react-spring";
-import { isMobile } from "react-device-detect";
+import { isMobile, osName } from "react-device-detect";
 import { iowaData, iowaGameData, iowaPractceData } from "../../data/iowa";
 import { FirebaseContext } from "../../firebase";
 import useWindowDimensions from "../../utils/viewport";
@@ -63,7 +63,7 @@ export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = ({
         .doc((currentCardsIdx + 1).toString())
         .set({
           subjectid: sessionStorage.getItem("uuid"),
-          device: isMobile ? "Not Mobile" : "Not Mobile",
+          device: isMobile ? "Mobile" : "Not Mobile",
           starttime: startTime,
           trialnumber: (currentCardsIdx + 1).toString(),
           chosenDeck: recentDeck,
@@ -76,7 +76,8 @@ export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = ({
             cardsData[deckId][currentCardsIdx].won -
             cardsData[deckId][currentCardsIdx].lost +
             amount,
-          timestamp: Date.now(),
+          endtime: Date.now(),
+          osname: osName,
         })
         .then(() => {
           // console.log("Document written");

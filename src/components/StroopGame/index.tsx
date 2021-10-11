@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Card } from "antd";
 import { animated, useTransition } from "react-spring";
-import { isMobile } from "react-device-detect";
+import { isMobile, osName } from "react-device-detect";
 import { stroopData, gameData, practiceGameData } from "../../data/stroop";
 import { StroopCard, StroopCardProps } from "../StroopCard";
 import { StroopText } from "../StroopText";
@@ -60,7 +60,11 @@ export const StroopGame: React.FC<StroopGameProps> = ({
   }, []);
 
   // eslint-disable-next-line prefer-const
-  const handeltrial = (data: { result: boolean; time: number }) => {
+  const handeltrial = (data: {
+    result: boolean;
+    time: number;
+    response: string;
+  }) => {
     firestore
       ?.collection("Games")
       .doc("Stroop")
@@ -68,13 +72,15 @@ export const StroopGame: React.FC<StroopGameProps> = ({
       .doc((dataIndex + 1).toString())
       .set({
         subjectid: sessionStorage.getItem("uuid"),
-        device: isMobile ? "Not Mobile" : "Not Mobile",
+        device: isMobile ? "Mobile" : "Not Mobile",
         starttime: startTime,
         trialnumber: (dataIndex + 1).toString(),
         color: game[dataIndex].ink,
         stimulusitem: game[dataIndex].text,
         correct: data.result,
-        timestamp: Date.now(),
+        endtime: Date.now(),
+        osname: osName,
+        response: data.response,
       })
       .then(() => {
         // console.log("Document written");

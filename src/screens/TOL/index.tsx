@@ -3,7 +3,7 @@ import { message } from "antd";
 import React, { useState, useEffect, ReactNode } from "react";
 import { useHistory } from "react-router";
 import { animated, useTransition } from "react-spring";
-import { isMobile } from "react-device-detect";
+import { isMobile, osName } from "react-device-detect";
 import { CustomButton } from "../../components/CustomButton";
 import { TOLStack } from "../../components/TOLStack";
 import { tolData, trials } from "../../data/TOL";
@@ -46,12 +46,12 @@ export const TOL: React.FC<TOLProps> = () => {
 
       firestore
         ?.collection("Games")
-        .doc("Bart")
+        .doc("TOL")
         .collection(sessionStorage.getItem("uuid")!)
         .doc(tolIndex.toString())
         .set({
           subjectid: sessionStorage.getItem("uuid"),
-          device: isMobile ? "Not Mobile" : "Not Mobile",
+          device: isMobile ? "Mobile" : "Not Mobile",
           starttime: startTime,
           trialnumber: tolIndex,
           targetachieved: result,
@@ -62,6 +62,7 @@ export const TOL: React.FC<TOLProps> = () => {
           endtime: Date.now(),
           movestring,
           firstmovetime: firstmovetime - startTime,
+          osname: osName,
         })
         .then(() => {
           // console.log("Document written");

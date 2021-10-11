@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Typography } from "antd";
 import { useHistory } from "react-router";
-import { isMobile } from "react-device-detect";
+import { isMobile, osName } from "react-device-detect";
 import { BalloonScreenAnimated } from "../../components/BalloonScreenAnimated";
 import styles from "./style.module.css";
 import {
@@ -59,7 +59,8 @@ export const Bart: React.FC<BartProps> = () => {
         .doc(data.trial.toString())
         .set({
           subjectid: sessionStorage.getItem("uuid"),
-          device: isMobile ? "Not Mobile" : "Not Mobile",
+          device: isMobile ? "Mobile" : "Not Mobile",
+          osname: osName,
           starttime: startTime,
           trialnumber: data.trial,
           burst: data.burst,
@@ -68,7 +69,7 @@ export const Bart: React.FC<BartProps> = () => {
           push: data.push,
           type: data.type,
           life: data.life,
-          timestamp: Date.now(),
+          endtime: Date.now(),
         })
         .then(() => {
           // console.log("Document written");

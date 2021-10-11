@@ -22,11 +22,13 @@ export const StroopTrial: React.FC<StroopTrialProps> = ({
   const trialRef = useRef<HTMLDivElement>(null);
   const [correct, setCorrect] = useState(false);
   const [pressed, setPressed] = useState(false);
+  const [response, setResponse] = useState("none");
 
   function handelKeyPress(event: KeyboardEvent) {
     if (
       stroopData.keys.some((key) => event.key.toString().toLowerCase() === key)
     ) {
+      setResponse(event.key.toString().toLowerCase());
       if (inkKey === event.key.toString().toLowerCase()) {
         setCorrect(true);
       }
@@ -36,6 +38,7 @@ export const StroopTrial: React.FC<StroopTrialProps> = ({
   }
 
   const handelOnScreenKeys = (val: string) => {
+    setResponse(val.toLowerCase());
     if (inkKey === val.toLowerCase()) {
       setCorrect(true);
     }
@@ -64,7 +67,7 @@ export const StroopTrial: React.FC<StroopTrialProps> = ({
 
   useEffect(() => {
     if (pressed) {
-      result({ result: correct, time: Date.now() - startTime });
+      result({ result: correct, time: Date.now() - startTime, response });
     }
   }, [pressed]);
 

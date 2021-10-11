@@ -61,10 +61,10 @@ export const BalloonScreenAnimated: React.FC<BalloonScreenAnimatedProps> = ({
     setCollect(true);
     updateMethod({
       trial: balloonNumberWithFills[0],
-      push: balloonNumberWithFills[1] + 1,
+      push: balloonNumberWithFills[1],
       burst: false,
       next: true,
-      life: balloonNumberWithFills[1],
+      life: trialCounts[balloonNumberWithFills[0] - 1],
       type: balloonColors[balloonNumberWithFills[0] - 1],
     });
 
@@ -87,10 +87,10 @@ export const BalloonScreenAnimated: React.FC<BalloonScreenAnimatedProps> = ({
 
     updateMethod({
       trial: balloonNumberWithFills[0],
-      push: balloonNumberWithFills[1] + 1,
+      push: balloonNumberWithFills[1],
       burst: false,
       next: false,
-      life: balloonNumberWithFills[1],
+      life: trialCounts[balloonNumberWithFills[0] - 1],
       type: balloonColors[balloonNumberWithFills[0] - 1],
     });
 
@@ -104,7 +104,7 @@ export const BalloonScreenAnimated: React.FC<BalloonScreenAnimatedProps> = ({
         push: balloonNumberWithFills[1],
         burst: true,
         next: true,
-        life: balloonNumberWithFills[1],
+        life: trialCounts[balloonNumberWithFills[0] - 1],
         type: balloonColors[balloonNumberWithFills[0] - 1],
       });
       setCollect(true);
