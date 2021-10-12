@@ -53,7 +53,7 @@ export const StroopGame: React.FC<StroopGameProps> = ({
   const firebase = React.useContext(FirebaseContext);
   const firestore = firebase?.firebase.firestore();
 
-  const [startTime, setStartTime] = useState(0);
+  const [startTime, setStartTime] = useState(Date.now());
 
   useEffect(() => {
     setStartTime(Date.now());

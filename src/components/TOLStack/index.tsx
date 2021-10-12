@@ -80,8 +80,8 @@ export const TOLStack: React.FC<TOLStackProps> = ({
 
     const moves =
       movesString +
-      source.toString() +
-      destination.toString() +
+      source.droppableId.toString() +
+      destination.droppableId.toString() +
       draggableId.toString();
 
     setMovesString(moves);
