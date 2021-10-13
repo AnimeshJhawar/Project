@@ -4,7 +4,12 @@ import { useHistory } from "react-router";
 import { animated, useTransition } from "react-spring";
 import { CustomButton } from "../../components/CustomButton";
 import { TOLStack } from "../../components/TOLStack";
-import { tolData, practiceTrials } from "../../data/TOL";
+import { languageContext } from "../../context/languageContext";
+import {
+  tolData as English,
+  tolDataHindi as Hindi,
+  practiceTrials,
+} from "../../data/TOL";
 import { FirebaseContext } from "../../firebase";
 import styles from "./style.module.css";
 
@@ -20,6 +25,13 @@ export const TOLPractice: React.FC<TOLPracticeProps> = () => {
 
   const firebase = React.useContext(FirebaseContext);
   const firestore = firebase?.firebase.firestore();
+
+  const [tolData, settolData] = React.useState(English);
+  const { lang } = React.useContext(languageContext);
+
+  React.useEffect(() => {
+    settolData(lang === "Hindi" ? Hindi : English);
+  }, [lang]);
 
   function onResultCallback(
     result: boolean,
@@ -83,7 +95,7 @@ export const TOLPractice: React.FC<TOLPracticeProps> = () => {
 
   return (
     <div className={styles.tolCont}>
-      TOL Practice Trials
+      {tolData.practiceText}
       {trialTransition((style, show) =>
         show ? (
           <animated.div style={style}>{trialList[tolIndex]}</animated.div>

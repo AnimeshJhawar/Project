@@ -6,26 +6,33 @@ import { animated, useTransition } from "react-spring";
 import { isMobile, osName } from "react-device-detect";
 import { CustomButton } from "../../components/CustomButton";
 import { TOLStack } from "../../components/TOLStack";
-import { tolData, trials } from "../../data/TOL";
+import {
+  tolData as English,
+  tolDataHindi as Hindi,
+  trials,
+} from "../../data/TOL";
 import { FirebaseContext } from "../../firebase";
 import styles from "./style.module.css";
+import { languageContext } from "../../context/languageContext";
 
 export interface TOLProps {}
 
 export const TOL: React.FC<TOLProps> = () => {
   const history = useHistory();
-  const [tolIndex, setTolIndex] = useState(0);
   const [end, setEnd] = useState(false);
   const start = true;
   const [trialList, setTrialList] = useState<ReactNode[]>([]);
   const firebase = React.useContext(FirebaseContext);
   const firestore = firebase?.firebase.firestore();
+  const [tolIndex, setTolIndex] = useState(0);
+  const startTime = Date.now();
 
-  const [startTime, setStartTime] = useState(0);
+  const [tolData, settolData] = React.useState(English);
+  const { lang } = React.useContext(languageContext);
 
-  useEffect(() => {
-    setStartTime(Date.now());
-  }, []);
+  React.useEffect(() => {
+    settolData(lang === "Hindi" ? Hindi : English);
+  }, [lang]);
 
   function onResultCallback(
     result: boolean,
@@ -48,12 +55,12 @@ export const TOL: React.FC<TOLProps> = () => {
         ?.collection("Games")
         .doc("TOL")
         .collection(sessionStorage.getItem("uuid")!)
-        .doc(tolIndex.toString())
+        .doc(stackIndex.toString())
         .set({
           subjectid: sessionStorage.getItem("uuid"),
           device: isMobile ? "Mobile" : "Not Mobile",
           starttime: startTime,
-          trialnumber: tolIndex,
+          trialnumber: stackIndex,
           targetachieved: result,
           subjectattempts: dropsUsed,
           lastdropsource,
@@ -65,10 +72,10 @@ export const TOL: React.FC<TOLProps> = () => {
           osname: osName,
         })
         .then(() => {
-          // console.log("Document written");
+          console.log(`Document written: ${sessionStorage.getItem("uuid")!}`);
         })
         .catch((error) => {
-          // console.error("Error adding document: ", error);
+          console.error("Error adding document: ", error);
         });
     }
     if (stackIndex < trials.length - 1) {

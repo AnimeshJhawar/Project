@@ -5,7 +5,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useEffect } from "react";
 import { Droppable, DragDropContext } from "react-beautiful-dnd";
-import { tolData } from "../../data/TOL";
+import { languageContext } from "../../context/languageContext";
+import { tolData as English, tolDataHindi as Hindi } from "../../data/TOL";
 import { CustomButton } from "../CustomButton";
 import { TOLChip } from "../TOLChip";
 import style from "./style.module.css";
@@ -46,6 +47,16 @@ export const TOLStack: React.FC<TOLStackProps> = ({
     return [...array.slice(0, index), newItem, ...array.slice(index)];
   }
 
+  const [tolData, settolData] = React.useState(English);
+  const { lang } = React.useContext(languageContext);
+
+  React.useEffect(() => {
+    settolData(lang === "Hindi" ? Hindi : English);
+  }, [lang]);
+
+  useEffect(() => {
+    setStartTime(Date.now());
+  }, []);
   function onDragEnd(result: any) {
     const { destination, source, draggableId } = result;
     setLastSourceTarget([source, destination]);

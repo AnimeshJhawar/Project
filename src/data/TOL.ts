@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/prefer-default-export */
 export const tolData = {
+  practiceText: "TOL Practice Trials",
   finalHeading: "Target Stacks",
   wrongtext: "Trial Incomplete",
   dragDropText: "Drag and Drop to achieve final position",
@@ -14,15 +15,16 @@ export const tolData = {
 };
 
 export const tolDataHindi = {
-  finalHeading: "Target Stacks",
+  practiceText: "टोल प्रैक्टिस ट्रेल्स",
+  finalHeading: "लक्ष्य पैटर्न",
   wrongtext: "Trial Incomplete",
-  dragDropText: "Drag and Drop to achieve final position",
-  dragRemainText: "Drops remaining",
+  dragDropText: "अंतिम स्थिति प्राप्त करने के लिए गेंदों को खींचें और छोड़ें",
+  dragRemainText: "शेष चालें",
   endedPractice: "अभ्यास समाप्त ",
   practiceEndButton: "जारी रखे ",
   startPractice: "Start TOL Practice",
-  lastpageText: "Thank you for your participation",
-  nextTrialButton: "Click here to start next trial",
+  lastpageText: "कार्य पूरा करने के लिए धन्यवाद।",
+  nextTrialButton: "अगला कार्य खेलें",
   completed: "Task Completed",
 };
 
