@@ -19,7 +19,7 @@ export const TOLInstructions1: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      TASK 4
+      {tolInstructions1.task}
       <div className={styles.img}>
         <img src="/assets/tol.png" width="100%" alt="screen shot of tol" />
       </div>

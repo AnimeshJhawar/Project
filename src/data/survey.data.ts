@@ -2,11 +2,14 @@
 export const iframeScreen = {
   buttonText: "Finished filling survey? Click Here",
   checkStr: "Your response has been recorded",
+  copyPaste: "Copy-Paste the following code in the subject id field of survey:",
 };
 
 export const iframeScreenHindi = {
-  buttonText: "Finished filling survey? Click Here",
+  buttonText: "सर्वेक्षण भरना समाप्त? आगे बढ़े",
   checkStr: "आपकी प्रतिक्रिया दर्ज कर ली गई है।",
+  copyPaste:
+    "सर्वेक्षण के प्रतिभागी आईडी (Subject ID) फ़ील्ड में निम्नलिखित कोड को कॉपी-पेस्ट करें:",
 };
 
 export const surveys = [

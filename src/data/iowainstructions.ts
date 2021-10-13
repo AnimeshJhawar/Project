@@ -1,5 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 export const iowainstructions1 = {
+  task: "Task 2",
   text: "In this Task, you will be asked to select a card form one of the four cards. You can select any card by clicking on them.  With each card you can win some money, but you can also lose some. When you click on a card (out of four), the computer will tell you that you won some money but lost some money as well. Out of these four cards, there are some cards which are good cards, and some are bad cards. Try to stay away from bad cards to win more. In total you will get 40 cards to play with.",
   next: "Continue",
 };
@@ -15,6 +16,7 @@ export const iowainstructions2 = {
 };
 
 export const iowainstructions1Hindi = {
+  task: "टास्क 2",
   text: "इस टास्क (खेल) में, आपको चार पत्तों में से एक पत्ता (कार्) चुनना होगा । आप  किसी भी पाते पर क्लिक करके उस पाते (कार्ड) का चयन कर सकते हैं। प्रत्येक पाते (कार्ड) से आप कुछ पैसे जीत सकते हैं, लेकिन आप पैसे  खो भी सकते हैं। जब आप एक पाते/कार्ड (चार में से) पर क्लिक करते हैं, तो कंप्यूटर आपको बताएगा कि आपने कितने पैसे जीते है और कितने गंवाए है । इन चार पत्तों (कार्डों ) में से कुछ ऐसे पाते (कार्ड) हैं जो फायदेमंद पाते (कार्ड) हैं, और कुछ खराब पाते (कार्ड) हैं। ज्यादा पैसे जीतने के लिए खराब पाते (कार्ड) से दूर रहने की कोशिश करें। कुल मिलाकर आपको खेलने के लिए 40 पाते (कार्ड) मिलेंगे।",
   next: "जारी रखे",
 };

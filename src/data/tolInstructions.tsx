@@ -1,5 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 export const tolInstructions1 = {
+  task: "Task 4",
   text: "You are about to perform a task called the 'Tower of London'.  On the screen you can see three disks in red, green and blue color, at the top a final picture of disks is depicted (end pattern/goal) and the picture you see below is the starting pattern you will receive every time. You aim is to change the starting picture pattern to the end pattern picture.   ",
   next: "Continue",
 };
@@ -15,6 +16,7 @@ export const tolInstructions2 = {
 };
 
 export const tolInstructions1Hindi = {
+  task: "टास्क 4",
   text: "आप 'टॉवर ऑफ लंदन' नामक एक खेल खेलने वाले हैं। स्क्रीन पर आप लाल, हरे और नीले रंग में तीन डिस्क (गेंद) देख सकते हैं, स्क्रीन  पर  दो ढांचे दिए गए है ऊपर दिया हुआ चित्र/ढचा अंतिम लक्ष्य को दर्शाता है। और जो नीचे वाला चित्र/ढचा है, वह  शुरुआती चित्र/ढचा है। जो आपको  अंतिम चित्र/ढांचे के जैसे बनान वह है। आपका उद्देश्य प्रारंभिक चित्र/ढांचे को अंतिम पैटर्न चित्र में बदलना है।",
   next: "जारी रखें",
 };

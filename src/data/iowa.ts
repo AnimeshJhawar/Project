@@ -10,7 +10,10 @@ export const iowaData = {
   initialLoan: 225000,
   finalLimit: 225000 * 1.3,
 };
+
 export const iowaDataHindi = {
+  loanText: "कर्जा (Rs): ",
+  currentText: "कमाई (Rs): ",
   won: "रुपये जीते",
   lost: "रुपये हारे",
   practiceLastPage: "अभ्यास पूर्ण, खेल खेलने पर क्लिक करें",

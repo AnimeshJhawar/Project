@@ -19,7 +19,7 @@ export const IOWAInstructions1: React.FC = () => {
   }, [lang]);
   return (
     <div className={styles.container}>
-      TASK 2
+      {iowainstructions1.task}
       <div className={styles.img}>
         <img
           src="/assets/iowa/iowapractice1.png"

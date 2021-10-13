@@ -3,15 +3,21 @@ import React, { useState, useEffect } from "react";
 import { Card } from "antd";
 import { animated, useTransition } from "react-spring";
 import { isMobile, osName } from "react-device-detect";
-import { stroopData, gameData, practiceGameData } from "../../data/stroop";
+import {
+  stroopData as English,
+  stroopDataHindi as Hindi,
+  gameData,
+  practiceGameData,
+} from "../../data/stroop";
 import { StroopCard, StroopCardProps } from "../StroopCard";
 import { StroopText } from "../StroopText";
 import { StroopTrial } from "../StroopTrial";
 import styles from "./style.module.css";
 import { CustomButton } from "../CustomButton";
 import { FirebaseContext } from "../../firebase";
+import { languageContext } from "../../context/languageContext";
 
-const { countdown, countDownColor } = stroopData;
+const { countdown, countDownColor } = English;
 
 export interface StroopGameProps {
   onEnd: Function;
@@ -36,6 +42,13 @@ export const StroopGame: React.FC<StroopGameProps> = ({
   let incorrectTotal = 0;
   let correctTotal = 0;
   const game = practice ? practiceGameData : gameData;
+
+  const [stroopData, setstroopData] = useState(English);
+  const { lang } = React.useContext(languageContext);
+
+  useEffect(() => {
+    setstroopData(lang === "Hindi" ? Hindi : English);
+  }, [lang]);
 
   const analysis = () => {
     results.map((trial) => {
@@ -139,10 +152,7 @@ export const StroopGame: React.FC<StroopGameProps> = ({
           <animated.div style={transition}>
             {counter > 0 ? (
               <>
-                <StroopText
-                  text={`Starting in ${counter} sec.`}
-                  ink={countDownColor}
-                />
+                <StroopText text={counter.toString()} ink={countDownColor} />
               </>
             ) : (
               <>

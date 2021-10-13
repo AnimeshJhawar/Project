@@ -7,7 +7,8 @@ import { CustomButton } from "../CustomButton";
 import { BalloonPump } from "../BalloonPump";
 import { BalloonAnimated } from "../BalloonAnimated";
 import useWindowDimensions from "../../utils/viewport";
-import { bartText } from "../../data/bart";
+import { bartText as English, bartTextHindi as Hindi } from "../../data/bart";
+import { languageContext } from "../../context/languageContext";
 
 export interface BalloonScreenAnimatedProps {
   style?: CSSProperties;
@@ -42,6 +43,13 @@ export const BalloonScreenAnimated: React.FC<BalloonScreenAnimatedProps> = ({
   const { width } = useWindowDimensions();
   const [balloonDimensions, setBalloonDimensions] = useState(initialBalloonDim);
   const [end, setEnd] = useState(false);
+
+  const [bartText, setBartText] = React.useState(English);
+  const { lang } = React.useContext(languageContext);
+  React.useEffect(() => {
+    setBartText(lang === "Hindi" ? Hindi : English);
+  }, [lang]);
+
   useEffect(() => {
     setTimeout(() => {
       // eslint-disable-next-line no-constant-condition

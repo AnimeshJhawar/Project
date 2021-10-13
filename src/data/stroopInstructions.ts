@@ -1,5 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 export const stroopInstructions = {
+  task: "Task 3",
+  start: "Start",
   intro:
     "In this task, you will see color names (red, green, blue, yellow) printed in different ink. You need to tell what is the ink color that word is printed in. For example, if you see: ",
   example: ["Green", "Red"],
@@ -23,16 +25,18 @@ export const stroopInstructions = {
   ],
 };
 export const stroopInstructionsHindi = {
+  task: "टास्क 3",
+  start: "आगे बढ़े",
   intro:
     "इस टास्क (खेल) में आपको अलग-अलग स्याही में रंग के नाम (लाल, हरा, नीला, पीला) लिखे हुए दिखाई देंगे । आपको यह बताना होगा कि वह शब्द किस स्याही के रंग में लिखा  है। उदाहरण",
   example: ["Green", "Red"],
   similar:
     "उदाहरण के लिए, यदि आप स्क्रीन पर हरा शब्द देख रहे  है जो लाल रंग  में लिखा हुआ है, तो आपको 'r key' दबाने की जरूरत है क्योंकि स्याही का रंग लाल है । ",
   examples: [
-    ["Green", "Red", "press key “r” because ink color is red."],
-    ["Blue", "Yellow", "press key “y” because ink color is yellow."],
-    ["Red", "Green", "press key “g” because ink color is green."],
-    ["Yellow", "Blue", "press key “b” because ink color is blue."],
+    ["Green", "Red", "कुंजी 'r' दबाएं क्योंकि स्याही का रंग लाल है।"],
+    ["Blue", "Yellow", "कुंजी 'y' दबाएं क्योंकि स्याही का रंग पीला है।"],
+    ["Red", "Green", "कुंजी 'g' दबाएं क्योंकि स्याही का रंग हरा है।"],
+    ["Yellow", "Blue", "कुंजी 'b' दबाएं क्योंकि स्याही का रंग नीला है।"],
   ],
   final:
     "यह मुश्किल हो सकता है, क्युकी स्याही का रंग और शब्द का रंग अलग-अलग हो सकते है। तो, रंग शब्द पर ध्यान केंद्रित न करें और उससे  अनदेखा करें। आपको जिस स्याही के रंग से वह शब्द लिखा हुआ है उस पर ध्यान केंद्रित करना  है। आपको कई शब्द पूछे जाएगे और आपको तुरंत जवाब देना होगा। यदि आप समय के भीतर जवाब देने में विफल रहते हैं, तो आपके उत्तर को गलत के रूप में जमा कर दिया जाएगा, और आपको अगले शब्द पर ले जाया जाएगा।",

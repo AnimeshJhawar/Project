@@ -1,5 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 export const bartInstructionsData = {
+  task: "Task 1",
   points: [
     "In this task you will be presented with 30 balloons, one at a time. To increase the size of the balloon you must click on the button labeled 'Press This Button to Pump Up the Balloon'. You can blow the balloon as much as you want but remember the balloon can burst. ",
     "With each pump/blow you will get 30 (rupees) in the bank displayed on the top of the screen. At any point, you can stop pumping up the balloon and click on the button labeled 'Collect Rs' to collect money that you have gathered by pumping the balloon. ",
@@ -13,6 +14,7 @@ export const bartInstructionsData = {
 };
 
 export const bartInstructionsDataHindi = {
+  task: "कार्य (टास्क) 1",
   points: [
     "इस टास्क में आपको 30 गुब्बारे दिए जाएंगे। आपको दिए गए गुब्बारे में हवा भरनी है। हवा भरने के लिए ‘पंप करे’ वाले बटन को दबाए। आप जितना चाहें गुब्बारे में हवा भर सकते हैं लेकिन याद रखें कि गुब्बारा कभी भी फट सकता है।",
     "पंप को एक बार दबाने पर आपके बैंक में 30 (रुपये) आयेगे । जितनी बार आप पंप दबायेंगे वैसे ही गुब्बारे का आकर बदलता चला जाएगा। गुब्बारा फटने पर, आपको उस गुब्बारे के लिए कोई पैसे नहीं मिलेगे। यदि आप पैसे नहीं खोना चाहते तो गुब्बारा फटने से पहले ही *रुपय इकट्ठा करे* वाले बटन को दबा दे। आप किसी भी समय, गुब्बारे को पंप करना (हवा भरना) बंद कर सकते हैं और *रुपय इकट्ठा करे* वाले बटन को दबाकर उस गुब्बारे के पैसे इकट्ठा कर सकते है।",

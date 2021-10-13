@@ -5,7 +5,12 @@ import { number } from "prop-types";
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useTransition, animated } from "react-spring";
 import { isMobile, osName } from "react-device-detect";
-import { iowaData, iowaGameData, iowaPractceData } from "../../data/iowa";
+import {
+  iowaData as English,
+  iowaDataHindi as Hindi,
+  iowaGameData,
+  iowaPractceData,
+} from "../../data/iowa";
 import { FirebaseContext } from "../../firebase";
 import useWindowDimensions from "../../utils/viewport";
 import { CustomButton } from "../CustomButton";
@@ -13,6 +18,7 @@ import { PokerDeck } from "../PokerCard";
 import { Progress } from "../Progress";
 import { StroopCard } from "../StroopCard";
 import styles from "./style.module.css";
+import { languageContext } from "../../context/languageContext";
 
 export interface PokerCardsGroupProps {
   onEnd: Function;
@@ -22,6 +28,12 @@ export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = ({
   onEnd,
   practice = false,
 }) => {
+  const [iowaData, setiowaData] = React.useState(English);
+  const { lang } = React.useContext(languageContext);
+  React.useEffect(() => {
+    setiowaData(lang === "Hindi" ? Hindi : English);
+  }, [lang]);
+
   const {
     currentText,
     loanText,
@@ -32,6 +44,7 @@ export const PokerCardsGroup: React.FC<PokerCardsGroupProps> = ({
     lastPage,
     practiceLastPage,
   } = iowaData;
+
   const { cardsData, trialsCount } = practice ? iowaPractceData : iowaGameData;
   const { width } = useWindowDimensions();
   const [currentCardsIdx, setCurrentCardsIdx] = useState<number>(0);

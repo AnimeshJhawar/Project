@@ -56,7 +56,11 @@ export const StroopPractice: React.FC<StroopPracticeProps> = () => {
               </ul>
             </div>
 
-            <CustomButton text="START" block onClick={onStartHandeler} />
+            <CustomButton
+              text={stroopInstructions.start}
+              block
+              onClick={onStartHandeler}
+            />
           </animated.div>
         ) : (
           <animated.div style={transition}>

@@ -46,7 +46,7 @@ export const Surveys: React.FC<SurveysProps> = ({ surveyLink, next }) => {
   return (
     <div className={styles.container}>
       <p>
-        Copy-Paste the following code in the subject id field of survey:
+        {surveyFormData.copyPaste}
         <b> {sessionStorage.getItem("uuid")}</b>
       </p>
       <div
