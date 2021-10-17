@@ -12,6 +12,7 @@ export const tolData = {
   lastpageText: "Thank you for your participation",
   nextTrialButton: "Click here to start next trial",
   completed: "Task Completed",
+  time: "Time",
 };
 
 export const tolDataHindi = {
@@ -26,6 +27,7 @@ export const tolDataHindi = {
   lastpageText: "कार्य पूरा करने के लिए धन्यवाद।",
   nextTrialButton: "अगला कार्य खेलें",
   completed: "Task Completed",
+  time: "समय",
 };
 
 export const toltrials: {

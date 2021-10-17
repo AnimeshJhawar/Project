@@ -39,6 +39,7 @@ export const TOLStack: React.FC<TOLStackProps> = ({
   const [startTime, setStartTime] = useState(0);
   const [movesString, setMovesString] = useState("");
   const [firstmovetime, setFirstMoveTime] = useState(0);
+  const [timer, setTimer] = useState(0);
 
   let totalDraggables = 0;
   stackList.map((stack) => stack.map((e) => (totalDraggables += 1)));
@@ -54,9 +55,29 @@ export const TOLStack: React.FC<TOLStackProps> = ({
     settolData(lang === "Hindi" ? Hindi : English);
   }, [lang]);
 
+  React.useEffect(() => {
+    setTimeout(() => {
+      setTimer(timer + 1);
+      if (120 - timer <= 0) {
+        sendResult(
+          false,
+          dragDropCounts,
+          stackIndex,
+          lastSourceTarget[0],
+          lastSourceTarget[1],
+          Date.now() - startTime,
+          movesString,
+          firstmovetime
+        );
+        setEnd(true);
+      }
+    }, 1000);
+  });
+
   useEffect(() => {
     setStartTime(Date.now());
   }, []);
+
   function onDragEnd(result: any) {
     const { destination, source, draggableId } = result;
     setLastSourceTarget([source, destination]);
@@ -183,6 +204,11 @@ export const TOLStack: React.FC<TOLStackProps> = ({
             ))}
           </div>
           <div className={style.container}>
+            <strong style={{ width: "fit-content" }}>
+              {tolData.time}
+              <br />
+              {120 - timer}
+            </strong>
             <div className={style.container} style={{ paddingBottom: "50px" }}>
               <DragDropContext onDragEnd={onDragEnd}>
                 {stacksUpdated.map((stack, index) => (
