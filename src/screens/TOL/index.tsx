@@ -68,7 +68,7 @@ export const TOL: React.FC<TOLProps> = () => {
           lastdroplatency,
           endtime: Date.now(),
           movestring,
-          firstmovetime: firstmovetime - startTime,
+          firstmovetime,
           osname: osName,
         })
         .then(() => {
