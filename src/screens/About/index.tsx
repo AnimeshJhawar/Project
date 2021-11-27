@@ -1,8 +1,11 @@
 import React from "react";
+import Navbar from "../Navbar";
+import Footer from "../Footer";
 
 const About = () => {
   return (
     <>
+      <Navbar />
       <div className="my-5">
         <h1 className="text-center"> About Us </h1>
         <div className="card mb-5">
@@ -114,6 +117,7 @@ const About = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

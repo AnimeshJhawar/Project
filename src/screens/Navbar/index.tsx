@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import "./stylemodule.css";
 
 const Navbar = () => {
   return (
@@ -11,7 +12,7 @@ const Navbar = () => {
               <div className="container-fluid">
                 <NavLink className="navbar-brand" to="/">
                   <img
-                    src="/assets/home/download.png"
+                    src="/assets/home/logo.png"
                     alt="Psyching You"
                     width="300"
                     height="100"
@@ -38,7 +39,7 @@ const Navbar = () => {
                     <li className="nav-item">
                       <NavLink
                         className="nav-link active"
-                        to="/"
+                        to="/home"
                         activeClassName="menu_active"
                       >
                         Home

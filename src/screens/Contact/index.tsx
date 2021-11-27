@@ -1,10 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from "react";
+import Navbar from "../Navbar";
+import Footer from "../Footer";
 
 const Contact = () => {
   return (
     <>
+      <Navbar />
       <div className="my-5">
         <h1 className="text-center"> Contact Us </h1>
       </div>
@@ -66,6 +69,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

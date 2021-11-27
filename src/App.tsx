@@ -36,12 +36,9 @@ import { Proceed } from "./screens/Proceed";
 import { Problem1 } from "./screens/Problem1";
 import { Problem2 } from "./screens/Problem2";
 import { Problem3 } from "./screens/Problem3";
-import Home from "./screens/Home";
 import About from "./screens/About";
 import Contact from "./screens/Contact";
-import StartQues from "./screens/StartQues";
-import Navbar from "./screens/Navbar";
-import Footer from "./screens/Footer";
+import App1 from "./screens/Intro/App1";
 
 const App: FC = () => {
   const history = useHistory();
@@ -87,10 +84,11 @@ const App: FC = () => {
     return <Surveys surveyLink={surveys[9]} next="/exit" />;
   };
   const routes: { [key: string]: any } = {
-    // "/": Home,
-    // "/about": About,
-    // "/contact": Contact,
-    "/": RiskTaker,
+    "/": App1,
+    "/home": App1,
+    "/contact": Contact,
+    "/about": About,
+    "/risktaker": RiskTaker,
     "/ask": Ask,
     "/generalInstructions": GeneralInstructions,
     "/demographic": demographic,
