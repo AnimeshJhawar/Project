@@ -70,12 +70,6 @@ export const TOL: React.FC<TOLProps> = () => {
           movestring,
           firstmovetime,
           osname: osName,
-        })
-        .then(() => {
-          console.log(`Document written: ${sessionStorage.getItem("uuid")!}`);
-        })
-        .catch((error) => {
-          console.error("Error adding document: ", error);
         });
     }
     if (stackIndex < trials.length - 1) {
